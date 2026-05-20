@@ -1,0 +1,211 @@
+﻿namespace iShopping_Abakos
+{
+    partial class Orçamentos
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.label7 = new System.Windows.Forms.Label();
+            this.buttonSairOrcamentos = new System.Windows.Forms.Button();
+            this.buttonAdicionarOrcamento = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxNomeTipoArtigo = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dataGridViewHistoricoOrcamentos = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.labelOrcamentoEditar = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistoricoOrcamentos)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(705, 37);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(106, 20);
+            this.label7.TabIndex = 42;
+            this.label7.Text = "Mês: Janeiro";
+            // 
+            // buttonSairOrcamentos
+            // 
+            this.buttonSairOrcamentos.Location = new System.Drawing.Point(233, 425);
+            this.buttonSairOrcamentos.Name = "buttonSairOrcamentos";
+            this.buttonSairOrcamentos.Size = new System.Drawing.Size(233, 28);
+            this.buttonSairOrcamentos.TabIndex = 41;
+            this.buttonSairOrcamentos.Text = "Sair";
+            this.buttonSairOrcamentos.UseVisualStyleBackColor = true;
+            // 
+            // buttonAdicionarOrcamento
+            // 
+            this.buttonAdicionarOrcamento.Location = new System.Drawing.Point(657, 357);
+            this.buttonAdicionarOrcamento.Name = "buttonAdicionarOrcamento";
+            this.buttonAdicionarOrcamento.Size = new System.Drawing.Size(161, 28);
+            this.buttonAdicionarOrcamento.TabIndex = 40;
+            this.buttonAdicionarOrcamento.Text = "Adicionar orçamento";
+            this.buttonAdicionarOrcamento.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(657, 306);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(161, 28);
+            this.textBox1.TabIndex = 39;
+            // 
+            // textBoxNomeTipoArtigo
+            // 
+            this.textBoxNomeTipoArtigo.Location = new System.Drawing.Point(657, 254);
+            this.textBoxNomeTipoArtigo.Multiline = true;
+            this.textBoxNomeTipoArtigo.Name = "textBoxNomeTipoArtigo";
+            this.textBoxNomeTipoArtigo.Size = new System.Drawing.Size(161, 28);
+            this.textBoxNomeTipoArtigo.TabIndex = 38;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(591, 306);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(46, 20);
+            this.label5.TabIndex = 37;
+            this.label5.Text = "Mês:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(500, 254);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(137, 20);
+            this.label4.TabIndex = 36;
+            this.label4.Text = "Valor orçamento:";
+            // 
+            // dataGridViewHistoricoOrcamentos
+            // 
+            this.dataGridViewHistoricoOrcamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewHistoricoOrcamentos.Location = new System.Drawing.Point(38, 179);
+            this.dataGridViewHistoricoOrcamentos.Name = "dataGridViewHistoricoOrcamentos";
+            this.dataGridViewHistoricoOrcamentos.RowHeadersWidth = 51;
+            this.dataGridViewHistoricoOrcamentos.RowTemplate.Height = 24;
+            this.dataGridViewHistoricoOrcamentos.Size = new System.Drawing.Size(428, 240);
+            this.dataGridViewHistoricoOrcamentos.TabIndex = 35;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(40, 156);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(198, 20);
+            this.label2.TabIndex = 34;
+            this.label2.Text = "Histórico de orçamentos:";
+            // 
+            // label6
+            // 
+            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label6.Location = new System.Drawing.Point(38, 108);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(780, 2);
+            this.label6.TabIndex = 33;
+            // 
+            // labelOrcamentoEditar
+            // 
+            this.labelOrcamentoEditar.AutoSize = true;
+            this.labelOrcamentoEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelOrcamentoEditar.Location = new System.Drawing.Point(744, 88);
+            this.labelOrcamentoEditar.Name = "labelOrcamentoEditar";
+            this.labelOrcamentoEditar.Size = new System.Drawing.Size(67, 20);
+            this.labelOrcamentoEditar.TabIndex = 32;
+            this.labelOrcamentoEditar.Text = "400.00€";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(40, 88);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(140, 20);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "Orçamento Atual:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(32, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(172, 31);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "Orçamentos";
+            // 
+            // Orçamentos
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(862, 474);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.buttonSairOrcamentos);
+            this.Controls.Add(this.buttonAdicionarOrcamento);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxNomeTipoArtigo);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.dataGridViewHistoricoOrcamentos);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.labelOrcamentoEditar);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label1);
+            this.Name = "Orçamentos";
+            this.Text = "Orçamentos";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistoricoOrcamentos)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button buttonSairOrcamentos;
+        private System.Windows.Forms.Button buttonAdicionarOrcamento;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxNomeTipoArtigo;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridView dataGridViewHistoricoOrcamentos;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelOrcamentoEditar;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+    }
+}
