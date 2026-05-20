@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace iShopping_Abakos
 {
-    public partial class PaginaInicial : Form
+    public partial class PaginaInicialForm : Form
     {
-        public PaginaInicial()
+        public PaginaInicialForm()
         {
             InitializeComponent();
         }

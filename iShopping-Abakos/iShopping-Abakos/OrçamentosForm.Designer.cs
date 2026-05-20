@@ -1,6 +1,6 @@
 ﻿namespace iShopping_Abakos
 {
-    partial class Orçamentos
+    partial class OrçamentosForm
     {
         /// <summary>
         /// Required designer variable.
@@ -166,7 +166,7 @@
             this.label1.TabIndex = 30;
             this.label1.Text = "Orçamentos";
             // 
-            // Orçamentos
+            // OrçamentosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -184,8 +184,9 @@
             this.Controls.Add(this.labelOrcamentoEditar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Name = "Orçamentos";
+            this.Name = "OrçamentosForm";
             this.Text = "Orçamentos";
+            this.Load += new System.EventHandler(this.OrçamentosForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistoricoOrcamentos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -1,6 +1,6 @@
 ﻿namespace iShopping_Abakos
 {
-    partial class PaginaInicial
+    partial class PaginaInicialForm
     {
         /// <summary>
         /// Required designer variable.

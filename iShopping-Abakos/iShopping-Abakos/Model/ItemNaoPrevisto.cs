@@ -8,7 +8,6 @@ namespace iShopping_Abakos.Model
 {
     internal class ItemNaoPrevisto : ItemCompra
     {
-        public int IdItemNaoPrevisto { get; set; }
         public string Descricao { get; set; }
 
     }

@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace iShopping_Abakos
 {
-    public partial class TipoArtigo : Form
+    public partial class TipoArtigoForm : Form
     {
-        public TipoArtigo()
+        public TipoArtigoForm()
         {
             InitializeComponent();
+        }
+
+        private void TipoArtigoForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

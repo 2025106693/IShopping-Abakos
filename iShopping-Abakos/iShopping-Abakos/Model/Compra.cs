@@ -27,7 +27,7 @@ namespace iShopping_Abakos
         
         public decimal TotalGasto { get; set; }
 
-        public ICollection<ItemCompra> ItensCompras { get; set; }
+        public virtual ICollection<ItemCompra> ItensCompras { get; set; }
 
 
         

@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace iShopping_Abakos
 {
-    public partial class Orçamentos : Form
+    public partial class OrçamentosForm : Form
     {
-        public Orçamentos()
+        public OrçamentosForm()
         {
             InitializeComponent();
+        }
+
+        private void OrçamentosForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -9,7 +9,6 @@ namespace iShopping_Abakos.Model
 {
     internal class ItemPrevisto : ItemCompra
     {
-        public int IdItemPrevisto {get; set;}
-
+        
     }
 }

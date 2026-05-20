@@ -1,6 +1,6 @@
 ﻿namespace iShopping_Abakos
 {
-    partial class TipoArtigo
+    partial class TipoArtigoForm
     {
         /// <summary>
         /// Required designer variable.
@@ -154,7 +154,7 @@
             this.label1.TabIndex = 14;
             this.label1.Text = "Tipos de Artigos";
             // 
-            // TipoArtigo
+            // TipoArtigoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -171,8 +171,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridViewTipoArtigos);
             this.Controls.Add(this.label1);
-            this.Name = "TipoArtigo";
+            this.Name = "TipoArtigoForm";
             this.Text = "TipoArtigo";
+            this.Load += new System.EventHandler(this.TipoArtigoForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipoArtigos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
