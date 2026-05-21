@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iShopping_Abakos.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,11 @@ namespace iShopping_Abakos
         private void PaginaInicialForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button_Orcamento_Click(object sender, EventArgs e)
+        {
+            ControllerPaginaInicial.AbrirFormOrcamentos();
         }
     }
 }

@@ -196,6 +196,7 @@
             this.button_Orcamento.TabIndex = 20;
             this.button_Orcamento.Text = "Orçamento";
             this.button_Orcamento.UseVisualStyleBackColor = true;
+            this.button_Orcamento.Click += new System.EventHandler(this.button_Orcamento_Click);
             // 
             // comboBox1
             // 
