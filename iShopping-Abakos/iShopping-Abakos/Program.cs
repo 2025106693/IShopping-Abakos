@@ -11,7 +11,7 @@ namespace iShopping_Abakos
 {
     internal static class Program
     {
-        /// <summary>
+        
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
