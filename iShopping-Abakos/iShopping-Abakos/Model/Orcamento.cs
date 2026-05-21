@@ -19,8 +19,8 @@ namespace iShopping_Abakos
         public DateTime? DataAlteracao { get; set; }
 
         // FK
-        public int IdCriadoPor { get; set; }
-        public int? IdAlteradoPor { get; set; }
+        public string CriadoPor { get; set; }
+        public string AlteradoPor { get; set; }
         
 
     }
