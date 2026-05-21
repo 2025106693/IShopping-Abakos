@@ -244,6 +244,7 @@
             this.Controls.Add(this.button_Orcamento);
             this.Name = "PaginaInicialForm";
             this.Text = "PaginaInicial";
+            this.Load += new System.EventHandler(this.PaginaInicialForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewComprasAbertas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -16,5 +16,10 @@ namespace iShopping_Abakos
         {
             InitializeComponent();
         }
+
+        private void PaginaInicialForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

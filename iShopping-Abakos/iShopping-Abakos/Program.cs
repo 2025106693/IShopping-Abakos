@@ -32,10 +32,9 @@ namespace iShopping_Abakos
             {
                 if (login.ShowDialog() == DialogResult.OK)
                 {
-                    Application.Run(new Form1());
+                    Application.Run(new PaginaInicialForm());
                 }
-                //ApplicationConfiguration.Initialize();
-                //Application.Run(new Form1());
+
             }
 
         }
