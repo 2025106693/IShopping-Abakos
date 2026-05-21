@@ -14,6 +14,7 @@ namespace iShopping_Abakos
         
         /// The main entry point for the application.
         /// </summary>
+        /// Teste
         [STAThread]
         static void Main()
         {
