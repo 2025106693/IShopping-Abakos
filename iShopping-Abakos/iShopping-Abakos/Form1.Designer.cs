@@ -45,6 +45,7 @@
             this.button_Sair.TabIndex = 13;
             this.button_Sair.Text = "Sair";
             this.button_Sair.UseVisualStyleBackColor = true;
+            this.button_Sair.Click += new System.EventHandler(this.button_Sair_Click);
             // 
             // button_Login
             // 
@@ -54,6 +55,7 @@
             this.button_Login.TabIndex = 12;
             this.button_Login.Text = "Login";
             this.button_Login.UseVisualStyleBackColor = true;
+            this.button_Login.Click += new System.EventHandler(this.button_Login_Click);
             // 
             // textBox_Password
             // 
