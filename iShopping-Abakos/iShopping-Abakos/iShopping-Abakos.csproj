@@ -73,11 +73,11 @@
     <Compile Include="Model\TipoArtigo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Model\Sessao.cs" />
-    <Compile Include="OrçamentosForm.cs">
+    <Compile Include="OrcamentosForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OrçamentosForm.Designer.cs">
-      <DependentUpon>OrçamentosForm.cs</DependentUpon>
+    <Compile Include="OrcamentosForm.Designer.cs">
+      <DependentUpon>OrcamentosForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PaginaInicialForm.cs">
       <SubType>Form</SubType>
@@ -96,8 +96,8 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OrçamentosForm.resx">
-      <DependentUpon>OrçamentosForm.cs</DependentUpon>
+    <EmbeddedResource Include="OrcamentosForm.resx">
+      <DependentUpon>OrcamentosForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PaginaInicialForm.resx">
       <DependentUpon>PaginaInicialForm.cs</DependentUpon>

@@ -54,9 +54,9 @@
             // 
             // buttonAdicionarTipoArtigo
             // 
-            this.buttonAdicionarTipoArtigo.Location = new System.Drawing.Point(106, 500);
+            this.buttonAdicionarTipoArtigo.Location = new System.Drawing.Point(147, 500);
             this.buttonAdicionarTipoArtigo.Name = "buttonAdicionarTipoArtigo";
-            this.buttonAdicionarTipoArtigo.Size = new System.Drawing.Size(260, 28);
+            this.buttonAdicionarTipoArtigo.Size = new System.Drawing.Size(219, 28);
             this.buttonAdicionarTipoArtigo.TabIndex = 24;
             this.buttonAdicionarTipoArtigo.Text = "Adicionar tipo de artigo";
             this.buttonAdicionarTipoArtigo.UseVisualStyleBackColor = true;
@@ -148,7 +148,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(25, 18);
+            this.label1.Location = new System.Drawing.Point(25, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(226, 31);
             this.label1.TabIndex = 14;

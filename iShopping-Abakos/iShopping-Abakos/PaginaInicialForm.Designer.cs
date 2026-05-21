@@ -28,15 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridViewComprasFechadas = new System.Windows.Forms.DataGridView();
             this.dataGridViewComprasAbertas = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.button_Sair = new System.Windows.Forms.Button();
             this.button_VisualizarDetalhes = new System.Windows.Forms.Button();
-            this.button_VisualizarCompra = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.button_ExportarCSV = new System.Windows.Forms.Button();
+            this.label_Compras = new System.Windows.Forms.Label();
             this.label_Orcamento = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label_NomeUsername = new System.Windows.Forms.Label();
@@ -46,19 +44,10 @@
             this.button_Artigos = new System.Windows.Forms.Button();
             this.button_TipoArtigos = new System.Windows.Forms.Button();
             this.button_Orcamento = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewComprasFechadas)).BeginInit();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label_Estado = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewComprasAbertas)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dataGridViewComprasFechadas
-            // 
-            this.dataGridViewComprasFechadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewComprasFechadas.Location = new System.Drawing.Point(686, 206);
-            this.dataGridViewComprasFechadas.Name = "dataGridViewComprasFechadas";
-            this.dataGridViewComprasFechadas.RowHeadersWidth = 51;
-            this.dataGridViewComprasFechadas.RowTemplate.Height = 24;
-            this.dataGridViewComprasFechadas.Size = new System.Drawing.Size(285, 278);
-            this.dataGridViewComprasFechadas.TabIndex = 37;
             // 
             // dataGridViewComprasAbertas
             // 
@@ -67,15 +56,15 @@
             this.dataGridViewComprasAbertas.Name = "dataGridViewComprasAbertas";
             this.dataGridViewComprasAbertas.RowHeadersWidth = 51;
             this.dataGridViewComprasAbertas.RowTemplate.Height = 24;
-            this.dataGridViewComprasAbertas.Size = new System.Drawing.Size(285, 278);
+            this.dataGridViewComprasAbertas.Size = new System.Drawing.Size(634, 278);
             this.dataGridViewComprasAbertas.TabIndex = 36;
             // 
             // label6
             // 
             this.label6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label6.Location = new System.Drawing.Point(343, 127);
+            this.label6.Location = new System.Drawing.Point(333, 127);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(611, 2);
+            this.label6.Size = new System.Drawing.Size(638, 12);
             this.label6.TabIndex = 35;
             // 
             // label5
@@ -104,40 +93,30 @@
             this.button_VisualizarDetalhes.Text = "Visualizar Detalhes";
             this.button_VisualizarDetalhes.UseVisualStyleBackColor = true;
             // 
-            // button_VisualizarCompra
+            // button_ExportarCSV
             // 
-            this.button_VisualizarCompra.Location = new System.Drawing.Point(439, 503);
-            this.button_VisualizarCompra.Name = "button_VisualizarCompra";
-            this.button_VisualizarCompra.Size = new System.Drawing.Size(183, 39);
-            this.button_VisualizarCompra.TabIndex = 31;
-            this.button_VisualizarCompra.Text = "Visualizar compra";
-            this.button_VisualizarCompra.UseVisualStyleBackColor = true;
+            this.button_ExportarCSV.Location = new System.Drawing.Point(599, 503);
+            this.button_ExportarCSV.Name = "button_ExportarCSV";
+            this.button_ExportarCSV.Size = new System.Drawing.Size(183, 39);
+            this.button_ExportarCSV.TabIndex = 31;
+            this.button_ExportarCSV.Text = "Exportar para CSV";
+            this.button_ExportarCSV.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // label_Compras
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(334, 178);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(128, 18);
-            this.label4.TabIndex = 30;
-            this.label4.Text = "Compras Abertas:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(683, 178);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(143, 18);
-            this.label2.TabIndex = 29;
-            this.label2.Text = "Compras Fechadas:";
+            this.label_Compras.AutoSize = true;
+            this.label_Compras.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Compras.Location = new System.Drawing.Point(334, 172);
+            this.label_Compras.Name = "label_Compras";
+            this.label_Compras.Size = new System.Drawing.Size(82, 20);
+            this.label_Compras.TabIndex = 30;
+            this.label_Compras.Text = "Compras:";
             // 
             // label_Orcamento
             // 
             this.label_Orcamento.AutoSize = true;
             this.label_Orcamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Orcamento.Location = new System.Drawing.Point(887, 107);
+            this.label_Orcamento.Location = new System.Drawing.Point(904, 107);
             this.label_Orcamento.Name = "label_Orcamento";
             this.label_Orcamento.Size = new System.Drawing.Size(67, 20);
             this.label_Orcamento.TabIndex = 28;
@@ -147,7 +126,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(345, 107);
+            this.label3.Location = new System.Drawing.Point(334, 107);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(140, 20);
             this.label3.TabIndex = 27;
@@ -156,20 +135,20 @@
             // label_NomeUsername
             // 
             this.label_NomeUsername.AutoSize = true;
-            this.label_NomeUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_NomeUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_NomeUsername.Location = new System.Drawing.Point(339, 36);
             this.label_NomeUsername.Name = "label_NomeUsername";
-            this.label_NomeUsername.Size = new System.Drawing.Size(210, 25);
+            this.label_NomeUsername.Size = new System.Drawing.Size(334, 36);
             this.label_NomeUsername.TabIndex = 26;
             this.label_NomeUsername.Text = "Bem vindo, Username!";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(64, 29);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(61, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(145, 31);
+            this.label1.Size = new System.Drawing.Size(161, 36);
             this.label1.TabIndex = 25;
             this.label1.Text = "IShopping";
             // 
@@ -218,20 +197,42 @@
             this.button_Orcamento.Text = "Orçamento";
             this.button_Orcamento.UseVisualStyleBackColor = true;
             // 
-            // PaginaInicial
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Todos",
+            "Abertas",
+            "Fechadas"});
+            this.comboBox1.Location = new System.Drawing.Point(788, 172);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(183, 24);
+            this.comboBox1.TabIndex = 37;
+            this.comboBox1.Text = "Selecione o estado";
+            // 
+            // label_Estado
+            // 
+            this.label_Estado.AutoSize = true;
+            this.label_Estado.Location = new System.Drawing.Point(729, 175);
+            this.label_Estado.Name = "label_Estado";
+            this.label_Estado.Size = new System.Drawing.Size(53, 16);
+            this.label_Estado.TabIndex = 38;
+            this.label_Estado.Text = "Estado:";
+            // 
+            // PaginaInicialForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1013, 575);
-            this.Controls.Add(this.dataGridViewComprasFechadas);
+            this.Controls.Add(this.label_Estado);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGridViewComprasAbertas);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button_Sair);
             this.Controls.Add(this.button_VisualizarDetalhes);
-            this.Controls.Add(this.button_VisualizarCompra);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.button_ExportarCSV);
+            this.Controls.Add(this.label_Compras);
             this.Controls.Add(this.label_Orcamento);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label_NomeUsername);
@@ -241,9 +242,8 @@
             this.Controls.Add(this.button_Artigos);
             this.Controls.Add(this.button_TipoArtigos);
             this.Controls.Add(this.button_Orcamento);
-            this.Name = "PaginaInicial";
+            this.Name = "PaginaInicialForm";
             this.Text = "PaginaInicial";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewComprasFechadas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewComprasAbertas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -251,16 +251,13 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridViewComprasFechadas;
         private System.Windows.Forms.DataGridView dataGridViewComprasAbertas;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button_Sair;
         private System.Windows.Forms.Button button_VisualizarDetalhes;
-        private System.Windows.Forms.Button button_VisualizarCompra;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button_ExportarCSV;
+        private System.Windows.Forms.Label label_Compras;
         private System.Windows.Forms.Label label_Orcamento;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label_NomeUsername;
@@ -270,5 +267,7 @@
         private System.Windows.Forms.Button button_Artigos;
         private System.Windows.Forms.Button button_TipoArtigos;
         private System.Windows.Forms.Button button_Orcamento;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label_Estado;
     }
 }

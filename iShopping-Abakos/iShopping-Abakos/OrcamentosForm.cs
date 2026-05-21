@@ -10,14 +10,24 @@ using System.Windows.Forms;
 
 namespace iShopping_Abakos
 {
-    public partial class OrçamentosForm : Form
+    public partial class OrcamentosForm : Form
     {
-        public OrçamentosForm()
+        public OrcamentosForm()
         {
             InitializeComponent();
         }
 
         private void OrçamentosForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonSairOrcamentos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonAdicionarOrcamento_Click(object sender, EventArgs e)
         {
 
         }
