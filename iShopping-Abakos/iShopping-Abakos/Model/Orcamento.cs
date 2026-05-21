@@ -10,7 +10,7 @@ namespace iShopping_Abakos
     internal class Orcamento
     {
         public int Id { get; set; }
-        public int Mes { get; set; }
+        public string Mes { get; set; }
         public int Ano { get; set; }
 
         public decimal Valor { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iShopping_Abakos.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,10 +16,18 @@ namespace iShopping_Abakos
         public OrcamentosForm()
         {
             InitializeComponent();
+
+            Orcamento orcamento = ControllerOrcamento.DevolverOrcamentoAtual();
+
+            labelMes.Text = "Mês: " + orcamento.Mes;
+            labelValorOrcamento.Text = orcamento.Valor.ToString() + "€";
         }
 
         private void OrçamentosForm_Load(object sender, EventArgs e)
         {
+
+            
+
 
         }
 
@@ -30,6 +39,15 @@ namespace iShopping_Abakos
         private void buttonAdicionarOrcamento_Click(object sender, EventArgs e)
         {
             
+
+            string valor = textBoxValorOrcamento.Text.Trim();
+            string mes = comboBoxMesesOrcamento.SelectedItem.ToString();
+            string ano = textBoxAnoOrcamento.Text.Trim();
+
+             ControllerOrcamento.AdicionarOrcamento(valor, mes, ano);
+
+            
+
         }
 
 

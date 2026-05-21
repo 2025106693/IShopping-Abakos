@@ -10,10 +10,11 @@ namespace iShopping_Abakos.Controller
 {
     internal class ControllerOrcamento
     {
-        public static void AdicionarOrcamento(string valorText, int mesCombo, string anoText)
+        public static void AdicionarOrcamento(string valorText, string mes, string anoText)
         {
             int ano;
             decimal valor;
+            
 
             if(!decimal.TryParse(valorText, out valor))
             {
@@ -21,7 +22,7 @@ namespace iShopping_Abakos.Controller
                 return;
             }
 
-            if (mesCombo == -1)
+            if (mes == "")
             {
                 MessageBox.Show("Selecione um mês");
                 return;
@@ -35,13 +36,13 @@ namespace iShopping_Abakos.Controller
 
             using (IShoppingContext db = new IShoppingContext())
             {
-                Orcamento orcamento = db.DBOrcamentos.FirstOrDefault(o => o.Mes == mesCombo && o.Ano == ano);
+                Orcamento orcamento = db.DBOrcamentos.FirstOrDefault(o => o.Mes == mes && o.Ano == ano);
 
                 if(orcamento == null)
                 {
                     orcamento = new Orcamento()
                     {
-                        Mes = mesCombo,
+                        Mes = mes,
                         Ano = ano,
                         Valor = valor,
                         DataCriacao = DateTime.Now,
@@ -51,12 +52,28 @@ namespace iShopping_Abakos.Controller
                     db.DBOrcamentos.Add(orcamento);
                 }
 
-                db.SaveChanges(); 
+                db.SaveChanges();
+                MessageBox.Show("Orçamento criado com sucesso!");
+            }  
+        }   
+
+        public static Orcamento DevolverOrcamentoAtual()
+        {
+            string mesAtual = DateTime.Today.ToString("MMMM", new System.Globalization.CultureInfo("pt-PT"));
+            int anoAtual = DateTime.Today.Year;
+
+
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                Orcamento orcamento = db.DBOrcamentos.FirstOrDefault(
+                    o => o.Mes == mesAtual && o.Ano == anoAtual);
+
+              
+                return orcamento;
             }
 
-            MessageBox.Show("Orçamento criado com sucesso!");
-        }
+            
 
-        
+        }
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label7 = new System.Windows.Forms.Label();
+            this.labelMes = new System.Windows.Forms.Label();
             this.buttonSairOrcamentos = new System.Windows.Forms.Button();
             this.buttonAdicionarOrcamento = new System.Windows.Forms.Button();
             this.textBoxMesOrcamento = new System.Windows.Forms.TextBox();
@@ -36,7 +36,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.labelOrcamentoEditar = new System.Windows.Forms.Label();
+            this.labelValorOrcamento = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonEditarOrcamento = new System.Windows.Forms.Button();
@@ -45,15 +45,15 @@
             this.comboBoxMesesOrcamento = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // label7
+            // labelMes
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(705, 37);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(106, 20);
-            this.label7.TabIndex = 42;
-            this.label7.Text = "Mês: Janeiro";
+            this.labelMes.AutoSize = true;
+            this.labelMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMes.Location = new System.Drawing.Point(705, 37);
+            this.labelMes.Name = "labelMes";
+            this.labelMes.Size = new System.Drawing.Size(106, 20);
+            this.labelMes.TabIndex = 42;
+            this.labelMes.Text = "Mês: Janeiro";
             // 
             // buttonSairOrcamentos
             // 
@@ -120,15 +120,15 @@
             this.label6.Size = new System.Drawing.Size(780, 10);
             this.label6.TabIndex = 33;
             // 
-            // labelOrcamentoEditar
+            // labelValorOrcamento
             // 
-            this.labelOrcamentoEditar.AutoSize = true;
-            this.labelOrcamentoEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOrcamentoEditar.Location = new System.Drawing.Point(744, 93);
-            this.labelOrcamentoEditar.Name = "labelOrcamentoEditar";
-            this.labelOrcamentoEditar.Size = new System.Drawing.Size(67, 20);
-            this.labelOrcamentoEditar.TabIndex = 32;
-            this.labelOrcamentoEditar.Text = "400.00€";
+            this.labelValorOrcamento.AutoSize = true;
+            this.labelValorOrcamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelValorOrcamento.Location = new System.Drawing.Point(744, 93);
+            this.labelValorOrcamento.Name = "labelValorOrcamento";
+            this.labelValorOrcamento.Size = new System.Drawing.Size(67, 20);
+            this.labelValorOrcamento.TabIndex = 32;
+            this.labelValorOrcamento.Text = "400.00€";
             // 
             // label3
             // 
@@ -207,7 +207,7 @@
             this.Controls.Add(this.textBoxAnoOrcamento);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonEditarOrcamento);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.labelMes);
             this.Controls.Add(this.buttonSairOrcamentos);
             this.Controls.Add(this.buttonAdicionarOrcamento);
             this.Controls.Add(this.textBoxMesOrcamento);
@@ -215,7 +215,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.labelOrcamentoEditar);
+            this.Controls.Add(this.labelValorOrcamento);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Name = "OrcamentosForm";
@@ -227,7 +227,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label labelMes;
         private System.Windows.Forms.Button buttonSairOrcamentos;
         private System.Windows.Forms.Button buttonAdicionarOrcamento;
         private System.Windows.Forms.TextBox textBoxMesOrcamento;
@@ -235,7 +235,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label labelOrcamentoEditar;
+        private System.Windows.Forms.Label labelValorOrcamento;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonEditarOrcamento;
