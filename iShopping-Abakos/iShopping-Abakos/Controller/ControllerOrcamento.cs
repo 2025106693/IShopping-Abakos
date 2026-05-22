@@ -72,8 +72,16 @@ namespace iShopping_Abakos.Controller
                 return orcamento;
             }
 
-            
+        }
 
+        public static void MostrarTabelaOrçamentos(DataGridView dataSource)
+        {
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                dataSource.DataSource = db.DBOrcamentos.OrderBy(
+                    o => o.DataCriacao).ToList();
+
+            }
         }
     }
 }

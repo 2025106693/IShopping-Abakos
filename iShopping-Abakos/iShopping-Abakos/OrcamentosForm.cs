@@ -19,16 +19,16 @@ namespace iShopping_Abakos
 
             Orcamento orcamento = ControllerOrcamento.DevolverOrcamentoAtual();
 
-            labelMes.Text = "Mês: " + orcamento.Mes;
-            labelValorOrcamento.Text = orcamento.Valor.ToString() + "€";
-        }
-
-        private void OrçamentosForm_Load(object sender, EventArgs e)
-        {
-
-            
-
-
+            if (orcamento != null)
+            {
+                labelMes.Text = "Mês: " + orcamento.Mes;
+                labelValorOrcamento.Text = orcamento.Valor.ToString() + "€";
+            }
+            else
+            {
+                labelMes.Text = "Mês: — ";
+                labelValorOrcamento.Text = " — ";
+            }
         }
 
         private void buttonSairOrcamentos_Click(object sender, EventArgs e)
@@ -45,11 +45,19 @@ namespace iShopping_Abakos
             string ano = textBoxAnoOrcamento.Text.Trim();
 
              ControllerOrcamento.AdicionarOrcamento(valor, mes, ano);
+             ControllerOrcamento.MostrarTabelaOrçamentos(dataGridView1);
 
-            
+
 
         }
 
+        private void OrcamentosForm_Load(object sender, EventArgs e)
+        {
+            dataGridView1.AutoGenerateColumns = true;
+            dataGridView1.RowHeadersWidth = 60;
+            ControllerOrcamento.MostrarTabelaOrçamentos(dataGridView1);
+            dataGridView1.ClearSelection();
 
+        }
     }
 }

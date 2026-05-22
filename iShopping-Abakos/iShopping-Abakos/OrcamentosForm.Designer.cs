@@ -43,6 +43,8 @@
             this.textBoxAnoOrcamento = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxMesesOrcamento = new System.Windows.Forms.ComboBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelMes
@@ -198,11 +200,22 @@
             this.comboBoxMesesOrcamento.Size = new System.Drawing.Size(234, 24);
             this.comboBoxMesesOrcamento.TabIndex = 46;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(38, 157);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(382, 223);
+            this.dataGridView1.TabIndex = 47;
+            // 
             // OrcamentosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(890, 447);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.comboBoxMesesOrcamento);
             this.Controls.Add(this.textBoxAnoOrcamento);
             this.Controls.Add(this.label2);
@@ -220,6 +233,8 @@
             this.Controls.Add(this.label1);
             this.Name = "OrcamentosForm";
             this.Text = "Orçamentos";
+            this.Load += new System.EventHandler(this.OrcamentosForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,5 +257,6 @@
         private System.Windows.Forms.TextBox textBoxAnoOrcamento;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBoxMesesOrcamento;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
