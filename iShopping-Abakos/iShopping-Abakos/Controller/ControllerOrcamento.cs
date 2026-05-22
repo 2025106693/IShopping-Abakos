@@ -51,8 +51,13 @@ namespace iShopping_Abakos.Controller
 
                     db.DBOrcamentos.Add(orcamento);
                 }
+                else
+                {
+                    MessageBox.Show("Já existe um orçamento para este mês!\nSe quiser alterar, clique no botão Editar Orçamento");
+                    return;
+                }
 
-                db.SaveChanges();
+                    db.SaveChanges();
                 MessageBox.Show("Orçamento criado com sucesso!");
             }  
         }   
@@ -74,6 +79,8 @@ namespace iShopping_Abakos.Controller
 
         }
 
+
+
         public static void MostrarTabelaOrçamentos(DataGridView dataSource)
         {
             using (IShoppingContext db = new IShoppingContext())
@@ -81,6 +88,47 @@ namespace iShopping_Abakos.Controller
                 dataSource.DataSource = db.DBOrcamentos.OrderBy(
                     o => o.DataCriacao).ToList();
 
+            }
+        }
+
+
+
+        public static void AlterarOrcamentoAtual(string id, string valorText, DataGridView dataSource)
+        {
+            decimal valor;
+            int id_orcamento;
+
+            if (!decimal.TryParse(valorText, out valor))
+            {
+                MessageBox.Show("O valor tem de ser numérico!");
+                return;
+            }
+
+            if (!int.TryParse(id, out id_orcamento))
+            {
+                MessageBox.Show("O valor tem de ser numérico!");
+                return;
+            }
+
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                Orcamento orcamento = db.DBOrcamentos.FirstOrDefault(o => o.Id == id_orcamento);
+
+                if (orcamento != null)
+                {
+
+                    orcamento.Valor = valor; 
+                    
+                }
+                else
+                {
+                    MessageBox.Show("ID do orçamento não encontrado!");
+                    return;
+                }
+
+                db.SaveChanges();
+                MessageBox.Show("Orçamento alterado com sucesso!");
+                MostrarTabelaOrçamentos(dataSource);
             }
         }
     }

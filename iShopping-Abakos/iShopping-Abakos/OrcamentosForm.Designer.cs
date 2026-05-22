@@ -31,7 +31,7 @@
             this.labelMes = new System.Windows.Forms.Label();
             this.buttonSairOrcamentos = new System.Windows.Forms.Button();
             this.buttonAdicionarOrcamento = new System.Windows.Forms.Button();
-            this.textBoxMesOrcamento = new System.Windows.Forms.TextBox();
+            this.textBoxID = new System.Windows.Forms.TextBox();
             this.textBoxValorOrcamento = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -44,6 +44,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxMesesOrcamento = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,13 +79,13 @@
             this.buttonAdicionarOrcamento.UseVisualStyleBackColor = true;
             this.buttonAdicionarOrcamento.Click += new System.EventHandler(this.buttonAdicionarOrcamento_Click);
             // 
-            // textBoxMesOrcamento
+            // textBoxID
             // 
-            this.textBoxMesOrcamento.Location = new System.Drawing.Point(28, 398);
-            this.textBoxMesOrcamento.Multiline = true;
-            this.textBoxMesOrcamento.Name = "textBoxMesOrcamento";
-            this.textBoxMesOrcamento.Size = new System.Drawing.Size(234, 28);
-            this.textBoxMesOrcamento.TabIndex = 39;
+            this.textBoxID.Location = new System.Drawing.Point(491, 140);
+            this.textBoxID.Multiline = true;
+            this.textBoxID.Name = "textBoxID";
+            this.textBoxID.Size = new System.Drawing.Size(72, 28);
+            this.textBoxID.TabIndex = 39;
             // 
             // textBoxValorOrcamento
             // 
@@ -119,7 +120,7 @@
             this.label6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label6.Location = new System.Drawing.Point(38, 124);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(780, 10);
+            this.label6.Size = new System.Drawing.Size(780, 2);
             this.label6.TabIndex = 33;
             // 
             // labelValorOrcamento
@@ -160,6 +161,7 @@
             this.buttonEditarOrcamento.TabIndex = 43;
             this.buttonEditarOrcamento.Text = "Editar Orçamento Atual";
             this.buttonEditarOrcamento.UseVisualStyleBackColor = true;
+            this.buttonEditarOrcamento.Click += new System.EventHandler(this.buttonEditarOrcamento_Click);
             // 
             // textBoxAnoOrcamento
             // 
@@ -210,11 +212,22 @@
             this.dataGridView1.Size = new System.Drawing.Size(382, 223);
             this.dataGridView1.TabIndex = 47;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(454, 145);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(31, 20);
+            this.label7.TabIndex = 48;
+            this.label7.Text = "ID:";
+            // 
             // OrcamentosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(890, 447);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.comboBoxMesesOrcamento);
             this.Controls.Add(this.textBoxAnoOrcamento);
@@ -223,7 +236,7 @@
             this.Controls.Add(this.labelMes);
             this.Controls.Add(this.buttonSairOrcamentos);
             this.Controls.Add(this.buttonAdicionarOrcamento);
-            this.Controls.Add(this.textBoxMesOrcamento);
+            this.Controls.Add(this.textBoxID);
             this.Controls.Add(this.textBoxValorOrcamento);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -245,7 +258,7 @@
         private System.Windows.Forms.Label labelMes;
         private System.Windows.Forms.Button buttonSairOrcamentos;
         private System.Windows.Forms.Button buttonAdicionarOrcamento;
-        private System.Windows.Forms.TextBox textBoxMesOrcamento;
+        private System.Windows.Forms.TextBox textBoxID;
         private System.Windows.Forms.TextBox textBoxValorOrcamento;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -258,5 +271,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBoxMesesOrcamento;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label7;
     }
 }

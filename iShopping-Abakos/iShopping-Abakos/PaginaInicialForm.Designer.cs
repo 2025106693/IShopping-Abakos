@@ -64,7 +64,7 @@
             this.label6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label6.Location = new System.Drawing.Point(333, 127);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(638, 12);
+            this.label6.Size = new System.Drawing.Size(638, 2);
             this.label6.TabIndex = 35;
             // 
             // label5
