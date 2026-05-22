@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,7 +16,7 @@ namespace iShopping_Abakos.Controller
         public static void AbrirFormOrcamentos()
         {
             OrcamentosForm Form = new OrcamentosForm();
-            Form.ShowDialog();
+            Form.ShowDialog();  
         }
 
         public static Orcamento MostrarOrcamento()
@@ -32,6 +33,23 @@ namespace iShopping_Abakos.Controller
 
                 return orcamento;
             }
+        }
+
+        public static Orcamento DevolverOrcamentoAtual()
+        {
+            string mesAtual = DateTime.Today.ToString("MMMM", new System.Globalization.CultureInfo("pt-PT"));
+            int anoAtual = DateTime.Today.Year;
+
+
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                Orcamento orcamento = db.DBOrcamentos.FirstOrDefault(
+                    o => o.Mes == mesAtual && o.Ano == anoAtual);
+
+
+                return orcamento;
+            }
+
         }
     }
 }

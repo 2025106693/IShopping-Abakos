@@ -22,7 +22,12 @@ namespace iShopping_Abakos
 
         private void buttonSairOrcamentos_Click(object sender, EventArgs e)
         {
+            
+
+            PaginaInicialForm form = new PaginaInicialForm();
+            form.ShowDialog();
             this.Close();
+
         }
 
         private void buttonAdicionarOrcamento_Click(object sender, EventArgs e)
@@ -64,6 +69,7 @@ namespace iShopping_Abakos
 
 
 
+
         }
 
         private void buttonEditarOrcamento_Click(object sender, EventArgs e)
@@ -84,5 +90,7 @@ namespace iShopping_Abakos
             }
 
         }
+
+        
     }
 }

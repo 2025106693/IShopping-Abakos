@@ -25,12 +25,28 @@ namespace iShopping_Abakos
 
         private void PaginaInicialForm_Load(object sender, EventArgs e)
         {
+            Orcamento orcamento = ControllerPaginaInicial.DevolverOrcamentoAtual();
 
+            if (orcamento != null)
+            {
+
+                label_Orcamento.Text = orcamento.Valor.ToString() + "€";
+            }
+            else
+            {
+
+                label_Orcamento.Text = " — ";
+            }
         }
 
         private void button_Orcamento_Click(object sender, EventArgs e)
         {
+            
+
             ControllerPaginaInicial.AbrirFormOrcamentos();
+
+
+            this.Close();
         }
 
         private void label_Orcamento_Click(object sender, EventArgs e)
