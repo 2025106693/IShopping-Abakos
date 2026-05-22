@@ -22,7 +22,7 @@ namespace iShopping_Abakos
 
         private void buttonSairOrcamentos_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void buttonAdicionarOrcamento_Click(object sender, EventArgs e)
