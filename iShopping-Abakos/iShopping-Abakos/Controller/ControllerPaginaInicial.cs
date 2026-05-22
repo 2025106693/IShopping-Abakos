@@ -17,5 +17,21 @@ namespace iShopping_Abakos.Controller
             OrcamentosForm Form = new OrcamentosForm();
             Form.ShowDialog();
         }
+
+        public static Orcamento MostrarOrcamento()
+        {
+            string mesAtual = DateTime.Today.ToString("MMMM", new System.Globalization.CultureInfo("pt-PT"));
+            int anoAtual = DateTime.Today.Year;
+
+
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                Orcamento orcamento = db.DBOrcamentos.FirstOrDefault(
+                    o => o.Mes == mesAtual && o.Ano == anoAtual);
+
+
+                return orcamento;
+            }
+        }
     }
 }
