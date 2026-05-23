@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace iShopping_Abakos
+namespace iShopping_Abakos.View
 {
-    public partial class TipoArtigoForm : Form
+    public partial class EstatisticasForm : Form
     {
-        public TipoArtigoForm()
+        public EstatisticasForm()
         {
             InitializeComponent();
-        }
-
-        private void TipoArtigoForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

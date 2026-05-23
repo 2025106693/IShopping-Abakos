@@ -62,7 +62,7 @@
             // label6
             // 
             this.label6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label6.Location = new System.Drawing.Point(333, 127);
+            this.label6.Location = new System.Drawing.Point(337, 131);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(638, 2);
             this.label6.TabIndex = 35;
@@ -77,6 +77,7 @@
             // 
             // button_Sair
             // 
+            this.button_Sair.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Sair.Location = new System.Drawing.Point(90, 503);
             this.button_Sair.Name = "button_Sair";
             this.button_Sair.Size = new System.Drawing.Size(102, 39);
@@ -86,6 +87,7 @@
             // 
             // button_VisualizarDetalhes
             // 
+            this.button_VisualizarDetalhes.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_VisualizarDetalhes.Location = new System.Drawing.Point(788, 503);
             this.button_VisualizarDetalhes.Name = "button_VisualizarDetalhes";
             this.button_VisualizarDetalhes.Size = new System.Drawing.Size(183, 39);
@@ -95,6 +97,7 @@
             // 
             // button_ExportarCSV
             // 
+            this.button_ExportarCSV.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_ExportarCSV.Location = new System.Drawing.Point(599, 503);
             this.button_ExportarCSV.Name = "button_ExportarCSV";
             this.button_ExportarCSV.Size = new System.Drawing.Size(183, 39);
@@ -105,10 +108,10 @@
             // label_Compras
             // 
             this.label_Compras.AutoSize = true;
-            this.label_Compras.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Compras.Location = new System.Drawing.Point(334, 172);
+            this.label_Compras.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Compras.Location = new System.Drawing.Point(334, 173);
             this.label_Compras.Name = "label_Compras";
-            this.label_Compras.Size = new System.Drawing.Size(82, 20);
+            this.label_Compras.Size = new System.Drawing.Size(88, 24);
             this.label_Compras.TabIndex = 30;
             this.label_Compras.Text = "Compras:";
             // 
@@ -126,35 +129,36 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(334, 107);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(140, 20);
+            this.label3.Size = new System.Drawing.Size(162, 24);
             this.label3.TabIndex = 27;
             this.label3.Text = "Orçamento Atual:";
             // 
             // label_NomeUsername
             // 
             this.label_NomeUsername.AutoSize = true;
-            this.label_NomeUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_NomeUsername.Location = new System.Drawing.Point(339, 36);
+            this.label_NomeUsername.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_NomeUsername.Location = new System.Drawing.Point(330, 36);
             this.label_NomeUsername.Name = "label_NomeUsername";
-            this.label_NomeUsername.Size = new System.Drawing.Size(334, 36);
+            this.label_NomeUsername.Size = new System.Drawing.Size(356, 40);
             this.label_NomeUsername.TabIndex = 26;
             this.label_NomeUsername.Text = "Bem vindo, Username!";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(61, 36);
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(55, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(161, 36);
+            this.label1.Size = new System.Drawing.Size(172, 40);
             this.label1.TabIndex = 25;
             this.label1.Text = "IShopping";
             // 
             // button_Estatisticas
             // 
+            this.button_Estatisticas.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Estatisticas.Location = new System.Drawing.Point(41, 413);
             this.button_Estatisticas.Name = "button_Estatisticas";
             this.button_Estatisticas.Size = new System.Drawing.Size(198, 42);
@@ -164,6 +168,7 @@
             // 
             // button_Compras
             // 
+            this.button_Compras.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Compras.Location = new System.Drawing.Point(41, 322);
             this.button_Compras.Name = "button_Compras";
             this.button_Compras.Size = new System.Drawing.Size(198, 42);
@@ -173,6 +178,7 @@
             // 
             // button_Artigos
             // 
+            this.button_Artigos.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Artigos.Location = new System.Drawing.Point(41, 242);
             this.button_Artigos.Name = "button_Artigos";
             this.button_Artigos.Size = new System.Drawing.Size(198, 42);
@@ -182,6 +188,7 @@
             // 
             // button_TipoArtigos
             // 
+            this.button_TipoArtigos.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_TipoArtigos.Location = new System.Drawing.Point(41, 178);
             this.button_TipoArtigos.Name = "button_TipoArtigos";
             this.button_TipoArtigos.Size = new System.Drawing.Size(198, 42);
@@ -191,6 +198,7 @@
             // 
             // button_Orcamento
             // 
+            this.button_Orcamento.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Orcamento.Location = new System.Drawing.Point(41, 107);
             this.button_Orcamento.Name = "button_Orcamento";
             this.button_Orcamento.Size = new System.Drawing.Size(198, 42);
@@ -206,7 +214,7 @@
             "Todos",
             "Abertas",
             "Fechadas"});
-            this.comboBox1.Location = new System.Drawing.Point(788, 172);
+            this.comboBox1.Location = new System.Drawing.Point(788, 173);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(183, 24);
             this.comboBox1.TabIndex = 37;
@@ -215,9 +223,10 @@
             // label_Estado
             // 
             this.label_Estado.AutoSize = true;
-            this.label_Estado.Location = new System.Drawing.Point(729, 175);
+            this.label_Estado.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Estado.Location = new System.Drawing.Point(729, 173);
             this.label_Estado.Name = "label_Estado";
-            this.label_Estado.Size = new System.Drawing.Size(53, 16);
+            this.label_Estado.Size = new System.Drawing.Size(53, 19);
             this.label_Estado.TabIndex = 38;
             this.label_Estado.Text = "Estado:";
             // 

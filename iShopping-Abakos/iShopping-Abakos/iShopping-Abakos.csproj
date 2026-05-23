@@ -62,10 +62,34 @@
     <Compile Include="Model\AppDbInitializer.cs" />
     <Compile Include="Model\Artigo.cs" />
     <Compile Include="Model\Compra.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="View\AdicionarItensForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="View\AdicionarItensForm.Designer.cs">
+      <DependentUpon>AdicionarItensForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ArtigosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ArtigosForm.Designer.cs">
+      <DependentUpon>ArtigosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ComprasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ComprasForm.Designer.cs">
+      <DependentUpon>ComprasForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EstatisticasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EstatisticasForm.Designer.cs">
+      <DependentUpon>EstatisticasForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\IShoppingContext.cs" />
@@ -76,33 +100,51 @@
     <Compile Include="Model\TipoArtigo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Model\Sessao.cs" />
-    <Compile Include="OrcamentosForm.cs">
+    <Compile Include="View\OrcamentosForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OrcamentosForm.Designer.cs">
+    <Compile Include="View\OrcamentosForm.Designer.cs">
       <DependentUpon>OrcamentosForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PaginaInicialForm.cs">
+    <Compile Include="View\PaginaInicialForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PaginaInicialForm.Designer.cs">
+    <Compile Include="View\PaginaInicialForm.Designer.cs">
       <DependentUpon>PaginaInicialForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Utilizador.cs" />
-    <Compile Include="TipoArtigoForm.cs">
+    <Compile Include="View\TipoArtigoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TipoArtigoForm.Designer.cs">
+    <Compile Include="View\TipoArtigoForm.Designer.cs">
       <DependentUpon>TipoArtigoForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
+    <Compile Include="View\VisualizarCompraForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\VisualizarCompraForm.Designer.cs">
+      <DependentUpon>VisualizarCompraForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="View\AdicionarItensForm.resx">
+      <DependentUpon>AdicionarItensForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ArtigosForm.resx">
+      <DependentUpon>ArtigosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ComprasForm.resx">
+      <DependentUpon>ComprasForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EstatisticasForm.resx">
+      <DependentUpon>EstatisticasForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OrcamentosForm.resx">
+    <EmbeddedResource Include="View\OrcamentosForm.resx">
       <DependentUpon>OrcamentosForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PaginaInicialForm.resx">
+    <EmbeddedResource Include="View\PaginaInicialForm.resx">
       <DependentUpon>PaginaInicialForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -114,8 +156,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="TipoArtigoForm.resx">
+    <EmbeddedResource Include="View\TipoArtigoForm.resx">
       <DependentUpon>TipoArtigoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\VisualizarCompraForm.resx">
+      <DependentUpon>VisualizarCompraForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -131,9 +176,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
