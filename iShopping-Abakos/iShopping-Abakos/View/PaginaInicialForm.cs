@@ -14,11 +14,14 @@ namespace iShopping_Abakos
 {
     public partial class PaginaInicialForm : Form
     {
+        public static PaginaInicialForm instanciaPaginaPrincipal; // para poder manipular livremente
         public PaginaInicialForm()
         {
             InitializeComponent();
+            instanciaPaginaPrincipal = this;
 
-            Orcamento orcamento = ControllerPaginaInicial.MostrarOrcamento();
+            Orcamento orcamento = ControllerPaginaInicial.MostrarOrcamento(); 
+            
             label_Orcamento.Text = orcamento.Valor.ToString();
             label_NomeUsername.Text = "Bem vindo, " + Sessao.UtilizadorAtual + "!";
         }
@@ -43,18 +46,43 @@ namespace iShopping_Abakos
         {
             
 
-            ControllerPaginaInicial.AbrirFormOrcamentos();
+            ControllerPaginaInicial.AbrirFormOrcamentos(instanciaPaginaPrincipal);
+            //passo como parâmetro para poder esconder a página principal quando o form orçamento abre
 
+            
+        }
 
+        private void button_TipoArtigos_Click(object sender, EventArgs e)
+        {
+            ControllerPaginaInicial.AbrirFormTipoArtigo();
+
+        }
+
+        private void button_Artigos_Click(object sender, EventArgs e)
+        {
+            ControllerPaginaInicial.AbrirFormArtigos();
+        }
+
+        private void button_Compras_Click(object sender, EventArgs e)
+        {
+            ControllerPaginaInicial.AbrirFormCompras();
+        }
+
+        private void button_Estatisticas_Click(object sender, EventArgs e)
+        {
+            ControllerPaginaInicial.AbrirFormEstatisticas();
+        }
+
+        private void button_VisualizarDetalhes_Click(object sender, EventArgs e)
+        {
+            ControllerPaginaInicial.AbrirFormVisualizar();
+        }
+
+        private void button_Sair_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
 
-        private void label_Orcamento_Click(object sender, EventArgs e)
-        {
 
-
-            
-
-        }
     }
 }

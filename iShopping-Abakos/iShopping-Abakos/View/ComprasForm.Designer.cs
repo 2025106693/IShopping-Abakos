@@ -169,6 +169,7 @@
             this.button_Voltar.TabIndex = 13;
             this.button_Voltar.Text = "Voltar";
             this.button_Voltar.UseVisualStyleBackColor = true;
+            this.button_Voltar.Click += new System.EventHandler(this.button_Voltar_Click);
             // 
             // textBox_ID
             // 

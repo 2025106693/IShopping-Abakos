@@ -13,21 +13,17 @@ namespace iShopping_Abakos
 {
     public partial class OrcamentosForm : Form
     {
+        public static OrcamentosForm formOrcamento;
+        
         public OrcamentosForm()
         {
             InitializeComponent();
-
-            
+            formOrcamento = this;       
         }
 
         private void buttonSairOrcamentos_Click(object sender, EventArgs e)
         {
-            
-
-            PaginaInicialForm form = new PaginaInicialForm();
-            form.ShowDialog();
-            this.Close();
-
+            ControllerOrcamento.VoltarPaginaPrincipal(); //chamamos a funcao 
         }
 
         private void buttonAdicionarOrcamento_Click(object sender, EventArgs e)

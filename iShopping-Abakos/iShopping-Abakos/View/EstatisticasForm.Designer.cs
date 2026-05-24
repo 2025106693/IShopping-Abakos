@@ -44,7 +44,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(51, 50);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(210, 45);
+            this.label1.Size = new System.Drawing.Size(203, 44);
             this.label1.TabIndex = 0;
             this.label1.Text = "Estatísticas";
             // 
@@ -79,6 +79,7 @@
             this.button_Voltar.TabIndex = 3;
             this.button_Voltar.Text = "Voltar";
             this.button_Voltar.UseVisualStyleBackColor = true;
+            this.button_Voltar.Click += new System.EventHandler(this.button_Voltar_Click);
             // 
             // dataGridView_Orcamentos
             // 

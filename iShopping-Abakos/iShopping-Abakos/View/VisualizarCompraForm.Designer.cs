@@ -97,6 +97,7 @@
             this.buttonVoltar.TabIndex = 8;
             this.buttonVoltar.Text = "Voltar";
             this.buttonVoltar.UseVisualStyleBackColor = true;
+            this.buttonVoltar.Click += new System.EventHandler(this.buttonVoltar_Click);
             // 
             // label1
             // 

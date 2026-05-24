@@ -84,6 +84,7 @@
             this.button_Sair.TabIndex = 33;
             this.button_Sair.Text = "Sair";
             this.button_Sair.UseVisualStyleBackColor = true;
+            this.button_Sair.Click += new System.EventHandler(this.button_Sair_Click);
             // 
             // button_VisualizarDetalhes
             // 
@@ -94,6 +95,7 @@
             this.button_VisualizarDetalhes.TabIndex = 32;
             this.button_VisualizarDetalhes.Text = "Visualizar Detalhes";
             this.button_VisualizarDetalhes.UseVisualStyleBackColor = true;
+            this.button_VisualizarDetalhes.Click += new System.EventHandler(this.button_VisualizarDetalhes_Click);
             // 
             // button_ExportarCSV
             // 
@@ -124,7 +126,6 @@
             this.label_Orcamento.Size = new System.Drawing.Size(67, 20);
             this.label_Orcamento.TabIndex = 28;
             this.label_Orcamento.Text = "400.00€";
-            this.label_Orcamento.Click += new System.EventHandler(this.label_Orcamento_Click);
             // 
             // label3
             // 
@@ -159,12 +160,13 @@
             // button_Estatisticas
             // 
             this.button_Estatisticas.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Estatisticas.Location = new System.Drawing.Point(41, 413);
+            this.button_Estatisticas.Location = new System.Drawing.Point(41, 397);
             this.button_Estatisticas.Name = "button_Estatisticas";
             this.button_Estatisticas.Size = new System.Drawing.Size(198, 42);
             this.button_Estatisticas.TabIndex = 24;
             this.button_Estatisticas.Text = "Estatísticas";
             this.button_Estatisticas.UseVisualStyleBackColor = true;
+            this.button_Estatisticas.Click += new System.EventHandler(this.button_Estatisticas_Click);
             // 
             // button_Compras
             // 
@@ -175,16 +177,18 @@
             this.button_Compras.TabIndex = 23;
             this.button_Compras.Text = "Compras";
             this.button_Compras.UseVisualStyleBackColor = true;
+            this.button_Compras.Click += new System.EventHandler(this.button_Compras_Click);
             // 
             // button_Artigos
             // 
             this.button_Artigos.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Artigos.Location = new System.Drawing.Point(41, 242);
+            this.button_Artigos.Location = new System.Drawing.Point(41, 249);
             this.button_Artigos.Name = "button_Artigos";
             this.button_Artigos.Size = new System.Drawing.Size(198, 42);
             this.button_Artigos.TabIndex = 22;
             this.button_Artigos.Text = "Artigos";
             this.button_Artigos.UseVisualStyleBackColor = true;
+            this.button_Artigos.Click += new System.EventHandler(this.button_Artigos_Click);
             // 
             // button_TipoArtigos
             // 
@@ -195,6 +199,7 @@
             this.button_TipoArtigos.TabIndex = 21;
             this.button_TipoArtigos.Text = " Tipos de Artigos";
             this.button_TipoArtigos.UseVisualStyleBackColor = true;
+            this.button_TipoArtigos.Click += new System.EventHandler(this.button_TipoArtigos_Click);
             // 
             // button_Orcamento
             // 

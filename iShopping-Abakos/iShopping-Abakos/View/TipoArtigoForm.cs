@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iShopping_Abakos.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,19 +13,17 @@ namespace iShopping_Abakos
 {
     public partial class TipoArtigoForm : Form
     {
+        public static TipoArtigoForm tipoArtigoForm;
         public TipoArtigoForm()
         {
             InitializeComponent();
+            tipoArtigoForm = this;
+            
         }
 
-        private void TipoArtigoForm_Load(object sender, EventArgs e)
+        private void button_Voltar_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            ControllerTiposArtigo.VoltarPaginaPrincipal();
         }
     }
 }

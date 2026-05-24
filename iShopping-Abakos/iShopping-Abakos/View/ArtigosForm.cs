@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iShopping_Abakos.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,16 @@ namespace iShopping_Abakos.View
 {
     public partial class ArtigosForm : Form
     {
+        public static ArtigosForm instance;
         public ArtigosForm()
         {
             InitializeComponent();
+            instance = this;
+        }
+
+        private void button_Voltar_Click(object sender, EventArgs e)
+        {
+            ControllerArtigo.VoltarPaginaPrincipal();
         }
     }
 }

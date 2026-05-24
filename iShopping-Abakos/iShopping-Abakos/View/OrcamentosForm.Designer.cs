@@ -66,7 +66,7 @@
             this.buttonSairOrcamentos.Name = "buttonSairOrcamentos";
             this.buttonSairOrcamentos.Size = new System.Drawing.Size(120, 28);
             this.buttonSairOrcamentos.TabIndex = 41;
-            this.buttonSairOrcamentos.Text = "Sair";
+            this.buttonSairOrcamentos.Text = "Voltar";
             this.buttonSairOrcamentos.UseVisualStyleBackColor = true;
             this.buttonSairOrcamentos.Click += new System.EventHandler(this.buttonSairOrcamentos_Click);
             // 
@@ -151,7 +151,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(30, 32);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(228, 45);
+            this.label1.Size = new System.Drawing.Size(220, 44);
             this.label1.TabIndex = 30;
             this.label1.Text = "Orçamentos";
             // 

@@ -157,7 +157,6 @@
             this.label1.Size = new System.Drawing.Size(267, 40);
             this.label1.TabIndex = 14;
             this.label1.Text = "Tipos de Artigos";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // button_Voltar
             // 
@@ -168,6 +167,7 @@
             this.button_Voltar.TabIndex = 26;
             this.button_Voltar.Text = "Voltar";
             this.button_Voltar.UseVisualStyleBackColor = true;
+            this.button_Voltar.Click += new System.EventHandler(this.button_Voltar_Click);
             // 
             // TipoArtigoForm
             // 
@@ -189,7 +189,6 @@
             this.Controls.Add(this.label1);
             this.Name = "TipoArtigoForm";
             this.Text = "TipoArtigo";
-            this.Load += new System.EventHandler(this.TipoArtigoForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipoArtigos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

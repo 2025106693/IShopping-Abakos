@@ -10,6 +10,12 @@ namespace iShopping_Abakos.Controller
 {
     internal class ControllerOrcamento
     {
+        //criar um método para fechar o form orçamentos e voltar a mostrar a página Principal
+        public static void VoltarPaginaPrincipal()
+        {
+            OrcamentosForm.formOrcamento.Close();
+            PaginaInicialForm.instanciaPaginaPrincipal.Show();
+        }
         public static void AdicionarOrcamento(string valorText, string mes, string anoText)
         {
             int ano;
