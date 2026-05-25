@@ -70,7 +70,7 @@ namespace iShopping_Abakos.Controller
 
         public static Orcamento DevolverOrcamentoAtual()
         {
-            string mesAtual = DateTime.Today.ToString("MMMM", new System.Globalization.CultureInfo("pt-PT"));
+            string mesAtual = DateTime.Today.ToString("MMMM");
             int anoAtual = DateTime.Today.Year;
 
 
