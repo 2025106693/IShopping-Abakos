@@ -72,7 +72,7 @@ namespace iShopping_Abakos.Controller
         {
             string mesAtual = DateTime.Today.ToString("MMMM");
             int anoAtual = DateTime.Today.Year;
-
+            
 
             using (IShoppingContext db = new IShoppingContext())
             {
