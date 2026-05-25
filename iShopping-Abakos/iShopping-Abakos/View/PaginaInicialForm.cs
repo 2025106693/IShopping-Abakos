@@ -15,30 +15,30 @@ namespace iShopping_Abakos
     public partial class PaginaInicialForm : Form
     {
         public static PaginaInicialForm instanciaPaginaPrincipal; // para poder manipular livremente
+        public static Label label;
         public PaginaInicialForm()
         {
             InitializeComponent();
             instanciaPaginaPrincipal = this;
-
-            Orcamento orcamento = ControllerPaginaInicial.MostrarOrcamento(); 
-            
-            label_Orcamento.Text = orcamento.Valor.ToString();
-            label_NomeUsername.Text = "Bem vindo, " + Sessao.UtilizadorAtual + "!";
+            label = label_Orcamento;
+           
         }
 
         private void PaginaInicialForm_Load(object sender, EventArgs e)
         {
+            
+            label_NomeUsername.Text = "Bem vindo, " + Sessao.UtilizadorAtual + "!";
             Orcamento orcamento = ControllerPaginaInicial.DevolverOrcamentoAtual();
 
             if (orcamento != null)
             {
 
-                label_Orcamento.Text = orcamento.Valor.ToString() + "€";
+                label.Text = orcamento.Valor.ToString() + "€";
             }
             else
             {
 
-                label_Orcamento.Text = " — ";
+                label.Text = " — ";
             }
         }
 
@@ -46,7 +46,7 @@ namespace iShopping_Abakos
         {
             
 
-            ControllerPaginaInicial.AbrirFormOrcamentos(instanciaPaginaPrincipal);
+            ControllerPaginaInicial.AbrirFormOrcamentos();
             //passo como parâmetro para poder esconder a página principal quando o form orçamento abre
 
             
@@ -83,6 +83,9 @@ namespace iShopping_Abakos
             this.Close();
         }
 
+        private void label_Orcamento_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

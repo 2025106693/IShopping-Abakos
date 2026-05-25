@@ -126,6 +126,7 @@
             this.label_Orcamento.Size = new System.Drawing.Size(67, 20);
             this.label_Orcamento.TabIndex = 28;
             this.label_Orcamento.Text = "400.00€";
+            this.label_Orcamento.Click += new System.EventHandler(this.label_Orcamento_Click);
             // 
             // label3
             // 

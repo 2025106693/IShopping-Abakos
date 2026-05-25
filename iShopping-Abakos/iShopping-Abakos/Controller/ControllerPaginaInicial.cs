@@ -14,14 +14,15 @@ namespace iShopping_Abakos.Controller
     internal class ControllerPaginaInicial
     {
 
-        public static void AbrirFormOrcamentos(PaginaInicialForm formPrincipal)
+        public static void AbrirFormOrcamentos()
         {
 
             //escondemos o principal, damos conceal ao user
             // se fosse close, a aplicação termina automaticamente
-            formPrincipal.Hide(); 
+            PaginaInicialForm.instanciaPaginaPrincipal.Hide();
             OrcamentosForm Form = new OrcamentosForm();
-            Form.ShowDialog();  
+            Form.ShowDialog();
+            
         }
 
         //restantes botões
@@ -65,22 +66,6 @@ namespace iShopping_Abakos.Controller
             PaginaInicialForm.instanciaPaginaPrincipal.Hide();
             VisualizarCompraForm Form = new VisualizarCompraForm();
             Form.ShowDialog();
-        }
-
-        public static Orcamento MostrarOrcamento()
-        {
-            string mesAtual = DateTime.Today.ToString("MMMM", new System.Globalization.CultureInfo("pt-PT"));
-            int anoAtual = DateTime.Today.Year;
-
-
-            using (IShoppingContext db = new IShoppingContext())
-            {
-                Orcamento orcamento = db.DBOrcamentos.FirstOrDefault(
-                    o => o.Mes == mesAtual && o.Ano == anoAtual);
-
-
-                return orcamento;
-            }
         }
 
         public static Orcamento DevolverOrcamentoAtual()

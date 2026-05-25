@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -10,11 +11,16 @@ namespace iShopping_Abakos.Controller
 {
     internal class ControllerOrcamento
     {
+       
         //criar um método para fechar o form orçamentos e voltar a mostrar a página Principal
         public static void VoltarPaginaPrincipal()
         {
+            
             OrcamentosForm.formOrcamento.Close();
+            Orcamento orcamento = DevolverOrcamentoAtual();
+            PaginaInicialForm.label.Text = orcamento.Valor.ToString();
             PaginaInicialForm.instanciaPaginaPrincipal.Show();
+            
         }
         public static void AdicionarOrcamento(string valorText, string mes, string anoText)
         {
