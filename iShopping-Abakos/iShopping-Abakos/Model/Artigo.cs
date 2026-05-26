@@ -11,15 +11,17 @@ namespace iShopping_Abakos
     {
         public int Id { get; set; }
         public string Nome { get; set; }
+        public decimal Preco { get; set; }
 
         public string Descricao { get; set; }
 
-        public decimal Preco { get; set; }
-
-        // FK
-        public int IdTipoArtigo { get; set; }
+        public string TipoArtigo { get; set ; }
 
         //Lado "muitos" da relação com TipoArtigo
         public virtual ICollection<ItemCompra> ItensCompra { get; set; }
     }
 }
+
+
+
+

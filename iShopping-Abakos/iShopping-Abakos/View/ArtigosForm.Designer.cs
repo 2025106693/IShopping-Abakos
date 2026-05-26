@@ -78,6 +78,7 @@
             this.button_AdicionarArtigo.TabIndex = 37;
             this.button_AdicionarArtigo.Text = "Adicionar artigo";
             this.button_AdicionarArtigo.UseVisualStyleBackColor = true;
+            this.button_AdicionarArtigo.Click += new System.EventHandler(this.button_AdicionarArtigo_Click_1);
             // 
             // textBoxIDArtigo
             // 
@@ -104,6 +105,7 @@
             this.buttonAlterarArtigo.TabIndex = 34;
             this.buttonAlterarArtigo.Text = "Alterar tipo de artigo";
             this.buttonAlterarArtigo.UseVisualStyleBackColor = true;
+            this.buttonAlterarArtigo.Click += new System.EventHandler(this.buttonAlterarArtigo_Click);
             // 
             // textBoxNomeArtigo
             // 
@@ -233,6 +235,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ArtigosForm";
             this.Text = "ArtigosForm";
+            this.Load += new System.EventHandler(this.ArtigosForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipoArtigos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

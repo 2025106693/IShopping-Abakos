@@ -24,5 +24,39 @@ namespace iShopping_Abakos.View
         {
             ControllerArtigo.VoltarPaginaPrincipal();
         }
+
+      
+
+        private void ArtigosForm_Load(object sender, EventArgs e)
+        {
+
+            dataGridViewTipoArtigos.AutoGenerateColumns = true;
+            dataGridViewTipoArtigos.RowHeadersWidth = 60;
+            ControllerArtigo.MostrarTabelaArtigos(dataGridViewTipoArtigos);
+            dataGridViewTipoArtigos.ClearSelection();
+
+            // Para mostar os tipos de artigos guardados guardados na bases de dados DB
+
+            ControllerArtigo.CarregarTiposArtigo(comboBoxTipoArtigo);
+        }
+
+        private void button_AdicionarArtigo_Click_1(object sender, EventArgs e)
+        {
+
+            ControllerArtigo.botaoAdicionar(
+                textBoxNomeArtigo.Text.Trim(),
+                textBox_Preco.Text,
+                textBoxDescricaoArtigo.Text,
+                comboBoxTipoArtigo.Text
+                );
+
+            ControllerArtigo.MostrarTabelaArtigos(dataGridViewTipoArtigos);
+
+        }
+
+        private void buttonAlterarArtigo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

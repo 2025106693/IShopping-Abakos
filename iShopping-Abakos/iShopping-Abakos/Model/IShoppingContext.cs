@@ -15,7 +15,7 @@ namespace iShopping_Abakos.Model
         public DbSet<Orcamento> DBOrcamentos { get; set; }
         public DbSet<Compra> DBCompras { get; set; }
         public DbSet<Artigo> DBArtigos { get; set; }
-        public DbSet<TipoArtigo> TipoArtigos { get; set; }
+        public DbSet<TipoArtigo> DBTipoArtigos { get; set; }
         public DbSet <ItemCompra> DBItensCompra { get; set; }
 
     }
