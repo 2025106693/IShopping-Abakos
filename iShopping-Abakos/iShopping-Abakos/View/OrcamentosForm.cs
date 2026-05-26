@@ -39,6 +39,18 @@ namespace iShopping_Abakos
             
             ControllerOrcamento.MostrarTabelaOrçamentos(dataGridView1);
 
+            Orcamento orcamento = ControllerOrcamento.DevolverOrcamentoAtual();
+
+            if (orcamento != null)
+            {
+                labelMes.Text = "Mês: " + orcamento.Mes;
+                labelValorOrcamento.Text = orcamento.Valor.ToString() + "€";
+            }
+            else
+            {
+                labelMes.Text = "Mês: ";
+                labelValorOrcamento.Text = "0.00€";
+            }
 
 
         }
@@ -59,8 +71,8 @@ namespace iShopping_Abakos
             }
             else
             {
-                labelMes.Text = "Mês: — ";
-                labelValorOrcamento.Text = " — ";
+                labelMes.Text = "Mês: ";
+                labelValorOrcamento.Text = "0.00€";
             }
 
 

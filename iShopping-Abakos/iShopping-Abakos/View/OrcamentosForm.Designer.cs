@@ -53,7 +53,7 @@
             // 
             this.labelMes.AutoSize = true;
             this.labelMes.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMes.Location = new System.Drawing.Point(791, 49);
+            this.labelMes.Location = new System.Drawing.Point(833, 49);
             this.labelMes.Name = "labelMes";
             this.labelMes.Size = new System.Drawing.Size(75, 23);
             this.labelMes.TabIndex = 42;
