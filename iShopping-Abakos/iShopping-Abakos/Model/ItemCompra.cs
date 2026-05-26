@@ -19,7 +19,7 @@ namespace iShopping_Abakos.Model
         public int IdCriadoPor { get; set; }
         public int? IdAlteradoPor { get; set; }
 
-        public decimal Quantidade { get; set; }
+        public int Quantidade { get; set; }
         public decimal PrecoUnitario { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime? DataAlteracao { get; set; }
