@@ -129,7 +129,10 @@ namespace iShopping_Abakos.Controller
                 if (orcamento != null)
                 {
 
-                    orcamento.Valor = valor; 
+                    orcamento.Valor = valor;
+                    orcamento.AlteradoPor = Sessao.UtilizadorAtual;
+                    orcamento.DataAlteracao = DateTime.Today;
+                    
                     
                 }
                 else
