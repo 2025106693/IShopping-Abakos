@@ -9,7 +9,7 @@ namespace iShopping_Abakos.Model
 {
 
     // Apaga os residuos e cria uma nova DB
-    internal class AppDbInitializer : DropCreateDatabaseAlways<IShoppingContext>
+    internal class AppDbInitializer : DropCreateDatabaseIfModelChanges<IShoppingContext>
     {
         protected override void Seed(IShoppingContext context)
         {
