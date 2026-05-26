@@ -9,7 +9,6 @@ namespace iShopping_Abakos.Model
     internal class ItemCompra
     {
 
-        // Teste
         public int Id { get; set; }
 
         // FK - PK composta
