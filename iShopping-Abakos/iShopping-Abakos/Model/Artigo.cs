@@ -17,22 +17,13 @@ namespace iShopping_Abakos
         public string Descricao { get; set; }
 
 
-        [ForeignKey("TipoArtigo")]
-        // FK real -> aponta para TipoArtigo.Id
-        public int IdTipoArtigo { get; set; }
+        [ForeignKey("TipoArtigo")] // nome da propriedade a baixo
 
+        // FK  -> aponta para TipoArtigo.Id Por convenção vai ao nome da navegação TipoArtigo + Id
+        public int TipoArtigoId { get; set; }
         // Propriedade de navegação (lado "um" para muitos)
-        // tem de conter o mesmo nome que a tabela TipoArtigo
         public virtual TipoArtigo TipoArtigo { get; set; }
-
-        //FK
-        //public string TipoArtigo { get; set ; }
-
-        //Lado "muitos" da relação com TipoArtigo
-
-        // public virtual ICollection<ItemCompra> ItensCompra { get; set; }
-
-        
+    
     }
 }
 

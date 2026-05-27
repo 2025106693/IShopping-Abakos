@@ -43,7 +43,7 @@ namespace iShopping_Abakos.Controller
                         Nome = nome,
                         Preco = precoArtigo,
                         Descricao = descricao,
-                        IdTipoArtigo = tipoArtigo,
+                        TipoArtigoId = tipoArtigo,
                         
                     };
                     db.DBArtigos.Add(artigo);
@@ -66,8 +66,7 @@ namespace iShopping_Abakos.Controller
             {
 
                 var tiposArtigo = db.DBTipoArtigos
-                              .OrderBy(t => t.Id)
-                      .ToList();
+                              .OrderBy(t => t.Id).ToList();
 
                 comboBox.DataSource = tiposArtigo;
                 comboBox.DisplayMember = "Nome";  // o que o utilizador vê
@@ -87,8 +86,8 @@ namespace iShopping_Abakos.Controller
                 o.Nome,
                 o.Preco,
                 o.Descricao,
+                // IdTipoArtigo e TipoArtigo é o nome da coluna que aparece
                 IdTipoArtigo = o.TipoArtigo.Id,
-                // TipoArtigo é o nome da coluna que aparece
                 TipoArtigo = o.TipoArtigo.Nome   // aqui aparece o nome em vez do Id
             })
             .ToList();
