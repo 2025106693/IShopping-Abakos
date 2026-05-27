@@ -16,10 +16,10 @@ namespace iShopping_Abakos
         public decimal Valor { get; set; }
         public string CriadoPor { get; set; }
         public DateTime DataCriacao { get; set; }
+
+        // FK
         public string AlteradoPor { get; set; }
         public DateTime? DataAlteracao { get; set; }
-        
-        
 
     }
 }

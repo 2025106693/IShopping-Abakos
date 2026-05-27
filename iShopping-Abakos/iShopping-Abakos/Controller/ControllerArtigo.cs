@@ -17,17 +17,19 @@ namespace iShopping_Abakos.Controller
             ArtigosForm.instance.Close();
         }
 
-        public static void botaoAdicionar(string nome, string preco, string descricao, string tipoArtigo)
+        public static void botaoAdicionar(string nome, string preco, string descricao, int tipoArtigo)
         {
 
             decimal precoArtigo;
-           
+            
 
             if (!decimal.TryParse(preco, out precoArtigo))
             {
                 MessageBox.Show("O preco tem de ser numerico");
                 return;
             }
+
+            
 
             using (IShoppingContext db = new IShoppingContext())
             {
@@ -41,7 +43,8 @@ namespace iShopping_Abakos.Controller
                         Nome = nome,
                         Preco = precoArtigo,
                         Descricao = descricao,
-                        TipoArtigo = tipoArtigo
+                        IdTipoArtigo = tipoArtigo,
+                        
                     };
                     db.DBArtigos.Add(artigo);
                 }
@@ -62,14 +65,13 @@ namespace iShopping_Abakos.Controller
             using (IShoppingContext db = new IShoppingContext())
             {
 
-                // para debug usar a DBOrcamentos em baixo
-
                 var tiposArtigo = db.DBTipoArtigos
-                              .Select(t => t.Nome)
-                              .OrderBy(n => n)
-                              .ToList();
+                              .OrderBy(t => t.Id)
+                      .ToList();
 
                 comboBox.DataSource = tiposArtigo;
+                comboBox.DisplayMember = "Nome";  // o que o utilizador vê
+                comboBox.ValueMember = "Id";// valor associado
             }
         }
 
@@ -77,8 +79,21 @@ namespace iShopping_Abakos.Controller
         {
             using (IShoppingContext db = new IShoppingContext())
             {
-                dataSource.DataSource = db.DBArtigos.OrderBy(
-                    o => o.Id).ToList();
+                var artigos = db.DBArtigos
+            .OrderBy(o => o.Id)
+            .Select(o => new
+            {
+                o.Id,
+                o.Nome,
+                o.Preco,
+                o.Descricao,
+                IdTipoArtigo = o.TipoArtigo.Id,
+                // TipoArtigo é o nome da coluna que aparece
+                TipoArtigo = o.TipoArtigo.Nome   // aqui aparece o nome em vez do Id
+            })
+            .ToList();
+
+                dataSource.DataSource = artigos;
 
             }
 

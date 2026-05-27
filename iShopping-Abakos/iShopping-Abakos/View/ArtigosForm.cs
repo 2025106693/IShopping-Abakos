@@ -42,12 +42,13 @@ namespace iShopping_Abakos.View
 
         private void button_AdicionarArtigo_Click_1(object sender, EventArgs e)
         {
+            int tipoArtigoId = (int)comboBoxTipoArtigo.SelectedValue;
 
             ControllerArtigo.botaoAdicionar(
                 textBoxNomeArtigo.Text.Trim(),
                 textBox_Preco.Text,
                 textBoxDescricaoArtigo.Text,
-                comboBoxTipoArtigo.Text
+                tipoArtigoId
                 );
 
             ControllerArtigo.MostrarTabelaArtigos(dataGridViewTipoArtigos);
