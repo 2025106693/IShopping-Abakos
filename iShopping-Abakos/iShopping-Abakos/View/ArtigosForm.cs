@@ -35,13 +35,14 @@ namespace iShopping_Abakos.View
             ControllerArtigo.MostrarTabelaArtigos(dataGridViewTipoArtigos);
             dataGridViewTipoArtigos.ClearSelection();
 
-            // Para mostar os tipos de artigos guardados guardados na bases de dados DB
-
+            // Para mostar os tipos de artigos guardadosna tabela TipoArtigos
             ControllerArtigo.CarregarTiposArtigo(comboBoxTipoArtigo);
         }
 
         private void button_AdicionarArtigo_Click_1(object sender, EventArgs e)
         {
+            // Variavel que guarda id do objeto selecionado TipoArtigo  |
+            // .SelectedValue devolve o ValueMember do "Id",
             int tipoArtigoId = (int)comboBoxTipoArtigo.SelectedValue;
 
             ControllerArtigo.botaoAdicionar(

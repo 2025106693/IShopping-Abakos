@@ -60,6 +60,7 @@ namespace iShopping_Abakos.Controller
         }
 
 
+        // Devolve os objetos do tipo TiposArtigo para listar na Combox
         public static void CarregarTiposArtigo(ComboBox comboBox)
         {
             using (IShoppingContext db = new IShoppingContext())
@@ -70,7 +71,7 @@ namespace iShopping_Abakos.Controller
 
                 comboBox.DataSource = tiposArtigo;
                 comboBox.DisplayMember = "Nome";  // o que o utilizador vê
-                comboBox.ValueMember = "Id";// valor associado
+                comboBox.ValueMember = "Id";// valor associado fica escondigo
             }
         }
 
