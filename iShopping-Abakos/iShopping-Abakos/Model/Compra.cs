@@ -29,10 +29,12 @@ namespace iShopping_Abakos
         
         public decimal TotalGasto { get; set; }
 
-        //public virtual ICollection<ItemCompra> ItensCompras { get; set; } //rever
+        public virtual ICollection<ItemCompra> ItensCompra { get; set; } 
+       
 
-
-        
+        public Compra()
+        {
+            ItensCompra = new List<ItemCompra>();
+        }        
     }
-
 }

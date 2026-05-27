@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,10 +24,15 @@ namespace iShopping_Abakos.Model
         public decimal PrecoUnitario { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime? DataAlteracao { get; set; }
-        
-        // lado um
-        public virtual Compra Compra { get; set; }
-        public virtual Artigo Artigo { get; set; }
+
+        /*[ForeignKey("Compra")]
+
+        public int CompraId { get; set; }
+        public virtual Compra compra { get; set; }
+
+        [ForeignKey("Artigo")]
+        public int ArtigoId { get; set; }
+        public virtual Artigo artigo { get; set; }*/
 
     }
 }
