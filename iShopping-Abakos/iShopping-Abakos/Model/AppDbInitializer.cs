@@ -13,6 +13,8 @@ namespace iShopping_Abakos.Model
     {
         protected override void Seed(IShoppingContext context)
         {
+            // utilizadores
+
             context.DBUtilizadores.Add(new Utilizador
             {
                 Username = "andre",
@@ -30,6 +32,47 @@ namespace iShopping_Abakos.Model
                 Username = "mariana",
                 Password = "1234"
             });
+
+
+            // Tipos de artigo
+
+            context.DBTipoArtigos.Add(new TipoArtigo
+            {
+                Nome = "Higiene",
+                Descricao = "Artigos higiene e cuidado pessoal"
+            });
+
+            context.DBTipoArtigos.Add(new TipoArtigo
+            {
+                Nome = "Alimentação",
+                Descricao = "Produtos alimentares e bebidas"
+            });
+
+            context.DBTipoArtigos.Add(new TipoArtigo
+            {
+                Nome = "Limpeza",
+                Descricao = "Artigos de limpeza"
+            });
+
+            context.DBTipoArtigos.Add(new TipoArtigo
+            {
+                Nome = "Saúde",
+                Descricao = "Produtos farmacêuticos e de bem-estar"
+            });
+
+            context.DBTipoArtigos.Add(new TipoArtigo
+            {
+                Nome = "Roupa",
+                Descricao = "Vestuário"
+            });
+
+            context.DBTipoArtigos.Add(new TipoArtigo
+            {
+                Nome = "Acessórios",
+                Descricao = "Carteiras, joias, cintos, relógios..."
+            });
+
+
 
             context.SaveChanges();
             base.Seed(context);
