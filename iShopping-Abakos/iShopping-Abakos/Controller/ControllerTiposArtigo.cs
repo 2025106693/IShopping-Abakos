@@ -22,7 +22,7 @@ namespace iShopping_Abakos.Controller
         {
             if (nome == "")
             {
-                MessageBox.Show("Insira um nome.");
+                MessageBox.Show("Insira um nome.\n(Descricao não é obrigatória)");
                 return;
             }
 
@@ -38,7 +38,8 @@ namespace iShopping_Abakos.Controller
                 {
                     tipoArtigo = new TipoArtigo()
                     {
-                        Nome = nome
+                        Nome = nome,
+                        Descricao = descricao
                     };
 
                     db.DBTipoArtigos.Add(tipoArtigo);
@@ -64,6 +65,7 @@ namespace iShopping_Abakos.Controller
         }
 
 
+
         public static void AlterarTipoArtigo(string id, string nome, string descricao, DataGridView dataSource)
         {
             int id_tipoArtigo;
@@ -74,9 +76,15 @@ namespace iShopping_Abakos.Controller
                 return;
             }
 
+            if(id == "")
+            {
+                MessageBox.Show("Insira um ID");
+                return;
+            }
+
             if(!int.TryParse(id, out id_tipoArtigo))
             {
-                MessageBox.Show("O valor tem de ser numérico");
+                MessageBox.Show("O ID tem de ser numérico");
                 return;
             }
 
@@ -100,6 +108,58 @@ namespace iShopping_Abakos.Controller
                 MessageBox.Show("Tipo de Artigo alterado com sucesso");
                 MostrarTabelaTipoArtigo(dataSource);
             }
+        }
+
+
+
+        public static void EliminarTipoArtigo(string id, DataGridView dataSource)
+        {
+            int id_tipoArtigo;
+
+
+            if(id.Trim() == "")
+            {
+                MessageBox.Show("Indique o ID do Tipo de Artigo");
+                return;
+            }
+
+            if(!int.TryParse(id, out id_tipoArtigo))
+            {
+                MessageBox.Show("O ID tem de ser numérico!");
+                return;
+            }
+
+
+
+
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                TipoArtigo tipoArtigo = db.DBTipoArtigos.FirstOrDefault(o => o.Id == id_tipoArtigo);
+
+                if(tipoArtigo == null)
+                {
+                    MessageBox.Show("Tipo de Artigo não existente");
+                    return;   
+                }
+
+
+
+                db.DBTipoArtigos.Remove(tipoArtigo);
+                db.SaveChanges();
+
+                MessageBox.Show("Tipo de Artigo removido com sucesso!");
+                MostrarTabelaTipoArtigo(dataSource);
+                
+            }
+        }
+        
+
+        public static void LimparCampos(TextBox nome, TextBox descricao, TextBox id, DataGridView dataSource)
+        {
+            nome.Text = "";
+            descricao.Text = "";
+            id.Text = "";
+            dataSource.ClearSelection();
         }
     }
 }

@@ -33,12 +33,20 @@ namespace iShopping_Abakos
 
             ControllerTiposArtigo.AdicionarTipoArtigo(nome, descricao);
             ControllerTiposArtigo.MostrarTabelaTipoArtigo(dataGridViewTipoArtigos);
+
+            ControllerTiposArtigo.LimparCampos(textBoxNomeTipoArtigo, textBoxDescricaoTipoArtigo, textBoxIDtipoArtigo,
+                                                                                        dataGridViewTipoArtigos);
+
         }
 
         private void buttonAlterarTipoArtigo_Click(object sender, EventArgs e)
         {
             ControllerTiposArtigo.AlterarTipoArtigo(textBoxIDtipoArtigo.Text.Trim(), textBoxNomeTipoArtigo.Text,
                                                         textBoxDescricaoTipoArtigo.Text, dataGridViewTipoArtigos);
+
+            ControllerTiposArtigo.LimparCampos(textBoxNomeTipoArtigo, textBoxDescricaoTipoArtigo, textBoxIDtipoArtigo,
+                                                                                        dataGridViewTipoArtigos);
+
         }
 
         private void TipoArtigoForm_Load(object sender, EventArgs e)
@@ -51,7 +59,10 @@ namespace iShopping_Abakos
 
         private void buttonEliminarTipoArtigo_Click(object sender, EventArgs e)
         {
+            ControllerTiposArtigo.EliminarTipoArtigo(textBoxIDtipoArtigo.Text, dataGridViewTipoArtigos);
 
+            ControllerTiposArtigo.LimparCampos(textBoxNomeTipoArtigo, textBoxDescricaoTipoArtigo, textBoxIDtipoArtigo,
+                                                                                        dataGridViewTipoArtigos);
         }
     }
 }

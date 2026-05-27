@@ -12,6 +12,9 @@ namespace iShopping_Abakos.Model
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
-        public virtual ICollection<Artigo> Artigos { get; set; }
+
+
+
+        // public virtual ICollection<Artigo> Artigos { get; set; }
     }
 }
