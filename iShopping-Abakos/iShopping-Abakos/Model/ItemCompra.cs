@@ -24,6 +24,7 @@ namespace iShopping_Abakos.Model
         public DateTime DataCriacao { get; set; }
         public DateTime? DataAlteracao { get; set; }
         
+        // lado um
         public virtual Compra Compra { get; set; }
         public virtual Artigo Artigo { get; set; }
 
