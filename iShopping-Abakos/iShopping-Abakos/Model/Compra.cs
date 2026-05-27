@@ -14,11 +14,13 @@ namespace iShopping_Abakos
 
         public string NomeCompra { get; set; }
 
-        // FK
-        public int IdCriadoPor { get; set; }
-        public int? IdAlteradoPor { get; set; }
+        public string Descricao { get; set; }
 
-        public int? IdFechadoPor { get; set; }
+        // FK
+        public string CriadoPor { get; set; }
+        public string AlteradoPor { get; set; }
+
+        public string FechadoPor { get; set; }
         
         public DateTime? DataAlteracao { get; set; }
         public DateTime DataCriacao { get; set; }
@@ -27,7 +29,7 @@ namespace iShopping_Abakos
         
         public decimal TotalGasto { get; set; }
 
-        public virtual ICollection<ItemCompra> ItensCompras { get; set; }
+        //public virtual ICollection<ItemCompra> ItensCompras { get; set; } //rever
 
 
         

@@ -37,11 +37,12 @@
             this.textBox_Nome = new System.Windows.Forms.TextBox();
             this.textBox_Descricao = new System.Windows.Forms.TextBox();
             this.label_ID = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button_AdicionarItem = new System.Windows.Forms.Button();
+            this.button_AlterarInfo = new System.Windows.Forms.Button();
             this.button_Eliminar = new System.Windows.Forms.Button();
             this.button_Voltar = new System.Windows.Forms.Button();
             this.textBox_ID = new System.Windows.Forms.TextBox();
+            this.button_Fechar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Compras)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,12 +99,13 @@
             // button_CriarCompra
             // 
             this.button_CriarCompra.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_CriarCompra.Location = new System.Drawing.Point(66, 578);
+            this.button_CriarCompra.Location = new System.Drawing.Point(68, 591);
             this.button_CriarCompra.Name = "button_CriarCompra";
-            this.button_CriarCompra.Size = new System.Drawing.Size(381, 29);
+            this.button_CriarCompra.Size = new System.Drawing.Size(381, 34);
             this.button_CriarCompra.TabIndex = 5;
             this.button_CriarCompra.Text = "Criar Compra";
             this.button_CriarCompra.UseVisualStyleBackColor = true;
+            this.button_CriarCompra.Click += new System.EventHandler(this.button_CriarCompra_Click);
             // 
             // textBox_Nome
             // 
@@ -130,35 +132,38 @@
             this.label_ID.TabIndex = 9;
             this.label_ID.Text = "ID:";
             // 
-            // button1
+            // button_AdicionarItem
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(627, 535);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(356, 30);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Adicionar Itens ";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button_AdicionarItem.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_AdicionarItem.Location = new System.Drawing.Point(627, 509);
+            this.button_AdicionarItem.Name = "button_AdicionarItem";
+            this.button_AdicionarItem.Size = new System.Drawing.Size(356, 30);
+            this.button_AdicionarItem.TabIndex = 10;
+            this.button_AdicionarItem.Text = "Adicionar/Editar Itens ";
+            this.button_AdicionarItem.UseVisualStyleBackColor = true;
+            this.button_AdicionarItem.Click += new System.EventHandler(this.button_AdicionarItem_Click);
             // 
-            // button2
+            // button_AlterarInfo
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(627, 489);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(356, 34);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Alterar informações de Compra";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button_AlterarInfo.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_AlterarInfo.Location = new System.Drawing.Point(68, 631);
+            this.button_AlterarInfo.Name = "button_AlterarInfo";
+            this.button_AlterarInfo.Size = new System.Drawing.Size(379, 34);
+            this.button_AlterarInfo.TabIndex = 11;
+            this.button_AlterarInfo.Text = "Alterar informações de Compra";
+            this.button_AlterarInfo.UseVisualStyleBackColor = true;
+            this.button_AlterarInfo.Click += new System.EventHandler(this.button_AlterarInfo_Click);
             // 
             // button_Eliminar
             // 
             this.button_Eliminar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Eliminar.Location = new System.Drawing.Point(627, 578);
+            this.button_Eliminar.Location = new System.Drawing.Point(627, 554);
             this.button_Eliminar.Name = "button_Eliminar";
             this.button_Eliminar.Size = new System.Drawing.Size(356, 29);
             this.button_Eliminar.TabIndex = 12;
             this.button_Eliminar.Text = "Eliminar Compra";
             this.button_Eliminar.UseVisualStyleBackColor = true;
+            this.button_Eliminar.Click += new System.EventHandler(this.button_Eliminar_Click);
             // 
             // button_Voltar
             // 
@@ -178,16 +183,28 @@
             this.textBox_ID.Size = new System.Drawing.Size(100, 22);
             this.textBox_ID.TabIndex = 14;
             // 
+            // button_Fechar
+            // 
+            this.button_Fechar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Fechar.Location = new System.Drawing.Point(627, 593);
+            this.button_Fechar.Name = "button_Fechar";
+            this.button_Fechar.Size = new System.Drawing.Size(356, 30);
+            this.button_Fechar.TabIndex = 15;
+            this.button_Fechar.Text = "Fechar Compra";
+            this.button_Fechar.UseVisualStyleBackColor = true;
+            this.button_Fechar.Click += new System.EventHandler(this.button_Fechar_Click);
+            // 
             // ComprasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1028, 687);
+            this.Controls.Add(this.button_Fechar);
             this.Controls.Add(this.textBox_ID);
             this.Controls.Add(this.button_Voltar);
             this.Controls.Add(this.button_Eliminar);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_AlterarInfo);
+            this.Controls.Add(this.button_AdicionarItem);
             this.Controls.Add(this.label_ID);
             this.Controls.Add(this.textBox_Descricao);
             this.Controls.Add(this.textBox_Nome);
@@ -199,6 +216,7 @@
             this.Controls.Add(this.label_Compras_Titulo);
             this.Name = "ComprasForm";
             this.Text = "ComprasForm";
+            this.Load += new System.EventHandler(this.ComprasForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Compras)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -216,10 +234,11 @@
         private System.Windows.Forms.TextBox textBox_Nome;
         private System.Windows.Forms.TextBox textBox_Descricao;
         private System.Windows.Forms.Label label_ID;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button_AdicionarItem;
+        private System.Windows.Forms.Button button_AlterarInfo;
         private System.Windows.Forms.Button button_Eliminar;
         private System.Windows.Forms.Button button_Voltar;
         private System.Windows.Forms.TextBox textBox_ID;
+        private System.Windows.Forms.Button button_Fechar;
     }
 }

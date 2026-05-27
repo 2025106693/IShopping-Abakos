@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace iShopping_Abakos.View
 {
-    public partial class AdicionarItensForm : Form
+    public partial class AdicionarItensNaoPrevistosForm : Form
     {
-        public AdicionarItensForm()
+        public AdicionarItensNaoPrevistosForm()
         {
             InitializeComponent();
         }
