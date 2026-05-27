@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\ControllerAdicionarItensPrevistos.cs" />
     <Compile Include="Controller\ControllerArtigo.cs" />
     <Compile Include="Controller\ControllerCompras.cs" />
     <Compile Include="Controller\ControllerEstatisticas.cs" />
@@ -67,11 +68,17 @@
     <Compile Include="Model\AppDbInitializer.cs" />
     <Compile Include="Model\Artigo.cs" />
     <Compile Include="Model\Compra.cs" />
-    <Compile Include="View\AdicionarItensForm.cs">
+    <Compile Include="View\AdicionarItensNaoPrevistosForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\AdicionarItensForm.Designer.cs">
-      <DependentUpon>AdicionarItensForm.cs</DependentUpon>
+    <Compile Include="View\AdicionarItensNaoPrevistosForm.Designer.cs">
+      <DependentUpon>AdicionarItensNaoPrevistosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AdicionarItensPrevistosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AdicionarItensPrevistosForm.Designer.cs">
+      <DependentUpon>AdicionarItensPrevistosForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\ArtigosForm.cs">
       <SubType>Form</SubType>
@@ -131,8 +138,11 @@
     <Compile Include="View\VisualizarCompraForm.Designer.cs">
       <DependentUpon>VisualizarCompraForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="View\AdicionarItensForm.resx">
-      <DependentUpon>AdicionarItensForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\AdicionarItensNaoPrevistosForm.resx">
+      <DependentUpon>AdicionarItensNaoPrevistosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AdicionarItensPrevistosForm.resx">
+      <DependentUpon>AdicionarItensPrevistosForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ArtigosForm.resx">
       <DependentUpon>ArtigosForm.cs</DependentUpon>

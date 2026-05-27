@@ -30,7 +30,7 @@ namespace iShopping_Abakos.Controller
         {
 
             PaginaInicialForm.instanciaPaginaPrincipal.Hide();
-            AdicionarItensForm Form = new AdicionarItensForm();
+            AdicionarItensPrevistosForm Form = new AdicionarItensPrevistosForm();
             Form.ShowDialog();
         }
 
