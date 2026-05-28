@@ -41,6 +41,12 @@ namespace iShopping_Abakos.View
 
         private void button_AdicionarArtigo_Click_1(object sender, EventArgs e)
         {
+
+            if (comboBoxTipoArtigo.SelectedValue == null)
+            {
+                MessageBox.Show("Por favor selecione um tipo de artigo.");
+                return;
+            }
             // Variavel que guarda id do objeto selecionado TipoArtigo  |
             // .SelectedValue devolve o ValueMember do "Id",
             int tipoArtigoId = (int)comboBoxTipoArtigo.SelectedValue;

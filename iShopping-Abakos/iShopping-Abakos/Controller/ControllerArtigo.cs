@@ -91,7 +91,7 @@ namespace iShopping_Abakos.Controller
                 o.Preco,
                 o.Descricao,
                 // IdTipoArtigo e TipoArtigo é o nome da coluna que aparece
-                IdTipoArtigo = o.TipoArtigo.Id,
+                // IdTipoArtigo = o.TipoArtigo.Id -->usado para debug
                 TipoArtigo = o.TipoArtigo.Nome   // aqui aparece o nome em vez do Id
             })
             .ToList();
