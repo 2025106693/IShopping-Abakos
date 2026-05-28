@@ -77,6 +77,7 @@ namespace iShopping_Abakos.View
             string mensagem;
 
             ControllerCompras.EliminarCompra(id, out mensagem); 
+            MessageBox.Show(mensagem);
             ControllerCompras.MostrarCompras(dataGridView_Compras);
         }
 

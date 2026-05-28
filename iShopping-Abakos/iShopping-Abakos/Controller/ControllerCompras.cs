@@ -2,24 +2,27 @@
 using iShopping_Abakos.View;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace iShopping_Abakos.Controller
 {
-    internal class ControllerCompras
+    internal class ControllerCompras 
     {
+        
+        //Fecha o form de compras e reexibe a página principal (que estava em hide)
         public static void VoltarPaginaPrincipal()
         {
-            ComprasForm.instance.Close();
-            PaginaInicialForm.instanciaPaginaPrincipal.Show();
+            ComprasForm.instance.Close();     
+            PaginaInicialForm.instanciaPaginaPrincipal.Show(); 
         }
 
+        //Carrega as compras na DataGridView, ordenadas por Data de criação
+        //Função usada também para atualizar/carregar a DataGridView cada vez que a tabela compras muda
         public static void MostrarCompras(DataGridView dataSource)
         {
+            //Por cada operação usa-se sempre o novo IShoppingContext
+            //ToList() materializa os dados e evita lazy loading/inconsistências
             using (IShoppingContext db = new IShoppingContext())
             {
                 dataSource.DataSource = db.DBCompras.OrderBy(c => c.DataCriacao).ToList();
@@ -27,87 +30,118 @@ namespace iShopping_Abakos.Controller
 
         }
 
+        // Cria um registo de compra a partir dos inputs da view; 'mensagem' devolve o resultado
         public static void CriarCompra(string nomeCompra, string descricao, out string mensagem)
         {
-            mensagem = "";
 
-            if (nomeCompra == "")
+            mensagem = ""; // variável mensagem que irá mudar consoante o resultado da função e validações
+
+            if (nomeCompra == "") //para haver um registo de compra tem que haver obrigatoriamente um nome.
+                                  
             {
                 mensagem = "Precisa de inserir o campo nome compra!";
                 return;
             }
 
-            using (IShoppingContext db = new IShoppingContext())
+            //como a descricao não é obrigatória.Não criamos nenhuma validação.
+            //O utilizador escolhe o que fazer para a descrição. 
+
+            using (IShoppingContext db = new IShoppingContext()) //nova instância da base de dados
             {
+                //vamos à base de dados e fazemos a pesquisa se existe já alguma compra com o mesmo nome (não são permitidos nomes duplicados)
+                
                 Compra compra = db.DBCompras.FirstOrDefault(c => c.NomeCompra == nomeCompra);
 
-                if (compra == null)
+                if (compra == null) // caso não haja já uma compra com o mesmo nome, adicionamos a compra com os inputs do utilizador
+                                    // e toda a informação extra como datas e o utilizador
                 {
                     compra = new Compra()
                     {
                         NomeCompra = nomeCompra,
                         Descricao = descricao,
                         DataCriacao = DateTime.Now,
-                        CriadoPor = Sessao.UtilizadorAtual,
+                        CriadoPor = Sessao.UtilizadorAtual, //utilizador atua (estático) ou seja, aquele que está logado                                         
                         Fechado = false,
-                        TotalGasto = 0
+                        TotalPrevisto = 0,
+
+                        //quando um utilizador cria uma compra ainda não tem itens (sendo inicializado a 0)
+                        //a compra ainda não foi realizada iniciando o fechado como false
+                        //o utilizador tem de criar primeiro a compra e depois fechá-la após essa operação
+
+                        TotalGasto = 0 //Só irá ter um valor final quando a compra for fechada
+                        //quando for para fechar então soma-se todo o valor dos itens compra + qualquer imprevisto/alteração de quantidades
                     };
 
+
                     db.DBCompras.Add(compra);
-                    mensagem = "Compra adicionada com sucesso!";
+                    mensagem = "Compra adicionada com sucesso!"; // mensagem para o utilizador saber se correu bem
                 }
                 else
                 {
                     mensagem = "Compra existente, introduza um nome diferente!";
-                    return;
+                    return; //obriga a utilizar um nome diferente. Nenhuma compra pode ter o mesmo nome!
                 }
-                db.SaveChanges();
+
+                db.SaveChanges(); //guarda as alterações caso corra tudo bem
             }
 
         }
 
+        //Altera as informações de uma compra selecionada (através do id) com novos inputs da View
         public static void EditarInformacoesCompra(string id, string nomeCompra, string descricao, out string mensagem)
         {
-            mensagem = "";
-            int idCompra;
+            mensagem = ""; //mensagem varia consoante o resultado 
 
-            if (!int.TryParse(id, out idCompra))
+            int idCompra; // variável para validação do id
+
+            if (!int.TryParse(id, out idCompra)) //Se o id não for númerico, obriga a reintroduzir
             {
                 mensagem = "O id tem de ser numérico!";
                 return;
 
             }
 
-            if ((nomeCompra == "") && (descricao == ""))
+            if ((nomeCompra == "") && (descricao == "")) //Tem de haver algum input para realizar a operação de alterar informações.
             {
                 mensagem = "Tem de introduzir informações para realizar a alteração!";
                 return;
             }
 
-            using (IShoppingContext db = new IShoppingContext())
-            {
-                Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == idCompra);
 
-                if (compra == null)
+
+            using (IShoppingContext db = new IShoppingContext()) //nova instância especifica para a operação
+            {
+                Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == idCompra); // realiza a pesquisa pelo ID
+
+                if (compra == null) // Caso não encontre, o utilizador tem de voltar a introduzir um ID que exista
                 {
                     mensagem = "Compra inexistente, selecione uma compra!";
                     return;
                 }
 
-                else
+                else // altera a informação da compra com o id que o utilizador inseriu
                 {
-                    compra.NomeCompra = nomeCompra;
-                    compra.Descricao = descricao;
+                    if (descricao != "")
+                    {
+                        compra.Descricao = descricao;
+                    }
+
+                    if (nomeCompra != "")
+                    {
+                        compra.NomeCompra = nomeCompra;
+                    }
+
                     compra.AlteradoPor = Sessao.UtilizadorAtual;
                     compra.DataAlteracao = DateTime.Today;
 
-                    db.SaveChanges();
+                    db.SaveChanges(); //guarda alterações
                     mensagem = "Compra alterada com sucesso!";
                 }
                 ;
             }
         }
 
+        //função para fechar Compra
         public static void FecharCompra(string id, out string mensagem)
         {
             mensagem = "";
@@ -135,7 +169,7 @@ namespace iShopping_Abakos.Controller
                     compra.FechadoPor = Sessao.UtilizadorAtual;
                     compra.DataFecho = DateTime.Today;
                     compra.Fechado = true;
-       
+                    compra.TotalGasto = ObterTotalGastoCompra(idCompra);
                     db.SaveChanges();
                     mensagem = "Compra fechada com Sucesso!";
 
@@ -156,7 +190,38 @@ namespace iShopping_Abakos.Controller
                     }
                 }
             }
+        }
 
+        public static decimal ObterTotalGastoCompra(int idCompra)
+        {
+            // a validação do idCompra é já realizada nas outras funções não sendo necessário realizar novamente
+            //esta função serve apenas para calcular
+
+
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                {
+                    return db.DBItensCompra.Where(i => i.IdCompra == idCompra)
+                                           .Sum(i => i.Quantidade * i.PrecoUnitario);
+
+                }
+                    
+            }
+        }
+
+        public static decimal ObterTotalPrevisto(int idCompra)
+        {
+            // a validação do idCompra é já realizada nas outras funções não sendo necessário realizar novamente
+            //esta função serve apenas para calcular
+
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                {
+                    return db.DBItensPrevistos
+                               .Where(i => i.IdCompra == idCompra)
+                               .Sum(i => i.PrecoUnitario * i.QuantPrevista);
+                }      
+            }
         }
 
         public static void EliminarCompra(string id, out string mensagem)
@@ -184,6 +249,8 @@ namespace iShopping_Abakos.Controller
                 {
                     db.DBCompras.Remove(compra);
                     db.SaveChanges();
+                    mensagem = "Compra removida com sucesso!";
+                    
                 }
 
                 else
