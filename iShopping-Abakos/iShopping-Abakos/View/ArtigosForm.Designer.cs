@@ -68,6 +68,7 @@
             this.buttonEliminarArtigo.TabIndex = 38;
             this.buttonEliminarArtigo.Text = "Eliminar artigo";
             this.buttonEliminarArtigo.UseVisualStyleBackColor = true;
+            this.buttonEliminarArtigo.Click += new System.EventHandler(this.buttonEliminarArtigo_Click);
             // 
             // button_AdicionarArtigo
             // 

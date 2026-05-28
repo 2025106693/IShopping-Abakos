@@ -58,6 +58,24 @@ namespace iShopping_Abakos.View
 
         private void buttonAlterarArtigo_Click(object sender, EventArgs e)
         {
+            int tipoArtigoId;
+
+            if (comboBoxTipoArtigo.SelectedValue == null)
+            {
+                tipoArtigoId = -1;
+            }
+            else
+            {
+                tipoArtigoId = (int)comboBoxTipoArtigo.SelectedValue;
+            }
+
+            ControllerArtigo.AlterarArtigo(dataGridViewTipoArtigos, textBoxIDArtigo, textBoxNomeArtigo, textBox_Preco, tipoArtigoId, textBoxDescricaoArtigo);
+
+        }
+
+        private void buttonEliminarArtigo_Click(object sender, EventArgs e)
+        {
+            ControllerArtigo.EliminarArtigos(textBoxIDArtigo, dataGridViewTipoArtigos);
 
         }
     }

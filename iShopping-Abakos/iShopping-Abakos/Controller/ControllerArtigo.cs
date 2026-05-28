@@ -1,4 +1,6 @@
-﻿using iShopping_Abakos.Model;
+﻿
+
+using iShopping_Abakos.Model;
 using iShopping_Abakos.View;
 using System;
 using System.Collections.Generic;
@@ -21,7 +23,7 @@ namespace iShopping_Abakos.Controller
         {
 
             decimal precoArtigo;
-            
+
 
             if (!decimal.TryParse(preco, out precoArtigo))
             {
@@ -29,7 +31,7 @@ namespace iShopping_Abakos.Controller
                 return;
             }
 
-            
+
 
             using (IShoppingContext db = new IShoppingContext())
             {
@@ -44,7 +46,7 @@ namespace iShopping_Abakos.Controller
                         Preco = precoArtigo,
                         Descricao = descricao,
                         TipoArtigoId = tipoArtigo,
-                        
+
                     };
                     db.DBArtigos.Add(artigo);
                 }
@@ -70,8 +72,9 @@ namespace iShopping_Abakos.Controller
                               .OrderBy(t => t.Id).ToList();
 
                 comboBox.DataSource = tiposArtigo;
-                comboBox.DisplayMember = "Nome";  // o que o utilizador vê
+                comboBox.DisplayMember = "Nome";  // o que o utilizador 
                 comboBox.ValueMember = "Id";// valor associado fica escondigo
+                comboBox.SelectedIndex = -1;
             }
         }
 
@@ -96,7 +99,99 @@ namespace iShopping_Abakos.Controller
                 dataSource.DataSource = artigos;
 
             }
+        }
 
+        public static void EliminarArtigos(TextBox id, DataGridView dataSource)
+        {
+
+            int idArtigo;
+
+            if (!int.TryParse(id.Text, out idArtigo))
+            {
+                MessageBox.Show("O id tem de ser numérico");
+                return;
+            }
+
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                Artigo artigo = db.DBArtigos.FirstOrDefault(
+                    a => a.Id == idArtigo);
+
+                if (artigo != null)
+                {
+                    db.DBArtigos.Remove(artigo);
+                    db.SaveChanges();
+                    MostrarTabelaArtigos(dataSource);
+
+                    MessageBox.Show("Artigo eliminado com sucesso");
+                }
+                else
+                {
+                    MessageBox.Show("Artigo não encontrado. Verifique o id e tente novamente.");
+                }
+
+                id.Text = "";
+            }
+        }
+
+
+        public static void AlterarArtigo(DataGridView dataSource, TextBox id, TextBox nome, TextBox preco, int tipoArtigoId, TextBox descricao)
+        {
+            int idArtigo;
+
+            if (!int.TryParse(id.Text, out idArtigo))
+            {
+                MessageBox.Show("O id tem de ser numérico");
+                return;
+            }
+
+            if ((nome.Text == "") && (preco.Text == "") && (tipoArtigoId == -1) && (descricao.Text == ""))
+            {
+                MessageBox.Show("Indique pelo menos um campo para alterar");
+                return;
+            }
+
+
+            using (IShoppingContext db = new IShoppingContext())
+            {
+
+                Artigo artigo = db.DBArtigos.FirstOrDefault(a => a.Id == idArtigo);
+
+                if (artigo != null)
+                {
+                    if (nome.Text != "")
+                    {
+                        artigo.Nome = nome.Text.Trim();
+                    }
+                    if (preco.Text != "")
+                    {
+                        decimal precoArtigo;
+
+                        if (!decimal.TryParse(preco.Text, out precoArtigo))
+                        {
+                            MessageBox.Show("O preco tem de ser numérico");
+                            return;
+                        }
+                        artigo.Preco = precoArtigo;
+                    }
+                    if (tipoArtigoId != -1)
+                    {
+                        artigo.TipoArtigoId = tipoArtigoId;
+                    }
+                    if (descricao.Text != "")
+                    {
+                        artigo.Descricao = descricao.Text.Trim();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ID do Artigo não encontrado!");
+                    return;
+                }
+                db.SaveChanges();
+                MessageBox.Show("Artigo alterado com sucesso");
+                MostrarTabelaArtigos(dataSource);
+            }
         }
     }
 }
