@@ -62,11 +62,11 @@
             // buttonEliminarArtigo
             // 
             this.buttonEliminarArtigo.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEliminarArtigo.Location = new System.Drawing.Point(586, 545);
+            this.buttonEliminarArtigo.Location = new System.Drawing.Point(586, 619);
             this.buttonEliminarArtigo.Name = "buttonEliminarArtigo";
             this.buttonEliminarArtigo.Size = new System.Drawing.Size(336, 40);
             this.buttonEliminarArtigo.TabIndex = 38;
-            this.buttonEliminarArtigo.Text = "Eliminar tipo de artigo";
+            this.buttonEliminarArtigo.Text = "Eliminar artigo";
             this.buttonEliminarArtigo.UseVisualStyleBackColor = true;
             // 
             // button_AdicionarArtigo
@@ -99,11 +99,11 @@
             // buttonAlterarArtigo
             // 
             this.buttonAlterarArtigo.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAlterarArtigo.Location = new System.Drawing.Point(586, 494);
+            this.buttonAlterarArtigo.Location = new System.Drawing.Point(586, 561);
             this.buttonAlterarArtigo.Name = "buttonAlterarArtigo";
             this.buttonAlterarArtigo.Size = new System.Drawing.Size(336, 37);
             this.buttonAlterarArtigo.TabIndex = 34;
-            this.buttonAlterarArtigo.Text = "Alterar tipo de artigo";
+            this.buttonAlterarArtigo.Text = "Alterar artigo";
             this.buttonAlterarArtigo.UseVisualStyleBackColor = true;
             this.buttonAlterarArtigo.Click += new System.EventHandler(this.buttonAlterarArtigo_Click);
             // 
@@ -215,7 +215,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(996, 725);
+            this.ClientSize = new System.Drawing.Size(1005, 725);
             this.Controls.Add(this.comboBoxTipoArtigo);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox_Preco);

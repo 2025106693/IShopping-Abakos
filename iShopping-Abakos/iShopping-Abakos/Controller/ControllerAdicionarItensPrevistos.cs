@@ -21,7 +21,9 @@ namespace iShopping_Abakos.Controller
 
         public static void AdicionarItemPrevisto(int tipoArtigo, int Artigo, int quantidade, out string message)
         {
-            message = "";
+            message = ""; 
+
+
             
         }
 
