@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridViewCompras = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -46,6 +47,9 @@
             this.button_Orcamento = new System.Windows.Forms.Button();
             this.comboBoxEstado = new System.Windows.Forms.ComboBox();
             this.label_Estado = new System.Windows.Forms.Label();
+            this.textBox_Id = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCompras)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,7 +93,7 @@
             // button_VisualizarDetalhes
             // 
             this.button_VisualizarDetalhes.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_VisualizarDetalhes.Location = new System.Drawing.Point(788, 503);
+            this.button_VisualizarDetalhes.Location = new System.Drawing.Point(527, 503);
             this.button_VisualizarDetalhes.Name = "button_VisualizarDetalhes";
             this.button_VisualizarDetalhes.Size = new System.Drawing.Size(183, 39);
             this.button_VisualizarDetalhes.TabIndex = 32;
@@ -100,7 +104,7 @@
             // button_ExportarCSV
             // 
             this.button_ExportarCSV.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_ExportarCSV.Location = new System.Drawing.Point(599, 503);
+            this.button_ExportarCSV.Location = new System.Drawing.Point(338, 503);
             this.button_ExportarCSV.Name = "button_ExportarCSV";
             this.button_ExportarCSV.Size = new System.Drawing.Size(183, 39);
             this.button_ExportarCSV.TabIndex = 31;
@@ -237,11 +241,35 @@
             this.label_Estado.TabIndex = 38;
             this.label_Estado.Text = "Estado:";
             // 
+            // textBox_Id
+            // 
+            this.textBox_Id.Location = new System.Drawing.Point(744, 509);
+            this.textBox_Id.Name = "textBox_Id";
+            this.textBox_Id.Size = new System.Drawing.Size(50, 22);
+            this.textBox_Id.TabIndex = 39;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(717, 512);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(21, 16);
+            this.label2.TabIndex = 41;
+            this.label2.Text = "Id:";
+            // 
             // PaginaInicialForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1013, 575);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBox_Id);
             this.Controls.Add(this.label_Estado);
             this.Controls.Add(this.comboBoxEstado);
             this.Controls.Add(this.dataGridViewCompras);
@@ -288,5 +316,8 @@
         private System.Windows.Forms.Button button_Orcamento;
         private System.Windows.Forms.ComboBox comboBoxEstado;
         private System.Windows.Forms.Label label_Estado;
+        private System.Windows.Forms.TextBox textBox_Id;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Label label2;
     }
 }

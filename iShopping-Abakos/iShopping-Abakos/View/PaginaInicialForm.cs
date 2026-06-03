@@ -80,7 +80,8 @@ namespace iShopping_Abakos
 
         private void button_VisualizarDetalhes_Click(object sender, EventArgs e)
         {
-            ControllerPaginaInicial.AbrirFormVisualizar();
+            Compra compra = ControllerPaginaInicial.DevolverCompra(textBox_Id.Text.Trim());
+            ControllerVisualizarCompra.AbrirCompra(compra);
         }
 
         private void button_Sair_Click(object sender, EventArgs e)

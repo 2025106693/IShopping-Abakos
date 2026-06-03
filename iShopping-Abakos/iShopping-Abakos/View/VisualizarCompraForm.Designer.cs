@@ -123,6 +123,7 @@
             this.Controls.Add(this.labelComprasVisualizar);
             this.Name = "VisualizarCompraForm";
             this.Text = "VisualizarCompraForm";
+            this.Load += new System.EventHandler(this.VisualizarCompraForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewItensCompra)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -53,12 +53,12 @@ namespace iShopping_Abakos.Controller
             Form.ShowDialog();
         }
 
-        public static void AbrirFormVisualizar()
+        /*public static void AbrirFormVisualizar()
         {
             PaginaInicialForm.instanciaPaginaPrincipal.Hide();
             VisualizarCompraForm Form = new VisualizarCompraForm();
             Form.ShowDialog();
-        }
+        }*/
 
         public static Orcamento DevolverOrcamentoAtual()
         {
@@ -103,7 +103,40 @@ namespace iShopping_Abakos.Controller
                     dataSource.DataSource = db.DBCompras.Where(c => c.Fechado == true).OrderBy(c => c.Id).ToList();
                 }
             }
-            
+        }
+
+        public static Compra DevolverCompra(string id)
+        {
+            int idCompra;
+
+
+            if (id == "")
+            {
+                MessageBox.Show("Por favor insira um Id");
+                return null;
+            }
+
+            if (!int.TryParse(id, out idCompra))
+            {
+                MessageBox.Show("O Id tem de ser numérico");
+                return null;
+            }
+
+
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == idCompra);
+
+                if (compra != null)
+                {
+                    return compra;
+                }
+                else
+                {
+                    MessageBox.Show("Selecione uma compra existente!");
+                    return null;
+                }
+            }
         }
     }
 }
