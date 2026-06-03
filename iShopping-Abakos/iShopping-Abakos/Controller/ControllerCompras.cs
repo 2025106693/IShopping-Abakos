@@ -25,11 +25,12 @@ namespace iShopping_Abakos.Controller
             //ToList() materializa os dados e evita lazy loading/inconsistências
             using (IShoppingContext db = new IShoppingContext())
             {
-                var compras = db.DBCompras.OrderBy(c => c.Id).ToList();
+                var compras = db.DBCompras.Where(c => c.Fechado == false).OrderBy(c => c.Id).ToList();
 
                 foreach (var compra in compras)
                 {
                     compra.TotalPrevisto = ControllerCompras.ObterTotalPrevisto(compra.Id);
+                 
                 }
 
                 db.SaveChanges();

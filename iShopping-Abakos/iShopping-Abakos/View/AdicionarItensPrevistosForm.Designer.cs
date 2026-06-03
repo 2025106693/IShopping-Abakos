@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.Label label1;
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox_ID = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.comboBox2_Artigos = new System.Windows.Forms.ComboBox();
@@ -59,12 +59,12 @@
             label1.TabIndex = 26;
             label1.Text = "Tipo de Artigo: ";
             // 
-            // textBox2
+            // textBox_ID
             // 
-            this.textBox2.Location = new System.Drawing.Point(361, 522);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 33;
+            this.textBox_ID.Location = new System.Drawing.Point(361, 522);
+            this.textBox_ID.Name = "textBox_ID";
+            this.textBox_ID.Size = new System.Drawing.Size(100, 22);
+            this.textBox_ID.TabIndex = 33;
             // 
             // label6
             // 
@@ -140,6 +140,7 @@
             this.button_AlterarQuantidade.TabIndex = 24;
             this.button_AlterarQuantidade.Text = "Alterar Quantidade ";
             this.button_AlterarQuantidade.UseVisualStyleBackColor = true;
+            this.button_AlterarQuantidade.Click += new System.EventHandler(this.button_AlterarQuantidade_Click);
             // 
             // button_ApagarItem
             // 
@@ -150,6 +151,7 @@
             this.button_ApagarItem.TabIndex = 23;
             this.button_ApagarItem.Text = "Apagar Item";
             this.button_ApagarItem.UseVisualStyleBackColor = true;
+            this.button_ApagarItem.Click += new System.EventHandler(this.button_ApagarItem_Click);
             // 
             // button_AdicionarItem
             // 
@@ -207,7 +209,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1032, 668);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox_ID);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.comboBox2_Artigos);
@@ -235,7 +237,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox_ID;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.ComboBox comboBox2_Artigos;

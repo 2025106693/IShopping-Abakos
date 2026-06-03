@@ -31,5 +31,10 @@ namespace iShopping_Abakos.View
         {
             ControllerVisualizarCompra.MostrarItensCompra(dataGridViewItensCompra);
         }
+
+        private void buttonAdicionarItemNaoP_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -30,7 +30,7 @@ namespace iShopping_Abakos.Controller
             }
         }
 
-        public static void AdicionarItemPrevisto( int artigoId, int qtdPrevista, out string mensagem)
+        public static void AdicionarItemPrevisto(int artigoId, int qtdPrevista, out string mensagem)
         {
             mensagem = "";
 
@@ -43,11 +43,35 @@ namespace iShopping_Abakos.Controller
             using (IShoppingContext db = new IShoppingContext())
             {
                 Artigo artigo = db.DBArtigos.FirstOrDefault(a => a.Id == artigoId);
-                if (artigo == null) { mensagem = "Artigo não encontrado!"; return; }
+
+                if (artigo == null)
+                {
+                    mensagem = "Artigo não encontrado!";
+                    return;
+                }
 
                 Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == compraDevolvida.Id);
-                if (compra == null) { mensagem = "Compra não encontrada!"; return; }
-                if (compra.Fechado) { mensagem = "A compra está fechada!"; return; }
+
+                if (compra == null)
+                {
+                    mensagem = "Compra não encontrada!";
+                    return;
+                }
+
+                if (compra.Fechado)
+                {
+                    mensagem = "A compra está fechada!";
+                    return;
+                }
+
+                ItemPrevisto itemExistente = db.DBItensCompra.OfType<ItemPrevisto>()
+                        .FirstOrDefault(i => i.ArtigoId == artigoId && i.CompraId == compraDevolvida.Id);
+
+                if (itemExistente != null)
+                {
+                    mensagem = "Artigo já adicionado, basta editá-lo!";
+                    return;
+                }
 
                 ItemPrevisto item = new ItemPrevisto
                 {
@@ -58,11 +82,11 @@ namespace iShopping_Abakos.Controller
                     PrecoUnitario = artigo.Preco
                 };
 
-               
+
                 db.DBItensCompra.Add(item);
                 db.SaveChanges();
                 mensagem = "Item adicionado com sucesso!";
-                 
+
                 AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + (ControllerCompras.ObterTotalPrevisto(compraDevolvida.Id)).ToString() + "€";
 
 
@@ -122,7 +146,89 @@ namespace iShopping_Abakos.Controller
             }
         }
 
+        public static void AlterarQuantidade(string itemPrevistoId, int quantidade, out string mensagem)
+        {
+            int idItem;
+
+            mensagem = "";
+
+            if (itemPrevistoId == "")
+            {
+                mensagem = "Insira um ID!";
+                return;
+            }
+
+            if (!int.TryParse(itemPrevistoId, out idItem))
+            {
+                mensagem = "Insira um Id numérico!";
+                return;
+            }
+
+            if (quantidade == 0 && quantidade < 0)
+            {
+                mensagem = "A quantidade tem de ser um número maior que 0";
+                return;
+            }
+
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                ItemPrevisto item = db.DBItensCompra.OfType<ItemPrevisto>().FirstOrDefault(
+                                         i => i.ArtigoId == idItem && i.CompraId == compraDevolvida.Id);
+
+                item.QuantPrevista = quantidade;
+
+                mensagem = "Quantidade alterado com sucesso";
+                db.SaveChanges();
+            }
+
+            AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + (ControllerCompras.ObterTotalPrevisto(compraDevolvida.Id)).ToString() + "€";
+
+        }
+
+        public static void EliminarItem(string itemPrevistoId, out string mensagem)
+        {
+            mensagem = "";
+            int idItem;
+
+            if (itemPrevistoId == "")
+            {
+                mensagem = "Insira um ID!";
+                return;
+            }
+
+            if (!int.TryParse(itemPrevistoId, out idItem))
+            {
+                mensagem = "Insira um Id numérico!";
+                return;
+            }
+
+            using (IShoppingContext db = new IShoppingContext())
+            {
+
+                ItemPrevisto item = db.DBItensCompra.OfType<ItemPrevisto>().FirstOrDefault(
+                                    i => i.ArtigoId == idItem && i.CompraId == compraDevolvida.Id);
+
+                if (item != null)
+                {
+                    db.DBItensCompra.Remove(item);
+                    
+                }
+
+                else
+                {
+                    mensagem = "Insira um item existente!";
+                    return;
+                }
 
 
+                db.SaveChanges();
+                mensagem = "Item removido com sucesso!";
+
+            }
+
+            AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + (ControllerCompras.ObterTotalPrevisto(compraDevolvida.Id)).ToString() + "€";
+
+
+        }
     }
 }
