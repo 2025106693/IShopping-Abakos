@@ -225,10 +225,20 @@ namespace iShopping_Abakos.Controller
             using (IShoppingContext db = new IShoppingContext())
             {
                 {
-                   return  db.DBItensCompra.OfType<ItemPrevisto>()
-                               .Where(i => i.CompraId == idCompra)
-                               .Sum(i => i.PrecoUnitario * i.QuantPrevista);
-                    
+
+                    var ItensCompra = db.DBItensCompra.OfType<ItemPrevisto>()
+                              .Where(i => i.CompraId == idCompra).ToList();
+
+                    if (ItensCompra != null)
+                    {
+                       return ItensCompra.Sum(i => i.PrecoUnitario * i.QuantPrevista);
+                    }
+
+                    else
+                    {
+                        return 0;
+                    }
+         
                 }
             }
         }
@@ -252,11 +262,22 @@ namespace iShopping_Abakos.Controller
 
             using (IShoppingContext db = new IShoppingContext())
             {
+
                 Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == idCompra);
+
+
 
                 if (compra != null)
                 {
+                    var ItensCompra = db.DBItensCompra.Where(i => i.CompraId == idCompra).ToList();
+
+                    foreach (var item in ItensCompra)
+                    {
+                        db.DBItensCompra.Remove(item);
+                    }
+
                     db.DBCompras.Remove(compra);
+
                     db.SaveChanges();
                     mensagem = "Compra removida com sucesso!";
                     
