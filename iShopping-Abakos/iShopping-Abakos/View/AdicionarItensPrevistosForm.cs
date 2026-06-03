@@ -14,16 +14,20 @@ namespace iShopping_Abakos.View
     public partial class AdicionarItensPrevistosForm : Form
     {
         public static Label labelNome;
+        public static Label labelPrevisto;
         public AdicionarItensPrevistosForm()
         {
             InitializeComponent();
             labelNome = label_NomeCompra;
+            labelPrevisto = label_TotalPrevisto;
         }
 
         private void button_Voltar_Click(object sender, EventArgs e)
         {
+            ControllerCompras.MostrarCompras(ComprasForm.dataGridView);
             ComprasForm.instance.Show();
             this.Close();
+            
         }
 
         private void button_AdicionarItem_Click(object sender, EventArgs e)
@@ -51,6 +55,7 @@ namespace iShopping_Abakos.View
         {
             ControllerAdicionarItensPrevistos.CarregarTiposArtigo(comboBox_TiposArtigos);
             ControllerAdicionarItensPrevistos.MostrarListaItens(dataGridView_ItensPrevistos);
+
 
         }
 

@@ -40,7 +40,7 @@
             this.button_AlterarQuantidade = new System.Windows.Forms.Button();
             this.button_ApagarItem = new System.Windows.Forms.Button();
             this.button_AdicionarItem = new System.Windows.Forms.Button();
-            this.label_TotalCompra = new System.Windows.Forms.Label();
+            this.label_TotalPrevisto = new System.Windows.Forms.Label();
             this.dataGridView_ItensPrevistos = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.label_NomeCompra = new System.Windows.Forms.Label();
@@ -162,15 +162,15 @@
             this.button_AdicionarItem.UseVisualStyleBackColor = true;
             this.button_AdicionarItem.Click += new System.EventHandler(this.button_AdicionarItem_Click);
             // 
-            // label_TotalCompra
+            // label_TotalPrevisto
             // 
-            this.label_TotalCompra.AutoSize = true;
-            this.label_TotalCompra.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_TotalCompra.Location = new System.Drawing.Point(782, 96);
-            this.label_TotalCompra.Name = "label_TotalCompra";
-            this.label_TotalCompra.Size = new System.Drawing.Size(196, 20);
-            this.label_TotalCompra.TabIndex = 21;
-            this.label_TotalCompra.Text = "Total da Compra: 000.00€";
+            this.label_TotalPrevisto.AutoSize = true;
+            this.label_TotalPrevisto.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_TotalPrevisto.Location = new System.Drawing.Point(719, 93);
+            this.label_TotalPrevisto.Name = "label_TotalPrevisto";
+            this.label_TotalPrevisto.Size = new System.Drawing.Size(259, 20);
+            this.label_TotalPrevisto.TabIndex = 21;
+            this.label_TotalPrevisto.Text = "Total Previsto da Compra: 000.00€";
             // 
             // dataGridView_ItensPrevistos
             // 
@@ -188,9 +188,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(54, 93);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(162, 23);
+            this.label2.Size = new System.Drawing.Size(233, 23);
             this.label2.TabIndex = 19;
-            this.label2.Text = "Os seus itens atuais:";
+            this.label2.Text = "Os seus itens previstos atuais:";
             // 
             // label_NomeCompra
             // 
@@ -219,7 +219,7 @@
             this.Controls.Add(this.button_AlterarQuantidade);
             this.Controls.Add(this.button_ApagarItem);
             this.Controls.Add(this.button_AdicionarItem);
-            this.Controls.Add(this.label_TotalCompra);
+            this.Controls.Add(this.label_TotalPrevisto);
             this.Controls.Add(this.dataGridView_ItensPrevistos);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label_NomeCompra);
@@ -246,7 +246,7 @@
         private System.Windows.Forms.Button button_AlterarQuantidade;
         private System.Windows.Forms.Button button_ApagarItem;
         private System.Windows.Forms.Button button_AdicionarItem;
-        private System.Windows.Forms.Label label_TotalCompra;
+        private System.Windows.Forms.Label label_TotalPrevisto;
         private System.Windows.Forms.DataGridView dataGridView_ItensPrevistos;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label_NomeCompra;

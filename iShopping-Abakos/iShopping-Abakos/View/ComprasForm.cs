@@ -14,11 +14,13 @@ namespace iShopping_Abakos.View
 {
     public partial class ComprasForm : Form
     {
+        public static DataGridView dataGridView;
         public static ComprasForm instance;
         public ComprasForm()
         {
             InitializeComponent();
             instance = this;
+            dataGridView = dataGridView_Compras;
         }
 
         private void button_Voltar_Click(object sender, EventArgs e)

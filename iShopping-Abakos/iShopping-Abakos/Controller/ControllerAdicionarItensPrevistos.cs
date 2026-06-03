@@ -25,6 +25,7 @@ namespace iShopping_Abakos.Controller
                 ComprasForm.instance.Hide();
                 AdicionarItensPrevistosForm form = new AdicionarItensPrevistosForm();
                 AdicionarItensPrevistosForm.labelNome.Text = compra.NomeCompra;
+                AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + (ControllerCompras.ObterTotalPrevisto(compraDevolvida.Id)).ToString() + "€";
                 form.ShowDialog();
             }
         }
@@ -61,7 +62,9 @@ namespace iShopping_Abakos.Controller
                 db.DBItensCompra.Add(item);
                 db.SaveChanges();
                 mensagem = "Item adicionado com sucesso!";
-                ControllerCompras.ObterTotalPrevisto(compraDevolvida.Id);
+                 
+                AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + (ControllerCompras.ObterTotalPrevisto(compraDevolvida.Id)).ToString() + "€";
+
 
             }
 
@@ -86,12 +89,6 @@ namespace iShopping_Abakos.Controller
                 datasource.DataSource = itensCompra;
             }
         }
-
-
-
-
-
-
 
         public static void CarregarTiposArtigo(ComboBox comboBox)
         {

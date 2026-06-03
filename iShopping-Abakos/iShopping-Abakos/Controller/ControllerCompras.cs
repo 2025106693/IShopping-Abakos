@@ -25,9 +25,17 @@ namespace iShopping_Abakos.Controller
             //ToList() materializa os dados e evita lazy loading/inconsistências
             using (IShoppingContext db = new IShoppingContext())
             {
-                dataSource.DataSource = db.DBCompras.OrderBy(c => c.DataCriacao).ToList();
-            }
+                var compras = db.DBCompras.OrderBy(c => c.Id).ToList();
 
+                foreach (var compra in compras)
+                {
+                    compra.TotalPrevisto = ControllerCompras.ObterTotalPrevisto(compra.Id);
+                }
+
+                db.SaveChanges();
+                dataSource.DataSource = compras;
+
+            }
         }
 
         // Cria um registo de compra a partir dos inputs da view; 'mensagem' devolve o resultado
@@ -209,7 +217,7 @@ namespace iShopping_Abakos.Controller
             }
         }
 
-        public static void ObterTotalPrevisto(int idCompra)
+        public static decimal ObterTotalPrevisto(int idCompra)
         {
             // a validação do idCompra é já realizada nas outras funções não sendo necessário realizar novamente
             //esta função serve apenas para calcular
@@ -217,15 +225,11 @@ namespace iShopping_Abakos.Controller
             using (IShoppingContext db = new IShoppingContext())
             {
                 {
-                    var TotalPrevisto = db.DBItensCompra.OfType<ItemPrevisto>()
+                   return  db.DBItensCompra.OfType<ItemPrevisto>()
                                .Where(i => i.CompraId == idCompra)
                                .Sum(i => i.PrecoUnitario * i.QuantPrevista);
-
-                    db.DBCompras.FirstOrDefault(c => c.Id == idCompra).TotalPrevisto = TotalPrevisto;
                     
                 }
-                
-                db.SaveChanges();
             }
         }
 
