@@ -14,6 +14,7 @@ namespace iShopping_Abakos
 {
     public partial class PaginaInicialForm : Form
     {
+        public static DataGridView comprasPaginaPrincipal;
         public static PaginaInicialForm instanciaPaginaPrincipal; // para poder manipular livremente
         public static Label label;
         public PaginaInicialForm()
@@ -21,6 +22,7 @@ namespace iShopping_Abakos
             InitializeComponent();
             instanciaPaginaPrincipal = this;
             label = label_Orcamento;
+            comprasPaginaPrincipal = dataGridViewCompras;
            
         }
 
@@ -29,6 +31,8 @@ namespace iShopping_Abakos
             
             label_NomeUsername.Text = "Bem vindo, " + Sessao.UtilizadorAtual + "!";
             Orcamento orcamento = ControllerPaginaInicial.DevolverOrcamentoAtual();
+
+            comboBoxEstado.SelectedIndex = 0;
 
             if (orcamento != null)
             {
@@ -66,6 +70,7 @@ namespace iShopping_Abakos
         private void button_Compras_Click(object sender, EventArgs e)
         {
             ControllerPaginaInicial.AbrirFormCompras();
+            comboBoxEstado.SelectedIndex = 0;
         }
 
         private void button_Estatisticas_Click(object sender, EventArgs e)
@@ -85,6 +90,13 @@ namespace iShopping_Abakos
 
         private void label_Orcamento_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            ControllerPaginaInicial.MostrarEstadoCompras(comboBoxEstado.SelectedIndex, dataGridViewCompras);
 
         }
     }

@@ -76,5 +76,34 @@ namespace iShopping_Abakos.Controller
             }
 
         }
+
+        public static void MostrarEstadoCompras(int estado, DataGridView dataSource)
+        {
+            if (estado == 0)
+            {
+                using (IShoppingContext db = new IShoppingContext())
+                {
+                    dataSource.DataSource = db.DBCompras.OrderBy(c => c.Id).ToList();
+
+                }
+
+                
+            }
+            else if (estado == 1)
+            {
+                using (IShoppingContext db = new IShoppingContext())
+                {
+                    dataSource.DataSource = db.DBCompras.Where(c => c.Fechado == false).OrderBy(c => c.Id).ToList();
+                }
+            }
+            else if (estado == 2)
+            {
+                using (IShoppingContext db = new IShoppingContext())
+                {
+                    dataSource.DataSource = db.DBCompras.Where(c => c.Fechado == true).OrderBy(c => c.Id).ToList();
+                }
+            }
+            
+        }
     }
 }

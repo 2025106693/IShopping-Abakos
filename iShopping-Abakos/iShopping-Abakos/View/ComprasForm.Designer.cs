@@ -42,7 +42,6 @@
             this.button_Eliminar = new System.Windows.Forms.Button();
             this.button_Voltar = new System.Windows.Forms.Button();
             this.textBox_ID = new System.Windows.Forms.TextBox();
-            this.button_Fechar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Compras)).BeginInit();
             this.SuspendLayout();
             // 
@@ -146,9 +145,9 @@
             // button_AlterarInfo
             // 
             this.button_AlterarInfo.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_AlterarInfo.Location = new System.Drawing.Point(68, 631);
+            this.button_AlterarInfo.Location = new System.Drawing.Point(627, 597);
             this.button_AlterarInfo.Name = "button_AlterarInfo";
-            this.button_AlterarInfo.Size = new System.Drawing.Size(379, 34);
+            this.button_AlterarInfo.Size = new System.Drawing.Size(356, 29);
             this.button_AlterarInfo.TabIndex = 11;
             this.button_AlterarInfo.Text = "Alterar informações de Compra";
             this.button_AlterarInfo.UseVisualStyleBackColor = true;
@@ -183,23 +182,11 @@
             this.textBox_ID.Size = new System.Drawing.Size(100, 22);
             this.textBox_ID.TabIndex = 14;
             // 
-            // button_Fechar
-            // 
-            this.button_Fechar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Fechar.Location = new System.Drawing.Point(627, 593);
-            this.button_Fechar.Name = "button_Fechar";
-            this.button_Fechar.Size = new System.Drawing.Size(356, 30);
-            this.button_Fechar.TabIndex = 15;
-            this.button_Fechar.Text = "Fechar Compra";
-            this.button_Fechar.UseVisualStyleBackColor = true;
-            this.button_Fechar.Click += new System.EventHandler(this.button_Fechar_Click);
-            // 
             // ComprasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1028, 687);
-            this.Controls.Add(this.button_Fechar);
             this.Controls.Add(this.textBox_ID);
             this.Controls.Add(this.button_Voltar);
             this.Controls.Add(this.button_Eliminar);
@@ -239,6 +226,5 @@
         private System.Windows.Forms.Button button_Eliminar;
         private System.Windows.Forms.Button button_Voltar;
         private System.Windows.Forms.TextBox textBox_ID;
-        private System.Windows.Forms.Button button_Fechar;
     }
 }

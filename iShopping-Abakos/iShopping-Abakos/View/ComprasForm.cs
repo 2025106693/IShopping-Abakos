@@ -25,6 +25,7 @@ namespace iShopping_Abakos.View
 
         private void button_Voltar_Click(object sender, EventArgs e)
         {
+            ControllerPaginaInicial.MostrarEstadoCompras(0, PaginaInicialForm.comprasPaginaPrincipal);
             ControllerCompras.VoltarPaginaPrincipal();
         }
 
@@ -62,16 +63,6 @@ namespace iShopping_Abakos.View
 
         }
 
-        private void button_Fechar_Click(object sender, EventArgs e)
-        {
-            string id = textBox_ID.Text.Trim();
-            string mensagem;
-
-            ControllerCompras.FecharCompra(id, out mensagem);
-            MessageBox.Show(mensagem);
-            ControllerCompras.MostrarCompras(dataGridView_Compras);
-
-        }
 
         private void button_Eliminar_Click(object sender, EventArgs e)
         {

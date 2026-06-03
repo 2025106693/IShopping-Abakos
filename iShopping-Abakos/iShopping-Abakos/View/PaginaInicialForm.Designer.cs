@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridViewComprasAbertas = new System.Windows.Forms.DataGridView();
+            this.dataGridViewCompras = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.button_Sair = new System.Windows.Forms.Button();
@@ -44,20 +44,20 @@
             this.button_Artigos = new System.Windows.Forms.Button();
             this.button_TipoArtigos = new System.Windows.Forms.Button();
             this.button_Orcamento = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxEstado = new System.Windows.Forms.ComboBox();
             this.label_Estado = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewComprasAbertas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCompras)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridViewComprasAbertas
+            // dataGridViewCompras
             // 
-            this.dataGridViewComprasAbertas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewComprasAbertas.Location = new System.Drawing.Point(337, 206);
-            this.dataGridViewComprasAbertas.Name = "dataGridViewComprasAbertas";
-            this.dataGridViewComprasAbertas.RowHeadersWidth = 51;
-            this.dataGridViewComprasAbertas.RowTemplate.Height = 24;
-            this.dataGridViewComprasAbertas.Size = new System.Drawing.Size(634, 278);
-            this.dataGridViewComprasAbertas.TabIndex = 36;
+            this.dataGridViewCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCompras.Location = new System.Drawing.Point(337, 206);
+            this.dataGridViewCompras.Name = "dataGridViewCompras";
+            this.dataGridViewCompras.RowHeadersWidth = 51;
+            this.dataGridViewCompras.RowTemplate.Height = 24;
+            this.dataGridViewCompras.Size = new System.Drawing.Size(634, 278);
+            this.dataGridViewCompras.TabIndex = 36;
             // 
             // label6
             // 
@@ -213,18 +213,19 @@
             this.button_Orcamento.UseVisualStyleBackColor = true;
             this.button_Orcamento.Click += new System.EventHandler(this.button_Orcamento_Click);
             // 
-            // comboBox1
+            // comboBoxEstado
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.comboBoxEstado.FormattingEnabled = true;
+            this.comboBoxEstado.Items.AddRange(new object[] {
             "Todos",
             "Abertas",
             "Fechadas"});
-            this.comboBox1.Location = new System.Drawing.Point(788, 173);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(183, 24);
-            this.comboBox1.TabIndex = 37;
-            this.comboBox1.Text = "Selecione o estado";
+            this.comboBoxEstado.Location = new System.Drawing.Point(788, 173);
+            this.comboBoxEstado.Name = "comboBoxEstado";
+            this.comboBoxEstado.Size = new System.Drawing.Size(183, 24);
+            this.comboBoxEstado.TabIndex = 37;
+            this.comboBoxEstado.Text = "Selecione o estado";
+            this.comboBoxEstado.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label_Estado
             // 
@@ -242,8 +243,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1013, 575);
             this.Controls.Add(this.label_Estado);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.dataGridViewComprasAbertas);
+            this.Controls.Add(this.comboBoxEstado);
+            this.Controls.Add(this.dataGridViewCompras);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button_Sair);
@@ -262,14 +263,14 @@
             this.Name = "PaginaInicialForm";
             this.Text = "PaginaInicial";
             this.Load += new System.EventHandler(this.PaginaInicialForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewComprasAbertas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCompras)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dataGridViewComprasAbertas;
+        private System.Windows.Forms.DataGridView dataGridViewCompras;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button_Sair;
@@ -285,7 +286,7 @@
         private System.Windows.Forms.Button button_Artigos;
         private System.Windows.Forms.Button button_TipoArtigos;
         private System.Windows.Forms.Button button_Orcamento;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxEstado;
         private System.Windows.Forms.Label label_Estado;
     }
 }

@@ -13,7 +13,7 @@ namespace iShopping_Abakos.Controller
         //Fecha o form de compras e reexibe a página principal (que estava em hide)
         public static void VoltarPaginaPrincipal()
         {
-            ComprasForm.instance.Close();     
+            ComprasForm.instance.Close();
             PaginaInicialForm.instanciaPaginaPrincipal.Show(); 
         }
 
@@ -149,56 +149,6 @@ namespace iShopping_Abakos.Controller
             }
         }
 
-        //função para fechar Compra
-        public static void FecharCompra(string id, out string mensagem)
-        {
-            mensagem = "";
-            int idCompra;
-
-            if (id == "")
-            {
-                mensagem = "Tem de introduzir um id";
-                return;
-            }
-
-            if (!int.TryParse(id, out idCompra))
-            {
-                mensagem = "O id tem de ser númerico!";
-                return;
-            }
-
-            using (IShoppingContext db = new IShoppingContext())
-            {
-                Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == idCompra);
-
-                if ((compra != null) && (compra.Fechado == false))
-                {
-                    compra.Id = idCompra;
-                    compra.FechadoPor = Sessao.UtilizadorAtual;
-                    compra.DataFecho = DateTime.Today;
-                    compra.Fechado = true;
-                    compra.TotalGasto = ObterTotalGastoCompra(idCompra);
-                    db.SaveChanges();
-                    mensagem = "Compra fechada com Sucesso!";
-
-                }
-
-                else
-                {
-                    if(compra == null)
-                    {
-                        mensagem = "Introduza uma compra existente!";
-                        return;
-                    }
-
-                    if (compra.Fechado == true)
-                    {
-                        mensagem = "A compra já se encontra fechada!";
-                        return;
-                    }
-                }
-            }
-        }
 
         public static decimal ObterTotalGastoCompra(int idCompra)
         {
