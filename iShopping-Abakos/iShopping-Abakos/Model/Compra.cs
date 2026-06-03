@@ -34,9 +34,6 @@ namespace iShopping_Abakos
         public virtual ICollection<ItemCompra> ItensCompra { get; set; } 
        
 
-        public Compra()
-        {
-            ItensCompra = new List<ItemCompra>();
-        }        
+  
     }
 }

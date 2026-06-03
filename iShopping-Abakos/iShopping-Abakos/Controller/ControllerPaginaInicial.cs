@@ -25,15 +25,7 @@ namespace iShopping_Abakos.Controller
             
         }
 
-        //restantes botões
-        public static void AbrirFormAdicionarItens()
-        {
-
-            PaginaInicialForm.instanciaPaginaPrincipal.Hide();
-            AdicionarItensPrevistosForm Form = new AdicionarItensPrevistosForm();
-            Form.ShowDialog();
-        }
-
+   
         public static void AbrirFormArtigos()
         {
             PaginaInicialForm.instanciaPaginaPrincipal.Hide();

@@ -83,7 +83,9 @@ namespace iShopping_Abakos.View
 
         private void button_AdicionarItem_Click(object sender, EventArgs e)
         {
-            ControllerAdicionarItensPrevistos.AbrirAdicionarItensPrevistosForm();
+
+            Compra compra = ControllerCompras.DevolverCompra(textBox_ID.Text.Trim());
+            ControllerAdicionarItensPrevistos.AbrirAdicionarItensPrevistosForm(compra);
 
         }
     }

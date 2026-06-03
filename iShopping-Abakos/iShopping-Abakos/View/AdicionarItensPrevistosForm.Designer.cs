@@ -41,12 +41,12 @@
             this.button_ApagarItem = new System.Windows.Forms.Button();
             this.button_AdicionarItem = new System.Windows.Forms.Button();
             this.label_TotalCompra = new System.Windows.Forms.Label();
-            this.dataGridView_ItensCompra = new System.Windows.Forms.DataGridView();
+            this.dataGridView_ItensPrevistos = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.label_NomeCompra = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ItensCompra)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ItensPrevistos)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -172,15 +172,15 @@
             this.label_TotalCompra.TabIndex = 21;
             this.label_TotalCompra.Text = "Total da Compra: 000.00€";
             // 
-            // dataGridView_ItensCompra
+            // dataGridView_ItensPrevistos
             // 
-            this.dataGridView_ItensCompra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_ItensCompra.Location = new System.Drawing.Point(57, 119);
-            this.dataGridView_ItensCompra.Name = "dataGridView_ItensCompra";
-            this.dataGridView_ItensCompra.RowHeadersWidth = 51;
-            this.dataGridView_ItensCompra.RowTemplate.Height = 24;
-            this.dataGridView_ItensCompra.Size = new System.Drawing.Size(921, 228);
-            this.dataGridView_ItensCompra.TabIndex = 20;
+            this.dataGridView_ItensPrevistos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_ItensPrevistos.Location = new System.Drawing.Point(57, 119);
+            this.dataGridView_ItensPrevistos.Name = "dataGridView_ItensPrevistos";
+            this.dataGridView_ItensPrevistos.RowHeadersWidth = 51;
+            this.dataGridView_ItensPrevistos.RowTemplate.Height = 24;
+            this.dataGridView_ItensPrevistos.Size = new System.Drawing.Size(921, 228);
+            this.dataGridView_ItensPrevistos.TabIndex = 20;
             // 
             // label2
             // 
@@ -220,14 +220,14 @@
             this.Controls.Add(this.button_ApagarItem);
             this.Controls.Add(this.button_AdicionarItem);
             this.Controls.Add(this.label_TotalCompra);
-            this.Controls.Add(this.dataGridView_ItensCompra);
+            this.Controls.Add(this.dataGridView_ItensPrevistos);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label_NomeCompra);
             this.Name = "AdicionarItensPrevistosForm";
             this.Text = "AdicionarItensPrevistosForm";
             this.Load += new System.EventHandler(this.AdicionarItensPrevistosForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ItensCompra)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ItensPrevistos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,7 +247,7 @@
         private System.Windows.Forms.Button button_ApagarItem;
         private System.Windows.Forms.Button button_AdicionarItem;
         private System.Windows.Forms.Label label_TotalCompra;
-        private System.Windows.Forms.DataGridView dataGridView_ItensCompra;
+        private System.Windows.Forms.DataGridView dataGridView_ItensPrevistos;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label_NomeCompra;
     }

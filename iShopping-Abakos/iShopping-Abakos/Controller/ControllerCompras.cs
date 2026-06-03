@@ -201,7 +201,7 @@ namespace iShopping_Abakos.Controller
             using (IShoppingContext db = new IShoppingContext())
             {
                 {
-                    return db.DBItensCompra.Where(i => i.IdCompra == idCompra)
+                    return db.DBItensCompra.Where(i => i.CompraId == idCompra)
                                            .Sum(i => i.Quantidade * i.PrecoUnitario);
 
                 }
@@ -209,7 +209,7 @@ namespace iShopping_Abakos.Controller
             }
         }
 
-        public static decimal ObterTotalPrevisto(int idCompra)
+        public static void ObterTotalPrevisto(int idCompra)
         {
             // a validação do idCompra é já realizada nas outras funções não sendo necessário realizar novamente
             //esta função serve apenas para calcular
@@ -217,10 +217,15 @@ namespace iShopping_Abakos.Controller
             using (IShoppingContext db = new IShoppingContext())
             {
                 {
-                    return db.DBItensPrevistos
-                               .Where(i => i.IdCompra == idCompra)
+                    var TotalPrevisto = db.DBItensCompra.OfType<ItemPrevisto>()
+                               .Where(i => i.CompraId == idCompra)
                                .Sum(i => i.PrecoUnitario * i.QuantPrevista);
-                }      
+
+                    db.DBCompras.FirstOrDefault(c => c.Id == idCompra).TotalPrevisto = TotalPrevisto;
+                    
+                }
+                
+                db.SaveChanges();
             }
         }
 
@@ -260,5 +265,40 @@ namespace iShopping_Abakos.Controller
                 }
             }
         }
+
+        public static Compra DevolverCompra(string id)
+        {
+            int idCompra;
+
+
+            if (id == "")
+            {
+                MessageBox.Show("Por favor insira um Id");
+                return null;
+            }
+
+            if (!int.TryParse(id, out idCompra))
+            {
+                MessageBox.Show("O Id tem de ser numérico");
+                return null;
+            }
+
+
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == idCompra);
+
+                if (compra != null)
+                {
+                    return compra;
+                }
+                else
+                {
+                    MessageBox.Show("Selecione uma compra existente!");
+                    return null;
+                }
+            }
+        }
+
     }
 }
