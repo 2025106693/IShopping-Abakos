@@ -80,6 +80,7 @@ namespace iShopping_Abakos.Controller
                     .OrderBy(o => o.ArtigoId)
                     .Select(o => new
                     {
+                        o.ArtigoId,
                         Artigo = o.Artigo.Nome,
                         o.QuantPrevista,
                         o.PrecoUnitario,

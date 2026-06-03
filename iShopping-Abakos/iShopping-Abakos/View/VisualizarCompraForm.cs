@@ -29,7 +29,7 @@ namespace iShopping_Abakos.View
 
         private void VisualizarCompraForm_Load(object sender, EventArgs e)
         {
-
+            ControllerVisualizarCompra.MostrarItensCompra(dataGridViewItensCompra);
         }
     }
 }
