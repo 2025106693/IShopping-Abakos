@@ -34,6 +34,13 @@ namespace iShopping_Abakos.View
 
         private void buttonAdicionarItemNaoP_Click(object sender, EventArgs e)
         {
+            ControllerAdicionarItensNaoPrevistos.AbrirItensNaoPrevistosForm(ControllerVisualizarCompra.compraDevolvida);
+
+            ControllerVisualizarCompra.MostrarItensCompra(dataGridViewItensCompra);   // atualiza a datagridview ao sair do adicionarNP
+        }
+
+        private void buttonFecharCompra_Click(object sender, EventArgs e)
+        {
 
         }
     }

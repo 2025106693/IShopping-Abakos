@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.Label label1;
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox_ID_NP = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.numericUpDownQuantidade = new System.Windows.Forms.NumericUpDown();
+            this.comboBoxArtigo = new System.Windows.Forms.ComboBox();
+            this.comboBox_TipoArtigo = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button_Voltar = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonAlterarQuantNP = new System.Windows.Forms.Button();
+            this.buttonApagarItemNP = new System.Windows.Forms.Button();
+            this.buttonAdicionarItemNP = new System.Windows.Forms.Button();
             this.label_TotalCompra = new System.Windows.Forms.Label();
             this.dataGridView_ItensCompra = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,16 +47,26 @@
             this.textBox_Observacoes = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ItensCompra)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox2
+            // label1
             // 
-            this.textBox2.Location = new System.Drawing.Point(338, 558);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 33;
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label1.Location = new System.Drawing.Point(31, 367);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(124, 20);
+            label1.TabIndex = 26;
+            label1.Text = "Tipo de Artigo: ";
+            // 
+            // textBox_ID_NP
+            // 
+            this.textBox_ID_NP.Location = new System.Drawing.Point(338, 558);
+            this.textBox_ID_NP.Name = "textBox_ID_NP";
+            this.textBox_ID_NP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_ID_NP.TabIndex = 33;
             // 
             // label6
             // 
@@ -68,28 +78,29 @@
             this.label6.TabIndex = 32;
             this.label6.Text = "ID:";
             // 
-            // numericUpDown1
+            // numericUpDownQuantidade
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(189, 441);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(249, 22);
-            this.numericUpDown1.TabIndex = 31;
+            this.numericUpDownQuantidade.Location = new System.Drawing.Point(189, 441);
+            this.numericUpDownQuantidade.Name = "numericUpDownQuantidade";
+            this.numericUpDownQuantidade.Size = new System.Drawing.Size(249, 22);
+            this.numericUpDownQuantidade.TabIndex = 31;
             // 
-            // comboBox2
+            // comboBoxArtigo
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(189, 404);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(249, 24);
-            this.comboBox2.TabIndex = 30;
+            this.comboBoxArtigo.FormattingEnabled = true;
+            this.comboBoxArtigo.Location = new System.Drawing.Point(189, 404);
+            this.comboBoxArtigo.Name = "comboBoxArtigo";
+            this.comboBoxArtigo.Size = new System.Drawing.Size(249, 24);
+            this.comboBoxArtigo.TabIndex = 30;
             // 
-            // comboBox1
+            // comboBox_TipoArtigo
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(189, 364);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(249, 24);
-            this.comboBox1.TabIndex = 29;
+            this.comboBox_TipoArtigo.FormattingEnabled = true;
+            this.comboBox_TipoArtigo.Location = new System.Drawing.Point(189, 364);
+            this.comboBox_TipoArtigo.Name = "comboBox_TipoArtigo";
+            this.comboBox_TipoArtigo.Size = new System.Drawing.Size(249, 24);
+            this.comboBox_TipoArtigo.TabIndex = 29;
+            this.comboBox_TipoArtigo.SelectedIndexChanged += new System.EventHandler(this.comboBox_TipoArtigo_SelectedIndexChanged_1);
             // 
             // label4
             // 
@@ -111,16 +122,6 @@
             this.label3.TabIndex = 27;
             this.label3.Text = "Artigo:\r\n";
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label1.Location = new System.Drawing.Point(31, 367);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(124, 20);
-            label1.TabIndex = 26;
-            label1.Text = "Tipo de Artigo: ";
-            // 
             // button_Voltar
             // 
             this.button_Voltar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -130,36 +131,40 @@
             this.button_Voltar.TabIndex = 25;
             this.button_Voltar.Text = "Voltar";
             this.button_Voltar.UseVisualStyleBackColor = true;
+            this.button_Voltar.Click += new System.EventHandler(this.button_Voltar_Click_1);
             // 
-            // button3
+            // buttonAlterarQuantNP
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(600, 488);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(355, 32);
-            this.button3.TabIndex = 24;
-            this.button3.Text = "Alterar Quantidade ";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonAlterarQuantNP.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAlterarQuantNP.Location = new System.Drawing.Point(600, 488);
+            this.buttonAlterarQuantNP.Name = "buttonAlterarQuantNP";
+            this.buttonAlterarQuantNP.Size = new System.Drawing.Size(355, 32);
+            this.buttonAlterarQuantNP.TabIndex = 24;
+            this.buttonAlterarQuantNP.Text = "Alterar Quantidade ";
+            this.buttonAlterarQuantNP.UseVisualStyleBackColor = true;
+            this.buttonAlterarQuantNP.Click += new System.EventHandler(this.buttonAlterarQuantNP_Click_1);
             // 
-            // button2
+            // buttonApagarItemNP
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(600, 428);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(355, 32);
-            this.button2.TabIndex = 23;
-            this.button2.Text = "Apagar Item";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonApagarItemNP.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonApagarItemNP.Location = new System.Drawing.Point(600, 428);
+            this.buttonApagarItemNP.Name = "buttonApagarItemNP";
+            this.buttonApagarItemNP.Size = new System.Drawing.Size(355, 32);
+            this.buttonApagarItemNP.TabIndex = 23;
+            this.buttonApagarItemNP.Text = "Apagar Item";
+            this.buttonApagarItemNP.UseVisualStyleBackColor = true;
+            this.buttonApagarItemNP.Click += new System.EventHandler(this.buttonApagarItemNP_Click_1);
             // 
-            // button1
+            // buttonAdicionarItemNP
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(600, 367);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(355, 32);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Adicionar Item";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonAdicionarItemNP.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdicionarItemNP.Location = new System.Drawing.Point(600, 367);
+            this.buttonAdicionarItemNP.Name = "buttonAdicionarItemNP";
+            this.buttonAdicionarItemNP.Size = new System.Drawing.Size(355, 32);
+            this.buttonAdicionarItemNP.TabIndex = 22;
+            this.buttonAdicionarItemNP.Text = "Adicionar Item";
+            this.buttonAdicionarItemNP.UseVisualStyleBackColor = true;
+            this.buttonAdicionarItemNP.Click += new System.EventHandler(this.buttonAdicionarItemNP_Click_1);
             // 
             // label_TotalCompra
             // 
@@ -226,25 +231,26 @@
             this.ClientSize = new System.Drawing.Size(1184, 652);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox_Observacoes);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox_ID_NP);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.numericUpDownQuantidade);
+            this.Controls.Add(this.comboBoxArtigo);
+            this.Controls.Add(this.comboBox_TipoArtigo);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(label1);
             this.Controls.Add(this.button_Voltar);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonAlterarQuantNP);
+            this.Controls.Add(this.buttonApagarItemNP);
+            this.Controls.Add(this.buttonAdicionarItemNP);
             this.Controls.Add(this.label_TotalCompra);
             this.Controls.Add(this.dataGridView_ItensCompra);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label_NomeCompra);
             this.Name = "AdicionarItensNaoPrevistosForm";
             this.Text = "AdicionarItensNaoPrevistosForm";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.Load += new System.EventHandler(this.AdicionarItensNaoPrevistosForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ItensCompra)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -253,17 +259,17 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox_ID_NP;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.NumericUpDown numericUpDownQuantidade;
+        private System.Windows.Forms.ComboBox comboBoxArtigo;
+        private System.Windows.Forms.ComboBox comboBox_TipoArtigo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button_Voltar;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonAlterarQuantNP;
+        private System.Windows.Forms.Button buttonApagarItemNP;
+        private System.Windows.Forms.Button buttonAdicionarItemNP;
         private System.Windows.Forms.Label label_TotalCompra;
         private System.Windows.Forms.DataGridView dataGridView_ItensCompra;
         private System.Windows.Forms.Label label2;

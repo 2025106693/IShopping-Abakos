@@ -75,7 +75,7 @@
             this.buttonAdicionarItemNaoP.Name = "buttonAdicionarItemNaoP";
             this.buttonAdicionarItemNaoP.Size = new System.Drawing.Size(278, 35);
             this.buttonAdicionarItemNaoP.TabIndex = 5;
-            this.buttonAdicionarItemNaoP.Text = "Adicionar Item Não Previsto";
+            this.buttonAdicionarItemNaoP.Text = "Gerir Item Não Previsto";
             this.buttonAdicionarItemNaoP.UseVisualStyleBackColor = true;
             this.buttonAdicionarItemNaoP.Click += new System.EventHandler(this.buttonAdicionarItemNaoP_Click);
             // 
@@ -88,6 +88,7 @@
             this.buttonFecharCompra.TabIndex = 6;
             this.buttonFecharCompra.Text = "Fechar Compra";
             this.buttonFecharCompra.UseVisualStyleBackColor = true;
+            this.buttonFecharCompra.Click += new System.EventHandler(this.buttonFecharCompra_Click);
             // 
             // buttonVoltar
             // 

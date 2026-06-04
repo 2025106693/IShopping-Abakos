@@ -151,22 +151,32 @@ namespace iShopping_Abakos.Controller
         }
 
 
-        public static decimal ObterTotalGastoCompra(int idCompra)
+        public static decimal ObterTotalGastoCompra(int compraId)
         {
-            // a validação do idCompra é já realizada nas outras funções não sendo necessário realizar novamente
-            //esta função serve apenas para calcular
-
-
             using (IShoppingContext db = new IShoppingContext())
             {
-                {
-                    return db.DBItensCompra.Where(i => i.CompraId == idCompra)
-                                           .Sum(i => i.Quantidade * i.PrecoUnitario);
+                Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == compraId);
 
+                var itensNaoPrevistos = db.DBItensCompra.OfType<ItemNaoPrevisto>()
+                                        .Where(i => i.CompraId == compraId).ToList();
+
+
+                if (itensNaoPrevistos != null)
+                {
+                    compra.TotalGasto = compra.TotalPrevisto + itensNaoPrevistos.
+                        Sum(i => i.Quantidade * i.PrecoUnitario);
                 }
-                    
+
+                else
+                {
+                    compra.TotalGasto = compra.TotalPrevisto;
+                }
+                db.SaveChanges();
+
+                return compra.TotalGasto;
             }
         }
+        
 
         public static decimal ObterTotalPrevisto(int idCompra)
         {

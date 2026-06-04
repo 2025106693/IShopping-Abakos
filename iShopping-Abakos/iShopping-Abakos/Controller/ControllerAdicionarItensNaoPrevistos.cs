@@ -2,7 +2,6 @@
 using iShopping_Abakos.View;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +9,11 @@ using System.Windows.Forms;
 
 namespace iShopping_Abakos.Controller
 {
-    internal class ControllerAdicionarItensPrevistos
+    internal class ControllerAdicionarItensNaoPrevistos
     {
         public static Compra compraDevolvida;
-        public static void AbrirAdicionarItensPrevistosForm(Compra compra)
+
+        public static void AbrirItensNaoPrevistosForm(Compra compra)
         {
             if (compra == null)
             {
@@ -22,21 +22,22 @@ namespace iShopping_Abakos.Controller
             else
             {
                 compraDevolvida = compra;
-                ComprasForm.instance.Hide();
-                AdicionarItensPrevistosForm form = new AdicionarItensPrevistosForm();
-                AdicionarItensPrevistosForm.labelNome.Text = compra.NomeCompra;
-                AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + (ControllerCompras.ObterTotalPrevisto(compraDevolvida.Id)).ToString() + "€";
+                VisualizarCompraForm.instance.Hide();
+                AdicionarItensNaoPrevistosForm form = new AdicionarItensNaoPrevistosForm();
+                AdicionarItensNaoPrevistosForm.labelNome.Text = compra.NomeCompra;
+                AdicionarItensNaoPrevistosForm.labelValorTotal.Text = "Total da compra: " + (ControllerCompras.ObterTotalGastoCompra(compraDevolvida.Id)).ToString() + "€";
                 form.ShowDialog();
             }
         }
 
-        public static void AdicionarItemPrevisto(int artigoId, int qtdPrevista, out string mensagem)
+
+        public static void AdicionarItemNaoPrevisto(int artigoId, int quantidade, string descricao, out string mensagem)
         {
             mensagem = "";
 
-            if (qtdPrevista <= 0)
+            if (quantidade <= 0)
             {
-                mensagem = "A quantidade tem de ser maior que 0!";
+                mensagem = "A quantidade tem que ser maior que 0!";
                 return;
             }
 
@@ -58,13 +59,7 @@ namespace iShopping_Abakos.Controller
                     return;
                 }
 
-                if (compra.Fechado)
-                {
-                    mensagem = "A compra está fechada!";
-                    return;
-                }
-
-                ItemPrevisto itemExistente = db.DBItensCompra.OfType<ItemPrevisto>()
+                ItemNaoPrevisto itemExistente = db.DBItensCompra.OfType<ItemNaoPrevisto>()
                         .FirstOrDefault(i => i.ArtigoId == artigoId && i.CompraId == compraDevolvida.Id);
 
                 if (itemExistente != null)
@@ -73,13 +68,15 @@ namespace iShopping_Abakos.Controller
                     return;
                 }
 
-                ItemPrevisto item = new ItemPrevisto
+
+
+                ItemNaoPrevisto item = new ItemNaoPrevisto
                 {
                     CompraId = compraDevolvida.Id,
                     ArtigoId = artigoId,
-                    QuantPrevista = qtdPrevista,
-                    Quantidade = 0,              // ainda não adquiriu
-                    PrecoUnitario = artigo.Preco
+                    Quantidade = quantidade,
+                    PrecoUnitario = artigo.Preco,
+                    Descricao = descricao
                 };
 
 
@@ -87,31 +84,49 @@ namespace iShopping_Abakos.Controller
                 db.SaveChanges();
                 mensagem = "Item adicionado com sucesso!";
 
-                AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + (ControllerCompras.ObterTotalPrevisto(compraDevolvida.Id)).ToString() + "€";
-
-
+                AdicionarItensNaoPrevistosForm.labelValorTotal.Text = "Total da compra: " + (ControllerCompras.ObterTotalGastoCompra(compraDevolvida.Id)).ToString() + "€";
             }
-
         }
+
 
         public static void MostrarListaItens(DataGridView datasource)
         {
             using (IShoppingContext db = new IShoppingContext())
             {
-                //restringir a vista apenas com os campos sem aparecer o artigo e compra vazios
-                var itensCompra = db.DBItensCompra.OfType<ItemPrevisto>()
+                //lista itens previstos
+                var previstos = db.DBItensCompra.OfType<ItemPrevisto>()
                     .Where(o => o.CompraId == compraDevolvida.Id)
-                    .OrderBy(o => o.ArtigoId)
                     .Select(o => new
                     {
                         o.ArtigoId,
                         Artigo = o.Artigo.Nome,
+                        Tipo = "Previsto",
                         o.QuantPrevista,
+                        o.Quantidade,
                         o.PrecoUnitario,
-                        TotalPrevisto = o.QuantPrevista * o.PrecoUnitario
+                        Total = o.PrecoUnitario * o.QuantPrevista,
+                        Descricao = ""                                     // como fazemos concat, ambas listas tem que ter as mesmas propriedades
                     }).ToList();
 
-                datasource.DataSource = itensCompra;
+                //lista itens não previstos
+                var naoPrevistos = db.DBItensCompra.OfType<ItemNaoPrevisto>()
+                    .Where(o => o.CompraId == compraDevolvida.Id)
+                    .Select(o => new
+                    {
+                        o.ArtigoId,
+                        Artigo = o.Artigo.Nome,
+                        Tipo = "Não Previsto",
+                        QuantPrevista = 0,
+                        o.Quantidade,
+                        o.PrecoUnitario,
+                        Total = o.PrecoUnitario * o.Quantidade,
+                        o.Descricao
+                    }).ToList();
+
+                //concatena as duas listas
+                var todos = previstos.Concat(naoPrevistos).ToList();
+
+                datasource.DataSource = todos;
             }
         }
 
@@ -146,66 +161,66 @@ namespace iShopping_Abakos.Controller
             }
         }
 
-        public static void AlterarQuantidade(string itemPrevistoId, int quantidade, out string mensagem)
+        public static void AlterarQuantidade(string itemId, int quantidade, out string mensagem)
         {
             int idItem;
 
             mensagem = "";
 
-            if (itemPrevistoId == "")
+            if (itemId == "")
             {
                 mensagem = "Insira um ID!";
                 return;
             }
 
-            if (!int.TryParse(itemPrevistoId, out idItem))
+            if (!int.TryParse(itemId, out idItem))
             {
                 mensagem = "Insira um Id numérico!";
                 return;
             }
 
-            if (quantidade == 0 && quantidade < 0)
+            if (quantidade <= 0)
             {
-                mensagem = "A quantidade tem de ser um número maior que 0";
+                mensagem = "A quantidade tem que ser maior que 0";
                 return;
             }
 
             using (IShoppingContext db = new IShoppingContext())
             {
-                ItemPrevisto item = db.DBItensCompra.OfType<ItemPrevisto>().FirstOrDefault(
+                ItemNaoPrevisto item = db.DBItensCompra.OfType<ItemNaoPrevisto>().FirstOrDefault(
                                          i => i.ArtigoId == idItem && i.CompraId == compraDevolvida.Id);
 
-                if (item == null)
+                if (item == null)  // validacao para nao escreverem um id inexistente
                 {
                     mensagem = "Insira um item existente!";
                     return;
                 }
                 else
                 {
-                    item.QuantPrevista = quantidade;
+                    item.Quantidade = quantidade;
                 }
-                    
+
 
                 mensagem = "Quantidade alterado com sucesso";
                 db.SaveChanges();
             }
 
-            AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + (ControllerCompras.ObterTotalPrevisto(compraDevolvida.Id)).ToString() + "€";
+            AdicionarItensNaoPrevistosForm.labelValorTotal.Text = "Total da compra: " + (ControllerCompras.ObterTotalGastoCompra(compraDevolvida.Id)).ToString() + "€";
 
         }
 
-        public static void EliminarItem(string itemPrevistoId, out string mensagem)
+        public static void EliminarItem(string itemId, out string mensagem)
         {
             mensagem = "";
             int idItem;
 
-            if (itemPrevistoId == "")
+            if (itemId == "")
             {
                 mensagem = "Insira um ID!";
                 return;
             }
 
-            if (!int.TryParse(itemPrevistoId, out idItem))
+            if (!int.TryParse(itemId, out idItem))
             {
                 mensagem = "Insira um Id numérico!";
                 return;
@@ -214,13 +229,13 @@ namespace iShopping_Abakos.Controller
             using (IShoppingContext db = new IShoppingContext())
             {
 
-                ItemPrevisto item = db.DBItensCompra.OfType<ItemPrevisto>().FirstOrDefault(
+                ItemNaoPrevisto item = db.DBItensCompra.OfType<ItemNaoPrevisto>().FirstOrDefault(
                                     i => i.ArtigoId == idItem && i.CompraId == compraDevolvida.Id);
 
                 if (item != null)
                 {
                     db.DBItensCompra.Remove(item);
-                    
+
                 }
 
                 else
@@ -235,8 +250,7 @@ namespace iShopping_Abakos.Controller
 
             }
 
-            AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + (ControllerCompras.ObterTotalPrevisto(compraDevolvida.Id)).ToString() + "€";
-
+            AdicionarItensNaoPrevistosForm.labelValorTotal.Text = "Total da compra: " + (ControllerCompras.ObterTotalGastoCompra(compraDevolvida.Id)).ToString() + "€";
 
         }
     }
