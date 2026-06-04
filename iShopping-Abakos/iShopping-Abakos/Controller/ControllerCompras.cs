@@ -27,14 +27,25 @@ namespace iShopping_Abakos.Controller
             {
                 var compras = db.DBCompras.Where(c => c.Fechado == false).OrderBy(c => c.Id).ToList();
 
-                foreach (var compra in compras)
+                if (compras != null)
                 {
-                    compra.TotalPrevisto = ControllerCompras.ObterTotalPrevisto(compra.Id);
-                 
+                    foreach (var compra in compras)
+                    {
+                        compra.TotalPrevisto = ControllerCompras.ObterTotalPrevisto(compra.Id);
+
+                    }
+
+                    db.SaveChanges();
+                    dataSource.DataSource = compras;
+
                 }
 
-                db.SaveChanges();
-                dataSource.DataSource = compras;
+                else
+                {
+                    MessageBox.Show("Erro a carregar compras!");
+                }
+
+
 
             }
         }
@@ -263,6 +274,8 @@ namespace iShopping_Abakos.Controller
                 return null;
             }
 
+          
+
             if (!int.TryParse(id, out idCompra))
             {
                 MessageBox.Show("O Id tem de ser numérico");
@@ -274,10 +287,11 @@ namespace iShopping_Abakos.Controller
             {
                 Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == idCompra);
 
-                if (compra != null)
+                if (compra != null && compra.Fechado == false)
                 {
                     return compra;
                 }
+                
                 else
                 {
                     MessageBox.Show("Selecione uma compra existente!");

@@ -14,6 +14,7 @@ namespace iShopping_Abakos
     public partial class OrcamentosForm : Form
     {
         public static OrcamentosForm formOrcamento;
+
         
         public OrcamentosForm()
         {

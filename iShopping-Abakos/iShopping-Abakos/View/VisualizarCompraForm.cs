@@ -25,6 +25,7 @@ namespace iShopping_Abakos.View
         private void buttonVoltar_Click(object sender, EventArgs e)
         {
             ControllerVisualizarCompra.VoltarPaginaPrincipal();
+            ControllerPaginaInicial.MostrarEstadoCompras(0, PaginaInicialForm.comprasPaginaPrincipal);
         }
 
         private void VisualizarCompraForm_Load(object sender, EventArgs e)
@@ -41,7 +42,14 @@ namespace iShopping_Abakos.View
 
         private void buttonFecharCompra_Click(object sender, EventArgs e)
         {
+            string mensagem = "";
 
+
+            ControllerVisualizarCompra.FecharCompra(out mensagem);
+
+            MessageBox.Show(mensagem);
+
+            ControllerCompras.MostrarCompras(PaginaInicialForm.comprasPaginaPrincipal);
         }
     }
 }

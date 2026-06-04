@@ -72,5 +72,47 @@ namespace iShopping_Abakos.Controller
                 datasource.DataSource = todos;
             }
         }
+
+
+
+        public static void FecharCompra(out string mensagem)
+        {
+            string mesAtual = DateTime.Today.ToString("MMMM");
+            int anoAtual = DateTime.Today.Year;
+
+            if (compraDevolvida.Fechado == true)
+            {
+                mensagem = "A Compra já se encontra fechada";
+                return;
+            }
+            else
+            {
+                using (IShoppingContext db = new IShoppingContext())
+                {
+
+                   var CompraFechar = db.DBCompras.FirstOrDefault(o => o.Id == compraDevolvida.Id );
+                    
+                    if(CompraFechar != null)
+                    {
+                        CompraFechar.Fechado = true;
+                        CompraFechar.TotalGasto = ControllerCompras.ObterTotalGastoCompra(compraDevolvida.Id);
+                        CompraFechar.FechadoPor = Sessao.UtilizadorAtual;
+                        CompraFechar.DataFecho = DateTime.Today;
+                    }
+
+
+                    var orcamentoAtual = db.DBOrcamentos.FirstOrDefault(o => o.Ano == anoAtual && o.Mes == mesAtual);
+
+                    orcamentoAtual.Valor = orcamentoAtual.Valor - CompraFechar.TotalGasto;
+
+
+                    PaginaInicialForm.label.Text = orcamentoAtual.Valor.ToString();
+
+                    db.SaveChanges();
+                }
+
+                mensagem = "Compra fechada"; 
+            } 
+        }
     }
 }
