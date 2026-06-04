@@ -41,12 +41,15 @@ namespace iShopping_Abakos.Controller
 
             using (IShoppingContext db = new IShoppingContext())
             {
-                var orcamentos = db.DBOrcamentos
-                    .ToList()
-                    .OrderByDescending(o => o.Ano)
-                    .ThenByDescending(o => meses[o.Mes]);
+                DateTime dataMin = DateTime.Now.AddMonths(-6);
 
-                if (orcamentos.Count() > 6)
+                var orcamentos = db.DBOrcamentos
+                                   .ToList()
+                                   .Where(o => new DateTime(o.Ano, meses[o.Mes], 1) >= dataMin
+                                            && new DateTime(o.Ano, meses[o.Mes], 1) < DateTime.Today)
+                                   .ToList();
+
+                if (orcamentos != null)
                 {
                    sugestao.MediaUltimosMeses = orcamentos.Average(o => o.Valor);
                    sugestao.SugestaoProximoMes = sugestao.MediaUltimosMeses;
@@ -86,16 +89,16 @@ namespace iShopping_Abakos.Controller
             using (IShoppingContext db = new IShoppingContext())
             {
                 var orcamentos = db.DBOrcamentos
-                    .ToList()
-                    .OrderBy(o => o.Ano)
-                    .ThenByDescending(o => meses[o.Mes])
-                    .Select(o => new
-                    {
-                        o.Ano,
-                        o.Mes,
-                        o.Valor
-                    })
-                    ;
+                                   .AsEnumerable()                       // a partir daqui é em memória
+                                   .OrderByDescending(o => o.Ano)
+                                   .ThenByDescending(o => meses[o.Mes])  // agora o dicionário funciona
+                                   .Select(o => new
+                                   {
+                                       o.Ano,
+                                       o.Mes,
+                                       o.Valor
+                                   })
+                                   .ToList();                           
 
                 if (orcamentos != null)
                 {
