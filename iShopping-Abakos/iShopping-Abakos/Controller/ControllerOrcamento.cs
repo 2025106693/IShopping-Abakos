@@ -15,10 +15,9 @@ namespace iShopping_Abakos.Controller
         //criar um método para fechar o form orçamentos e voltar a mostrar a página Principal
         public static void VoltarPaginaPrincipal()
         {
-            
+
             OrcamentosForm.formOrcamento.Close();
-            Orcamento orcamento = DevolverOrcamentoAtual();
-            // PaginaInicialForm.label.Text = orcamento.Valor.ToString();
+            PaginaInicialForm.label.Text = DevolverDiferencaOrcamento().ToString();
             PaginaInicialForm.instanciaPaginaPrincipal.Show();
             
         }
@@ -74,9 +73,43 @@ namespace iShopping_Abakos.Controller
             }  
         }   
 
+
+        public static decimal DevolverDiferencaOrcamento()
+        {
+
+            string mesAtual = DateTime.Today.ToString("MMMM");
+            int anoAtual = DateTime.Today.Year;
+            decimal diferenca;
+
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                Orcamento orcamento = db.DBOrcamentos.FirstOrDefault(
+                    o => o.Mes == mesAtual && o.Ano == anoAtual);
+
+                var compras = db.DBCompras.Where(c => c.DataFecho.Value.Year == DateTime.Today.Year && c.DataFecho.Value.Month == DateTime.Today.Month).ToList().Sum(c => c.TotalGasto);
+
+
+                if (compras != 0)
+                {
+                    diferenca = orcamento.Valor - compras;
+                }
+                else
+                {
+
+                    diferenca = orcamento.Valor;
+                }
+
+               
+
+                  
+                return diferenca;
+            }
+        }
+
+
         public static Orcamento DevolverOrcamentoAtual()
         {
-            string mesAtual = DateTime.Today.ToString("MMMM", new System.Globalization.CultureInfo("pt-PT"));
+            string mesAtual = DateTime.Today.ToString("MMMM");
             int anoAtual = DateTime.Today.Year;
 
 

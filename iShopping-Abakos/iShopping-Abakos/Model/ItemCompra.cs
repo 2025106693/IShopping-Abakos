@@ -16,6 +16,7 @@ namespace iShopping_Abakos.Model
         public decimal PrecoUnitario { get; set; }
 
         public int CompraId { get; set; }
+
         public virtual Compra Compra { get; set; }
 
         public int ArtigoId { get; set; }

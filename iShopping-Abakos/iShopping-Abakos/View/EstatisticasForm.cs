@@ -15,6 +15,7 @@ namespace iShopping_Abakos.View
     public partial class EstatisticasForm : Form
     {
         public static DataGridView historicoOrcamentos;
+        public static DataGridView ListagemPercentagem;
 
         public static EstatisticasForm instance;
         public EstatisticasForm()
@@ -22,6 +23,7 @@ namespace iShopping_Abakos.View
             InitializeComponent();
             instance = this;
             historicoOrcamentos = dataGridView_Orcamentos;
+            ListagemPercentagem = dataGridView_EstatisticasCompras;
         }
 
         private void button_Voltar_Click(object sender, EventArgs e)
@@ -45,6 +47,7 @@ namespace iShopping_Abakos.View
         private void EstatisticasForm_Load(object sender, EventArgs e)
         {
             ControllerEstatisticas.MostrarHistoricoOrcamento();
+            ControllerEstatisticas.MostrarEstatisticasArtigos();
 
         }
     }

@@ -125,5 +125,44 @@ namespace iShopping_Abakos.Controller
                 }
             }
         }
+
+
+
+        public static void MostrarEstatisticasArtigos()
+        {
+
+
+            using(IShoppingContext db = new IShoppingContext())
+            {
+                
+
+                var comprasFechadas = db.DBCompras
+                        .Where(c => c.Fechado)
+                        .ToList()
+                        .Select(compra =>
+                        {
+                            int previstos = db.DBItensCompra.OfType<ItemPrevisto>()
+                                .Count(i => i.CompraId == compra.Id);
+
+                            int naoPrevistos = db.DBItensCompra.OfType<ItemNaoPrevisto>()
+                                .Count(i => i.CompraId == compra.Id);
+
+                            int total = previstos + naoPrevistos;
+
+                            return new
+                            {
+                                Compra = compra.NomeCompra,
+                                PercentagemPrevistos = total == 0 ? 0 : (decimal)previstos * 100 / total,
+                                PercentagemNaoPrevistos = total == 0 ? 0 : (decimal)naoPrevistos * 100 / total
+                            };
+                        })
+                        .ToList();
+
+                EstatisticasForm.ListagemPercentagem.DataSource = comprasFechadas;
+            }
+        }
+
+
+
     }
 }
