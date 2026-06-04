@@ -103,10 +103,10 @@ namespace iShopping_Abakos.Controller
 
                     var orcamentoAtual = db.DBOrcamentos.FirstOrDefault(o => o.Ano == anoAtual && o.Mes == mesAtual);
 
-                    orcamentoAtual.Valor = orcamentoAtual.Valor - CompraFechar.TotalGasto;
+                    decimal orcamentoAfetado = orcamentoAtual.Valor - CompraFechar.TotalGasto;
 
 
-                    PaginaInicialForm.label.Text = orcamentoAtual.Valor.ToString();
+                    PaginaInicialForm.label.Text = orcamentoAfetado.ToString();
 
                     db.SaveChanges();
                 }

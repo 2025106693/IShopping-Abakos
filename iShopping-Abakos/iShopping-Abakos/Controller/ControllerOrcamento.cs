@@ -18,7 +18,7 @@ namespace iShopping_Abakos.Controller
             
             OrcamentosForm.formOrcamento.Close();
             Orcamento orcamento = DevolverOrcamentoAtual();
-            PaginaInicialForm.label.Text = orcamento.Valor.ToString();
+            // PaginaInicialForm.label.Text = orcamento.Valor.ToString();
             PaginaInicialForm.instanciaPaginaPrincipal.Show();
             
         }

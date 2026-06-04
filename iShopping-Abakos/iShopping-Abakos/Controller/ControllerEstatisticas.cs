@@ -88,17 +88,30 @@ namespace iShopping_Abakos.Controller
 
             using (IShoppingContext db = new IShoppingContext())
             {
+                
+
                 var orcamentos = db.DBOrcamentos
-                                   .AsEnumerable()                       // a partir daqui é em memória
-                                   .OrderByDescending(o => o.Ano)
-                                   .ThenByDescending(o => meses[o.Mes])  // agora o dicionário funciona
-                                   .Select(o => new
-                                   {
-                                       o.Ano,
-                                       o.Mes,
-                                       o.Valor
-                                   })
-                                   .ToList();                           
+                                .AsEnumerable()     // como a base de dados nao reconhece dicionarios, temos que fazer do lado da maquina e nao da base de dados
+                                .Select(o =>
+                                {
+                                    int mesNumero = meses[o.Mes];
+
+                                    decimal totalCompras = db.DBCompras
+                                        .Where(c =>
+                                            c.DataFecho.Value.Year == o.Ano &&
+                                            c.DataFecho.Value.Month == mesNumero)
+                                        .Sum(c => (decimal?)c.TotalGasto) ?? 0;
+
+                                    return new
+                                    {
+                                        o.Ano,
+                                        o.Mes,
+                                        Orcamento = o.Valor,
+                                        TotalCompras = totalCompras,
+                                        Diferenca = o.Valor - totalCompras
+                                    };
+                                })
+                                .ToList();
 
                 if (orcamentos != null)
                 {
