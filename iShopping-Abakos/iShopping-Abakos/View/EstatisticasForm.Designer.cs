@@ -38,6 +38,8 @@
             this.label_Sugestao = new System.Windows.Forms.Label();
             this.label_Media = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button_ExportarEstatisticas = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Orcamentos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_EstatisticasCompras)).BeginInit();
             this.SuspendLayout();
@@ -146,11 +148,33 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Sugestão do próximo orçamento: ";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button_ExportarEstatisticas
+            // 
+            this.button_ExportarEstatisticas.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_ExportarEstatisticas.Location = new System.Drawing.Point(360, 565);
+            this.button_ExportarEstatisticas.Name = "button_ExportarEstatisticas";
+            this.button_ExportarEstatisticas.Size = new System.Drawing.Size(261, 36);
+            this.button_ExportarEstatisticas.TabIndex = 11;
+            this.button_ExportarEstatisticas.Text = "Exportar Estatísticas";
+            this.button_ExportarEstatisticas.UseVisualStyleBackColor = true;
+            this.button_ExportarEstatisticas.Click += new System.EventHandler(this.button_ExportarEstatisticas_Click);
+            // 
             // EstatisticasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(905, 626);
+            this.Controls.Add(this.button_ExportarEstatisticas);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label_Media);
             this.Controls.Add(this.label_Sugestao);
@@ -183,5 +207,7 @@
         private System.Windows.Forms.Label label_Sugestao;
         private System.Windows.Forms.Label label_Media;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_ExportarEstatisticas;
     }
 }

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Diagnostics.Eventing.Reader;
 
 namespace iShopping_Abakos.Controller
 {
@@ -17,25 +19,10 @@ namespace iShopping_Abakos.Controller
             PaginaInicialForm.instanciaPaginaPrincipal.Show();
         }
 
-        public static SugestaoOrcamento SugerirOrcamento(out string mensagem)
+        public static SugestaoOrcamento SugerirOrcamento()
         {
-            Dictionary<string, int> meses = new Dictionary<string, int>
-                {
-                    { "Janeiro", 1 },
-                    { "Fevereiro", 2 },
-                    { "Março", 3 },
-                    { "Abril", 4 },
-                    { "Maio", 5 },
-                    { "Junho", 6 },
-                    { "Julho", 7 },
-                    { "Agosto", 8 },
-                    { "Setembro", 9 },
-                    { "Outubro", 10 },
-                    { "Novembro", 11 },
-                    { "Dezembro", 12 }
-                };
+            var meses = ControllerOrcamento.DevolverIntMesCorrespondente();
 
-            mensagem = "";
 
             SugestaoOrcamento sugestao = new SugestaoOrcamento();
 
@@ -51,15 +38,15 @@ namespace iShopping_Abakos.Controller
 
                 if (orcamentos != null)
                 {
-                   sugestao.MediaUltimosMeses = orcamentos.Average(o => o.Valor);
-                   sugestao.SugestaoProximoMes = sugestao.MediaUltimosMeses;
+                    sugestao.MediaUltimosMeses = orcamentos.Average(o => o.Valor);
+                    sugestao.SugestaoProximoMes = sugestao.MediaUltimosMeses;
 
-                   mensagem = "Sugestões de orçamentos geradas com sucesso!";
+                    MessageBox.Show("Sugestões de orçamentos geradas com sucesso!");
                 }
 
                 else
                 {
-                    mensagem = "Não foi possível calcular as estatísticas de orçamento! Verifique se tem orçamentos!";
+                    MessageBox.Show("Não foi possível calcular as estatísticas de orçamento! Verifique se tem orçamentos!");
                     return null;
                 }
 
@@ -67,28 +54,15 @@ namespace iShopping_Abakos.Controller
             }
         }
 
-        public static void MostrarHistoricoOrcamento()
+        public static List<HistoricoOrcamentoDataGridView> MostrarHistoricoOrcamento()
         {
 
-            Dictionary<string, int> meses = new Dictionary<string, int>
-                {
-                    { "Janeiro", 1 },
-                    { "Fevereiro", 2 },
-                    { "Março", 3 },
-                    { "Abril", 4 },
-                    { "Maio", 5 },
-                    { "Junho", 6 },
-                    { "Julho", 7 },
-                    { "Agosto", 8 },
-                    { "Setembro", 9 },
-                    { "Outubro", 10 },
-                    { "Novembro", 11 },
-                    { "Dezembro", 12 }
-                };
+            var meses = ControllerOrcamento.DevolverIntMesCorrespondente();
 
             using (IShoppingContext db = new IShoppingContext())
             {
                 
+                HistoricoOrcamentoDataGridView historicoOrcamentos = new HistoricoOrcamentoDataGridView();
 
                 var orcamentos = db.DBOrcamentos
                                 .AsEnumerable()     // como a base de dados nao reconhece dicionarios, temos que fazer do lado da maquina e nao da base de dados
@@ -102,10 +76,10 @@ namespace iShopping_Abakos.Controller
                                             c.DataFecho.Value.Month == mesNumero)
                                         .Sum(c => (decimal?)c.TotalGasto) ?? 0;
 
-                                    return new
+                                    return new HistoricoOrcamentoDataGridView
                                     {
-                                        o.Ano,
-                                        o.Mes,
+                                        Ano = o.Ano,
+                                        Mes = o.Mes,
                                         Orcamento = o.Valor,
                                         TotalCompras = totalCompras,
                                         Diferenca = o.Valor - totalCompras
@@ -116,25 +90,25 @@ namespace iShopping_Abakos.Controller
                 if (orcamentos != null)
                 {
                     EstatisticasForm.historicoOrcamentos.DataSource = orcamentos;
+                    return orcamentos;
+
                 }
 
                 else
                 {
                     MessageBox.Show("Sem orçamentos para apresentar");
-                    return;
+                    return null;
                 }
             }
         }
 
 
 
-        public static void MostrarEstatisticasArtigos()
+        public static List<PercentagemArtigosDataGridView> MostrarEstatisticasArtigos()
         {
-
-
             using(IShoppingContext db = new IShoppingContext())
             {
-                
+                PercentagemArtigosDataGridView percentagemArtigos = new PercentagemArtigosDataGridView();
 
                 var comprasFechadas = db.DBCompras
                         .Where(c => c.Fechado)
@@ -149,7 +123,7 @@ namespace iShopping_Abakos.Controller
 
                             int total = previstos + naoPrevistos;
 
-                            return new
+                            return new PercentagemArtigosDataGridView
                             {
                                 Compra = compra.NomeCompra,
                                 PercentagemPrevistos = total == 0 ? 0 : (decimal)previstos * 100 / total,
@@ -158,10 +132,73 @@ namespace iShopping_Abakos.Controller
                         })
                         .ToList();
 
-                EstatisticasForm.ListagemPercentagem.DataSource = comprasFechadas;
+                
+
+                if (comprasFechadas == null)
+                {
+                    MessageBox.Show("Um erro ocorreu. Não foi possível gerir estatísticas!");
+                    return null;
+                }
+
+                else 
+                { 
+                    EstatisticasForm.ListagemPercentagem.DataSource = comprasFechadas;
+                    return comprasFechadas;
+                }
+            }
+
+            
+        }
+        public static void ExportarEstatisticasCsv(string caminho)
+        {
+            ResumoEstatisticas resumo = ObterResumoEstatisticas();
+
+            using (StreamWriter sw = new StreamWriter(caminho, false))
+            {
+                 sw.WriteLine(
+                        "Média últimos meses;" + resumo.SugestaoOrcamentos.MediaUltimosMeses + ";" +
+                        "Sugestão próximo mês;" + resumo.SugestaoOrcamentos.SugestaoProximoMes + ";");
+
+
+                sw.WriteLine();
+                sw.WriteLine("Histórico de Orçamentos");
+                sw.WriteLine("Ano;Mês;Orçamento;Total Compras;Diferença");
+
+                foreach (var item in resumo.HistoricoOrcamentos)
+                {
+                    sw.WriteLine(
+                        item.Ano + ";" +
+                        item.Mes + ";" +
+                        item.Orcamento + ";" +
+                        item.TotalCompras + ";" +
+                        item.Diferenca);
+                }
+
+                sw.WriteLine();
+                sw.WriteLine("Percentagem de Artigos");
+                sw.WriteLine("Compra;Previstos;Não Previstos");
+
+                foreach (var item in resumo.PercentagensArtigos)
+                {
+                    sw.WriteLine(
+                        item.Compra + ";" +
+                        item.PercentagemPrevistos + ";" +
+                        item.PercentagemNaoPrevistos);
+                }
             }
         }
 
+        public static ResumoEstatisticas ObterResumoEstatisticas()
+        {
+            ResumoEstatisticas resumo = new ResumoEstatisticas();
+
+
+            resumo.SugestaoOrcamentos = SugerirOrcamento();
+            resumo.HistoricoOrcamentos = MostrarHistoricoOrcamento();
+            resumo.PercentagensArtigos = MostrarEstatisticasArtigos();
+
+            return resumo;
+        }
 
 
     }

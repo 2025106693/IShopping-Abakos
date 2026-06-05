@@ -33,10 +33,7 @@ namespace iShopping_Abakos.View
 
         private void button_GerarEstatisticasOrcamento_Click(object sender, EventArgs e)
         {
-            string mensagem;
-
-            SugestaoOrcamento sugestao = ControllerEstatisticas.SugerirOrcamento(out mensagem);
-            MessageBox.Show(mensagem);
+            SugestaoOrcamento sugestao = ControllerEstatisticas.SugerirOrcamento();
 
             label_Sugestao.Text = sugestao.SugestaoProximoMes.ToString("F2");
             label_Media.Text = "Média dos últimos meses (baseado até aos últimos 6):\n" +
@@ -49,6 +46,26 @@ namespace iShopping_Abakos.View
             ControllerEstatisticas.MostrarHistoricoOrcamento();
             ControllerEstatisticas.MostrarEstatisticasArtigos();
 
+        }
+
+        private void button_ExportarEstatisticas_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Filter = "Ficheiros CSV (*.csv)|*.csv";
+            saveFileDialog.Title = "Guardar Estatísticas";
+            saveFileDialog.FileName = "Estatisticas.csv";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ControllerEstatisticas.ExportarEstatisticasCsv(saveFileDialog.FileName);
+
+                MessageBox.Show(
+                    "Estatísticas exportadas com sucesso!",
+                    "Sucesso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
         }
     }
 }

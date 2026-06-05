@@ -16,7 +16,6 @@ namespace iShopping_Abakos
 
         public string Descricao { get; set; }
 
-        // FK
         public string CriadoPor { get; set; }
         public string AlteradoPor { get; set; }
 
@@ -31,9 +30,10 @@ namespace iShopping_Abakos
 
         public decimal TotalPrevisto { get; set; }
 
-        public virtual ICollection<ItemCompra> ItensCompra { get; set; } 
-       
+        // propriedade de navegação (lado "um" para muitos) que faz a ligação Compra -> ItensCompra;
+        // inicializada logo para evitar NullReferenceException ao aceder/adicionar itens antes de gravar
+        public virtual ICollection<ItemCompra> ItensCompra { get; set; } = new List<ItemCompra>();
 
-  
+
     }
 }

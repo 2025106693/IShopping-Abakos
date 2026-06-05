@@ -129,7 +129,7 @@
             // 
             this.labelValorOrcamento.AutoSize = true;
             this.labelValorOrcamento.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelValorOrcamento.Location = new System.Drawing.Point(883, 94);
+            this.labelValorOrcamento.Location = new System.Drawing.Point(833, 94);
             this.labelValorOrcamento.Name = "labelValorOrcamento";
             this.labelValorOrcamento.Size = new System.Drawing.Size(67, 20);
             this.labelValorOrcamento.TabIndex = 32;
@@ -141,9 +141,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(36, 94);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(142, 19);
+            this.label3.Size = new System.Drawing.Size(254, 19);
             this.label3.TabIndex = 31;
-            this.label3.Text = "Orçamento Atual:";
+            this.label3.Text = "Orçamento Definido para o Mês:";
             // 
             // label1
             // 
