@@ -30,59 +30,35 @@ namespace iShopping_Abakos.View
         private void ArtigosForm_Load(object sender, EventArgs e)
         {
 
-            dataGridViewTipoArtigos.AutoGenerateColumns = true;
-            dataGridViewTipoArtigos.RowHeadersWidth = 60;
-            ControllerArtigo.MostrarTabelaArtigos(dataGridViewTipoArtigos);
-            dataGridViewTipoArtigos.ClearSelection();
-
+            dataGridViewArtigos.AutoGenerateColumns = true;
+            dataGridViewArtigos.RowHeadersWidth = 60;
+            ControllerArtigo.MostrarTabelaArtigos(dataGridViewArtigos);
+            dataGridViewArtigos.ClearSelection();
             // Para mostar os tipos de artigos guardadosna tabela TipoArtigos
             ControllerArtigo.CarregarTiposArtigo(comboBoxTipoArtigo);
         }
 
         private void button_AdicionarArtigo_Click_1(object sender, EventArgs e)
         {
-
-            if (comboBoxTipoArtigo.SelectedValue == null)
-            {
-                MessageBox.Show("Por favor selecione um tipo de artigo.");
-                return;
-            }
-            // Variavel que guarda id do objeto selecionado TipoArtigo  |
-            // .SelectedValue devolve o ValueMember do "Id",
-            int tipoArtigoId = (int)comboBoxTipoArtigo.SelectedValue;
-
-            ControllerArtigo.botaoAdicionar(
-                textBoxNomeArtigo.Text.Trim(),
-                textBox_Preco.Text,
-                textBoxDescricaoArtigo.Text,
-                tipoArtigoId
-                );
-
-            ControllerArtigo.MostrarTabelaArtigos(dataGridViewTipoArtigos);
-
+            ControllerArtigo.botaoAdicionar(textBoxNomeArtigo.Text.Trim(), textBox_Preco.Text, textBoxDescricaoArtigo.Text, comboBoxTipoArtigo, out string mensagem);
+            ControllerArtigo.MostrarTabelaArtigos(dataGridViewArtigos);
+            MessageBox.Show(mensagem);
+            ControllerArtigo.LimparCampos(textBoxNomeArtigo, textBox_Preco, comboBoxTipoArtigo, textBoxDescricaoArtigo, textBoxIDArtigo, dataGridViewArtigos);
         }
 
         private void buttonAlterarArtigo_Click(object sender, EventArgs e)
         {
-            int tipoArtigoId;
-
-            if (comboBoxTipoArtigo.SelectedValue == null)
-            {
-                tipoArtigoId = -1;
-            }
-            else
-            {
-                tipoArtigoId = (int)comboBoxTipoArtigo.SelectedValue;
-            }
-
-            ControllerArtigo.AlterarArtigo(dataGridViewTipoArtigos, textBoxIDArtigo, textBoxNomeArtigo, textBox_Preco, tipoArtigoId, textBoxDescricaoArtigo);
-
+            
+            ControllerArtigo.AlterarArtigo(dataGridViewArtigos, textBoxIDArtigo.Text.Trim(), textBoxNomeArtigo.Text.Trim(), textBox_Preco.Text.Trim(), comboBoxTipoArtigo, textBoxDescricaoArtigo.Text.Trim(), out string mensagem);
+            MessageBox.Show(mensagem);
+            ControllerArtigo.LimparCampos(textBoxNomeArtigo, textBox_Preco, comboBoxTipoArtigo, textBoxDescricaoArtigo, textBoxIDArtigo, dataGridViewArtigos);
         }
 
         private void buttonEliminarArtigo_Click(object sender, EventArgs e)
         {
-            ControllerArtigo.EliminarArtigos(textBoxIDArtigo, dataGridViewTipoArtigos);
-
+            ControllerArtigo.EliminarArtigos(textBoxIDArtigo.Text.Trim(), dataGridViewArtigos, out string mensagem);
+            MessageBox.Show(mensagem);
+            ControllerArtigo.LimparCampos(textBoxNomeArtigo, textBox_Preco, comboBoxTipoArtigo, textBoxDescricaoArtigo, textBoxIDArtigo, dataGridViewArtigos);
         }
     }
 }

@@ -39,13 +39,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataGridViewTipoArtigos = new System.Windows.Forms.DataGridView();
+            this.dataGridViewArtigos = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_Preco = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.comboBoxTipoArtigo = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipoArtigos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArtigos)).BeginInit();
             this.SuspendLayout();
             // 
             // button_Voltar
@@ -156,15 +156,15 @@
             this.label2.TabIndex = 29;
             this.label2.Text = "Gerir artigos de Compra";
             // 
-            // dataGridViewTipoArtigos
+            // dataGridViewArtigos
             // 
-            this.dataGridViewTipoArtigos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTipoArtigos.Location = new System.Drawing.Point(47, 122);
-            this.dataGridViewTipoArtigos.Name = "dataGridViewTipoArtigos";
-            this.dataGridViewTipoArtigos.RowHeadersWidth = 51;
-            this.dataGridViewTipoArtigos.RowTemplate.Height = 24;
-            this.dataGridViewTipoArtigos.Size = new System.Drawing.Size(875, 268);
-            this.dataGridViewTipoArtigos.TabIndex = 28;
+            this.dataGridViewArtigos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewArtigos.Location = new System.Drawing.Point(47, 122);
+            this.dataGridViewArtigos.Name = "dataGridViewArtigos";
+            this.dataGridViewArtigos.RowHeadersWidth = 51;
+            this.dataGridViewArtigos.RowTemplate.Height = 24;
+            this.dataGridViewArtigos.Size = new System.Drawing.Size(875, 268);
+            this.dataGridViewArtigos.TabIndex = 28;
             // 
             // label1
             // 
@@ -232,12 +232,12 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dataGridViewTipoArtigos);
+            this.Controls.Add(this.dataGridViewArtigos);
             this.Controls.Add(this.label1);
             this.Name = "ArtigosForm";
             this.Text = "ArtigosForm";
             this.Load += new System.EventHandler(this.ArtigosForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipoArtigos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArtigos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,7 +256,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridViewTipoArtigos;
+        private System.Windows.Forms.DataGridView dataGridViewArtigos;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox_Preco;
         private System.Windows.Forms.Label label6;

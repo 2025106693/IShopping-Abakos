@@ -19,19 +19,40 @@ namespace iShopping_Abakos.Controller
             ArtigosForm.instance.Close();
         }
 
-        public static void botaoAdicionar(string nome, string preco, string descricao, int tipoArtigo)
+        public static void botaoAdicionar(string nome, string preco, string descricao, ComboBox tipoArtigo, out string mensagem)
         {
 
             decimal precoArtigo;
+            int tipoArtigoId;
 
 
-            if (!decimal.TryParse(preco, out precoArtigo))
+            if (nome == "")
             {
-                MessageBox.Show("O preco tem de ser numerico");
+                mensagem = "Por favor insira um nome";
                 return;
             }
 
 
+            if(preco == "")
+            {
+                mensagem = "Por favor insira um preço";
+                return;
+            }
+            else if (!decimal.TryParse(preco, out precoArtigo))
+            {
+                mensagem = "O preco tem de ser numerico";
+                return;
+            }
+
+
+            if (tipoArtigo.SelectedItem == null)
+            {
+                mensagem = "Por favor selecione um tipo de artigo.";
+                return;
+            }
+            // Variavel que guarda id do objeto selecionado TipoArtigo  |
+            // .SelectedValue devolve o ValueMember do "Id",
+            tipoArtigoId = (int)tipoArtigo.SelectedValue;
 
             using (IShoppingContext db = new IShoppingContext())
             {
@@ -45,19 +66,18 @@ namespace iShopping_Abakos.Controller
                         Nome = nome,
                         Preco = precoArtigo,
                         Descricao = descricao,
-                        TipoArtigoId = tipoArtigo,
+                        TipoArtigoId = tipoArtigoId,
 
                     };
                     db.DBArtigos.Add(artigo);
                 }
                 else
                 {
-                    MessageBox.Show("Já existe este artigo!\nSe quiser alterar, clique no botão Editar Artigo");
+                    mensagem = "Já existe este artigo!\nSe quiser alterar, clique no botão Editar Artigo";
                     return;
                 }
-
                 db.SaveChanges();
-                MessageBox.Show("Artigo criado com sucesso!");
+                mensagem = "Artigo criado com sucesso!";
             }
         }
 
@@ -101,14 +121,19 @@ namespace iShopping_Abakos.Controller
             }
         }
 
-        public static void EliminarArtigos(TextBox id, DataGridView dataSource)
+        public static void EliminarArtigos(string id, DataGridView dataSource, out string mensagem)
         {
 
             int idArtigo;
 
-            if (!int.TryParse(id.Text, out idArtigo))
+            if(id == "")
             {
-                MessageBox.Show("O id tem de ser numérico");
+                mensagem = "Por favor adicione um Id";
+                return;
+            }
+            if (!int.TryParse(id, out idArtigo))
+            {
+                mensagem = "O id tem de ser numérico";
                 return;
             }
 
@@ -123,34 +148,39 @@ namespace iShopping_Abakos.Controller
                     db.SaveChanges();
                     MostrarTabelaArtigos(dataSource);
 
-                    MessageBox.Show("Artigo eliminado com sucesso");
+                    mensagem = "Artigo eliminado com sucesso";
                 }
                 else
                 {
-                    MessageBox.Show("Artigo não encontrado. Verifique o id e tente novamente.");
+                    mensagem = "Artigo não encontrado. Verifique o id e tente novamente.";
                 }
-
-                id.Text = "";
             }
         }
 
 
-        public static void AlterarArtigo(DataGridView dataSource, TextBox id, TextBox nome, TextBox preco, int tipoArtigoId, TextBox descricao)
+        public static void AlterarArtigo(DataGridView dataSource, string id, string nome, string preco, ComboBox tipoArtigoId, string descricao, out string mensagem)
         {
             int idArtigo;
 
-            if (!int.TryParse(id.Text, out idArtigo))
+            if (id == "") 
             {
-                MessageBox.Show("O id tem de ser numérico");
+                mensagem = "Por favor, adicione um Id";
+                return;
+            }
+            else if (!int.TryParse(id, out idArtigo))
+            {
+                mensagem = "O id tem de ser numérico";
                 return;
             }
 
-            if ((nome.Text == "") && (preco.Text == "") && (tipoArtigoId == -1) && (descricao.Text == ""))
+            if ((nome == "") && (preco == "") && (tipoArtigoId.SelectedItem == null) && (descricao == ""))
             {
-                MessageBox.Show("Indique pelo menos um campo para alterar");
+                mensagem = "Indique pelo menos um campo para alterar";
                 return;
             }
 
+            // Variavel que guarda id do objeto selecionado TipoArtigo  |
+            // .SelectedValue devolve o ValueMember do "Id",
 
             using (IShoppingContext db = new IShoppingContext())
             {
@@ -159,39 +189,49 @@ namespace iShopping_Abakos.Controller
 
                 if (artigo != null)
                 {
-                    if (nome.Text != "")
+                    if (nome != "")
                     {
-                        artigo.Nome = nome.Text.Trim();
+                        artigo.Nome = nome;
                     }
-                    if (preco.Text != "")
+                    if (preco != "")
                     {
                         decimal precoArtigo;
 
-                        if (!decimal.TryParse(preco.Text, out precoArtigo))
+                        if (!decimal.TryParse(preco, out precoArtigo))
                         {
-                            MessageBox.Show("O preco tem de ser numérico");
+                            mensagem = "O preco tem de ser numérico";
                             return;
                         }
                         artigo.Preco = precoArtigo;
                     }
-                    if (tipoArtigoId != -1)
+                    if (tipoArtigoId.SelectedIndex != -1)
                     {
-                        artigo.TipoArtigoId = tipoArtigoId;
+                        artigo.TipoArtigoId = (int)tipoArtigoId.SelectedValue;
                     }
-                    if (descricao.Text != "")
+                    if (descricao != "")
                     {
-                        artigo.Descricao = descricao.Text.Trim();
+                        artigo.Descricao = descricao;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("ID do Artigo não encontrado!");
+                    mensagem = "ID do Artigo não encontrado!";
                     return;
                 }
                 db.SaveChanges();
-                MessageBox.Show("Artigo alterado com sucesso");
+                mensagem = "Artigo alterado com sucesso";
                 MostrarTabelaArtigos(dataSource);
             }
+        }
+
+        public static void LimparCampos(TextBox nome, TextBox preco, ComboBox tipoArtigo, TextBox descricao, TextBox id, DataGridView dataSource)
+        {
+            nome.Text = "";             // coloca os campos a vazio
+            preco.Text = "";
+            tipoArtigo.SelectedIndex = -1;
+            descricao.Text = "";
+            id.Text = "";
+            dataSource.ClearSelection(); // para retirar a selecao do cursor da tabela(datagridview)
         }
     }
 }

@@ -17,7 +17,7 @@ namespace iShopping_Abakos
         public string Descricao { get; set; }
 
         // FK  -> aponta para TipoArtigo.Id Por convenção vai ao nome da navegação TipoArtigo + Id
-        [ForeignKey("TipoArtigo")] // Diz que o "TipoArtigo" é a FK 
+        // [ForeignKey("TipoArtigo")] // Diz que o "TipoArtigo" é a FK 
 
         public int TipoArtigoId { get; set; } // Coluna real da tabela guarda o id do tipoArtigo
         // Propriedade de navegação (lado "um" para muitos)
