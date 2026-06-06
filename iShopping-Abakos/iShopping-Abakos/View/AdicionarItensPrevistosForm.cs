@@ -55,7 +55,7 @@ namespace iShopping_Abakos.View
         {
             ControllerAdicionarItensPrevistos.CarregarTiposArtigo(comboBox_TiposArtigos);
             ControllerAdicionarItensPrevistos.MostrarListaItens(dataGridView_ItensPrevistos);
-
+            comboBox_TiposArtigos.SelectedIndex = -1;
 
         }
 
@@ -74,33 +74,22 @@ namespace iShopping_Abakos.View
 
         }
 
+
+
         private void button_ApagarItem_Click(object sender, EventArgs e)
         {
-            string mensagem = "";
-
-            ControllerAdicionarItensPrevistos.EliminarItem(
-                textBox_ID.Text.Trim(),
-                out mensagem);
-
+            ControllerAdicionarItensPrevistos.EliminarItem(textBox_ID.Text.Trim(), out string mensagem);
             MessageBox.Show(mensagem);
             ControllerAdicionarItensPrevistos.MostrarListaItens(dataGridView_ItensPrevistos);
-
-
         }
+
+
 
         private void button_AlterarQuantidade_Click(object sender, EventArgs e)
         {
-            string mensagem = "";
-
-            ControllerAdicionarItensPrevistos.AlterarQuantidade(
-                textBox_ID.Text.Trim(),
-                (int)numericUpDown1.Value,
-                out mensagem);
-
+            ControllerAdicionarItensPrevistos.AlterarQuantidade(textBox_ID.Text.Trim(), (int)numericUpDown1.Value, out string mensagem);
             MessageBox.Show(mensagem);
-
             ControllerAdicionarItensPrevistos.MostrarListaItens(dataGridView_ItensPrevistos);
-
         }
     }
 }

@@ -39,14 +39,10 @@ namespace iShopping_Abakos.Controller
                     dataSource.DataSource = compras;
 
                 }
-
                 else
                 {
                     MessageBox.Show("Erro a carregar compras!");
                 }
-
-
-
             }
         }
 
@@ -111,31 +107,38 @@ namespace iShopping_Abakos.Controller
         public static void EditarInformacoesCompra(string id, string nomeCompra, string descricao, out string mensagem)
         {
             mensagem = ""; //mensagem varia consoante o resultado 
-
             int idCompra; // variável para validação do id
 
-            if (!int.TryParse(id, out idCompra)) //Se o id não for númerico, obriga a reintroduzir
-            {
-                mensagem = "O id tem de ser numérico!";
-                return;
 
+            if (id == "")
+            {
+                mensagem = "Introduza o ID";
+                return;
             }
+
 
             if ((nomeCompra == "") && (descricao == "")) //Tem de haver algum input para realizar a operação de alterar informações.
             {
-                mensagem = "Tem de introduzir informações para realizar a alteração!";
+                mensagem = "Introduza informações (nome/descrição) para realizar a alteração!";
                 return;
             }
 
 
+            if (!int.TryParse(id, out idCompra)) //Se o id não for númerico, obriga a reintroduzir
+            {
+                mensagem = "O ID tem de ser numérico!";
+                return;
+
+            }
+            
 
             using (IShoppingContext db = new IShoppingContext()) //nova instância especifica para a operação
             {
-                Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == idCompra); // realiza a pesquisa pelo ID
+                Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == idCompra && c.Fechado == false); // realiza a pesquisa pelo ID
 
                 if (compra == null) // Caso não encontre, o utilizador tem de voltar a introduzir um ID que exista
                 {
-                    mensagem = "Compra inexistente, selecione uma compra!";
+                    mensagem = "Compra inexistente, indique um ID válido de uma compra!";
                     return;
                 }
 
@@ -197,7 +200,6 @@ namespace iShopping_Abakos.Controller
             using (IShoppingContext db = new IShoppingContext())
             {
                 {
-
                     var ItensCompra = db.DBItensCompra.OfType<ItemPrevisto>()
                               .Where(i => i.CompraId == idCompra).ToList();
 
@@ -215,16 +217,13 @@ namespace iShopping_Abakos.Controller
             }
         }
 
+
+
         public static void EliminarCompra(string id, out string mensagem)
         {
             mensagem = "";
             int idCompra;
 
-            if (!int.TryParse(id, out idCompra))
-            {
-                mensagem = "O id tem de ser numérico";
-                return;
-            }
 
             if (id == "")
             {
@@ -232,11 +231,18 @@ namespace iShopping_Abakos.Controller
                 return;
             }
 
+
+            if (!int.TryParse(id, out idCompra))
+            {
+                mensagem = "O id tem de ser numérico";
+                return;
+            }
+
+            
             using (IShoppingContext db = new IShoppingContext())
             {
 
-                Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == idCompra);
-
+                Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == idCompra && c.Fechado == false);
 
 
                 if (compra != null)
@@ -254,7 +260,6 @@ namespace iShopping_Abakos.Controller
                     mensagem = "Compra removida com sucesso!";
                     
                 }
-
                 else
                 {
                     mensagem = "Introduza uma compra existente";
@@ -263,22 +268,23 @@ namespace iShopping_Abakos.Controller
             }
         }
 
-        public static Compra DevolverCompra(string id)
+
+
+        public static Compra DevolverCompra(string id, out string mensagem)
         {
             int idCompra;
 
 
             if (id == "")
             {
-                MessageBox.Show("Por favor insira um Id");
+                mensagem = "Por favor insira um Id";
                 return null;
             }
 
-          
 
             if (!int.TryParse(id, out idCompra))
             {
-                MessageBox.Show("O Id tem de ser numérico");
+                mensagem = "O Id tem de ser numérico";
                 return null;
             }
 
@@ -289,16 +295,26 @@ namespace iShopping_Abakos.Controller
 
                 if (compra != null && compra.Fechado == false)
                 {
+                    mensagem = "";
                     return compra;
                 }
                 
                 else
                 {
-                    MessageBox.Show("Selecione uma compra existente!");
+                    mensagem = "Selecione uma compra existente!";
                     return null;
                 }
             }
         }
 
+
+
+        public static void LimparCampos(TextBox nome, TextBox descricao, TextBox id, DataGridView dataSource)
+        {
+            nome.Text = "";             // coloca os campos a vazio
+            descricao.Text = "";
+            id.Text = "";
+            dataSource.ClearSelection(); // para retirar a selecao do cursor da tabela(datagridview)
+        }
     }
 }
