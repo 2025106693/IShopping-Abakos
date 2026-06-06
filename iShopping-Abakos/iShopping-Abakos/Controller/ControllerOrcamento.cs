@@ -21,39 +21,57 @@ namespace iShopping_Abakos.Controller
             PaginaInicialForm.instanciaPaginaPrincipal.Show();
             
         }
-        public static void AdicionarOrcamento(string valorText, string mes, string anoText)
+        public static void AdicionarOrcamento(string valorText, ComboBox mes, string anoText, out string mensagem)
         {
             int ano;
             decimal valor;
+            string mesDevolvido;
+
+
+            if (valorText == "")
+            {
+                mensagem = "Insira um valor";
+                return;
+            }
+            else if (!decimal.TryParse(valorText, out valor))
+            {
+                mensagem = "O valor tem de ser numérico";
+                return;
+            }
+
+
+            if (mes.SelectedItem == null)
+            {
+                mensagem = "Por favor, escolha um mês";
+                return;  
+            }
+
+
+            mesDevolvido = mes.SelectedItem.ToString();
+
+
+            if(anoText == "")
+            {
+                mensagem = "Insira o ano";
+                return;
+            }
+            else if (!int.TryParse(anoText, out ano))
+            {
+                mensagem = "O ano tem de ser numérico";
+                return;
+            }
+
             
-
-            if(!decimal.TryParse(valorText, out valor))
-            {
-                MessageBox.Show("O valor tem de ser numérico");
-                return;
-            }
-
-            if (mes == "")
-            {
-                MessageBox.Show("Selecione um mês");
-                return;
-            }
-
-            if (!int.TryParse(anoText, out ano))
-            {
-                MessageBox.Show("O ano tem de ser numérico");
-                return;
-            }
 
             using (IShoppingContext db = new IShoppingContext())
             {
-                Orcamento orcamento = db.DBOrcamentos.FirstOrDefault(o => o.Mes == mes && o.Ano == ano);
+                Orcamento orcamento = db.DBOrcamentos.FirstOrDefault(o => o.Mes == mesDevolvido && o.Ano == ano);
 
                 if(orcamento == null)
                 {
                     orcamento = new Orcamento()
                     {
-                        Mes = mes,
+                        Mes = mesDevolvido,
                         Ano = ano,
                         Valor = valor,
                         DataCriacao = DateTime.Now,
@@ -64,12 +82,12 @@ namespace iShopping_Abakos.Controller
                 }
                 else
                 {
-                    MessageBox.Show("Já existe um orçamento para este mês!\nSe quiser alterar, clique no botão Editar Orçamento");
+                    mensagem = "Já existe um orçamento para este mês!\nSe quiser alterar, clique no botão Editar Orçamento";
                     return;
                 }
 
-                    db.SaveChanges();
-                MessageBox.Show("Orçamento criado com sucesso!");
+                db.SaveChanges();
+                mensagem = "Orçamento criado com sucesso!";
             }  
         }   
 
@@ -100,14 +118,13 @@ namespace iShopping_Abakos.Controller
                 }
 
                
-
-                  
                 return diferenca;
             }
         }
 
 
-        public static Orcamento DevolverOrcamentoAtual()
+
+        public static void DevolverOrcamentoAtual()
         {
             string mesAtual = DateTime.Today.ToString("MMMM");
             int anoAtual = DateTime.Today.Year;
@@ -118,10 +135,18 @@ namespace iShopping_Abakos.Controller
                 Orcamento orcamento = db.DBOrcamentos.FirstOrDefault(
                     o => o.Mes == mesAtual && o.Ano == anoAtual);
 
-              
-                return orcamento;
-            }
 
+                if (orcamento != null)
+                {
+                    OrcamentosForm.labelMesAtual.Text = "Mês: " + orcamento.Mes;
+                    OrcamentosForm.labelValorOrcamentoAtual.Text = orcamento.Valor.ToString() + "€";
+                }
+                else
+                {
+                    OrcamentosForm.labelMesAtual.Text = "Mês: ";
+                    OrcamentosForm.labelValorOrcamentoAtual.Text = "0.00€";
+                }
+            }
         }
 
 
