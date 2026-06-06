@@ -30,10 +30,7 @@ namespace iShopping_Abakos
 
         private void buttonAdicionarTipoArtigo_Click(object sender, EventArgs e)   // botao adicionar
         {
-            string nome = textBoxNomeTipoArtigo.Text.Trim();    // aqui passamos o nome que introduzimos na textbox que já vem como string
-            string descricao = textBoxDescricaoTipoArtigo.Text.Trim();  // aqui a descricao, usamos o trim para retirar espacos do inicio e do fim
-
-            ControllerTiposArtigo.AdicionarTipoArtigo(nome, descricao); // chamamos a funcao do ControllerTiposArtigo.cs passando o nome e descricao como parametros
+            ControllerTiposArtigo.AdicionarTipoArtigo(textBoxNomeTipoArtigo.Text.Trim(), textBoxDescricaoTipoArtigo.Text.Trim()); // chamamos a funcao do ControllerTiposArtigo.cs passando o nome e descricao como parametros
             ControllerTiposArtigo.MostrarTabelaTipoArtigo(dataGridViewTipoArtigos);   // e aqui passando a tabela datagridview, para 
                                                                                       // posteriormente atualizar a tabela após alteracoes
             ControllerTiposArtigo.LimparCampos(textBoxNomeTipoArtigo, textBoxDescricaoTipoArtigo, textBoxIDtipoArtigo,

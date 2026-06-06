@@ -35,14 +35,10 @@ namespace iShopping_Abakos
             string mensagem = "";
 
             ControllerOrcamento.AdicionarOrcamento(textBoxValorOrcamento.Text.Trim(), comboBoxMesesOrcamento, textBoxAnoOrcamento.Text.Trim(), out mensagem);
-
             MessageBox.Show(mensagem);
-
             ControllerOrcamento.MostrarTabelaOrçamentos(dataGridView1);
-
             ControllerOrcamento.DevolverOrcamentoAtual();
-
-
+            ControllerOrcamento.LimparCampos(textBoxValorOrcamento, comboBoxMesesOrcamento, textBoxAnoOrcamento, textBoxID, dataGridView1);
         }
 
         private void OrcamentosForm_Load(object sender, EventArgs e)
@@ -51,17 +47,17 @@ namespace iShopping_Abakos
             dataGridView1.RowHeadersWidth = 60;
             ControllerOrcamento.MostrarTabelaOrçamentos(dataGridView1);
             dataGridView1.ClearSelection();
-
             ControllerOrcamento.DevolverOrcamentoAtual();
-
         }
 
         private void buttonEditarOrcamento_Click(object sender, EventArgs e)
         {
-            ControllerOrcamento.AlterarOrcamentoAtual(textBoxID.Text.Trim(), textBoxValorOrcamento.Text.Trim(), dataGridView1);
+            string mensagem;
 
+            ControllerOrcamento.AlterarOrcamentoAtual(textBoxID.Text.Trim(), textBoxValorOrcamento.Text.Trim(), dataGridView1, out mensagem);
+            MessageBox.Show(mensagem);
             ControllerOrcamento.DevolverOrcamentoAtual();
-
+            ControllerOrcamento.LimparCampos(textBoxValorOrcamento, comboBoxMesesOrcamento, textBoxAnoOrcamento, textBoxID, dataGridView1);
         }        
     }
 }

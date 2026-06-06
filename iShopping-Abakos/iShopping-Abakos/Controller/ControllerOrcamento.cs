@@ -46,9 +46,7 @@ namespace iShopping_Abakos.Controller
                 return;  
             }
 
-
             mesDevolvido = mes.SelectedItem.ToString();
-
 
             if(anoText == "")
             {
@@ -77,7 +75,6 @@ namespace iShopping_Abakos.Controller
                         DataCriacao = DateTime.Now,
                         CriadoPor = Sessao.UtilizadorAtual
                     };
-
                     db.DBOrcamentos.Add(orcamento);
                 }
                 else
@@ -85,7 +82,6 @@ namespace iShopping_Abakos.Controller
                     mensagem = "Já existe um orçamento para este mês!\nSe quiser alterar, clique no botão Editar Orçamento";
                     return;
                 }
-
                 db.SaveChanges();
                 mensagem = "Orçamento criado com sucesso!";
             }  
@@ -106,18 +102,14 @@ namespace iShopping_Abakos.Controller
 
                 var compras = db.DBCompras.Where(c => c.DataFecho.Value.Year == DateTime.Today.Year && c.DataFecho.Value.Month == DateTime.Today.Month).ToList().Sum(c => c.TotalGasto);
 
-
                 if (compras != 0)
                 {
                     diferenca = orcamento.Valor - compras;
                 }
                 else
                 {
-
                     diferenca = orcamento.Valor;
                 }
-
-               
                 return diferenca;
             }
         }
@@ -128,7 +120,6 @@ namespace iShopping_Abakos.Controller
         {
             string mesAtual = DateTime.Today.ToString("MMMM");
             int anoAtual = DateTime.Today.Year;
-
 
             using (IShoppingContext db = new IShoppingContext())
             {
@@ -157,28 +148,40 @@ namespace iShopping_Abakos.Controller
             {
                 dataSource.DataSource = db.DBOrcamentos.OrderBy(
                     o => o.DataCriacao).ToList();
-
             }
         }
 
 
 
-        public static void AlterarOrcamentoAtual(string id, string valorText, DataGridView dataSource)
+        public static void AlterarOrcamentoAtual(string id, string valorText, DataGridView dataSource, out string mensagem)
         {
+            
             decimal valor;
             int id_orcamento;
 
-            if (!decimal.TryParse(valorText, out valor))
+            if(id == "")
             {
-                MessageBox.Show("O valor tem de ser numérico!");
+                mensagem = "Insira um Id";
+                return;
+            }
+            else if (!int.TryParse(id, out id_orcamento))
+            {
+                mensagem = "O valor tem de ser numérico!";
                 return;
             }
 
-            if (!int.TryParse(id, out id_orcamento))
+
+            if (valorText == "")
             {
-                MessageBox.Show("O valor tem de ser numérico!");
+                mensagem = "Insira um valor";
                 return;
             }
+            else if (!decimal.TryParse(valorText, out valor))
+            {
+                mensagem = "O valor tem de ser numérico";
+                return;
+            }
+
 
             using (IShoppingContext db = new IShoppingContext())
             {
@@ -186,23 +189,29 @@ namespace iShopping_Abakos.Controller
 
                 if (orcamento != null)
                 {
-
                     orcamento.Valor = valor;
                     orcamento.AlteradoPor = Sessao.UtilizadorAtual;
                     orcamento.DataAlteracao = DateTime.Today;
-                    
-                    
                 }
                 else
                 {
-                    MessageBox.Show("ID do orçamento não encontrado!");
+                    mensagem = "ID do orçamento não encontrado!";
                     return;
                 }
 
                 db.SaveChanges();
-                MessageBox.Show("Orçamento alterado com sucesso!");
+                mensagem = "Orçamento alterado com sucesso!";
                 MostrarTabelaOrçamentos(dataSource);
             }
+        }
+
+        public static void LimparCampos(TextBox valor, ComboBox comboBox, TextBox ano ,  TextBox id, DataGridView dataSource)
+        {
+            valor.Text = "";             // coloca os campos a vazio
+            comboBox.SelectedIndex = -1;
+            ano.Text = "";
+            id.Text = "";
+            dataSource.ClearSelection(); // para retirar a selecao do cursor da tabela(datagridview)
         }
     }
 }
