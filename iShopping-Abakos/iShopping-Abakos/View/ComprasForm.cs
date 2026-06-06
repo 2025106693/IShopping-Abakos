@@ -23,11 +23,15 @@ namespace iShopping_Abakos.View
             dataGridView = dataGridView_Compras;
         }
 
+
+
         private void button_Voltar_Click(object sender, EventArgs e)
         {
             ControllerPaginaInicial.MostrarEstadoCompras(0, PaginaInicialForm.comprasPaginaPrincipal);
             ControllerCompras.VoltarPaginaPrincipal();
         }
+
+
 
         private void ComprasForm_Load(object sender, EventArgs e)
         {
@@ -35,51 +39,47 @@ namespace iShopping_Abakos.View
             dataGridView_Compras.RowHeadersWidth = 60;
             ControllerCompras.MostrarCompras(dataGridView_Compras);
             dataGridView_Compras.ClearSelection();
-
         }
+
+
 
         private void button_CriarCompra_Click(object sender, EventArgs e)
         {
-            string nomeCompra = textBox_Nome.Text.Trim();
-            string descricao  = textBox_Descricao.Text.Trim();
-            string mensagem;
-
-            ControllerCompras.CriarCompra(nomeCompra, descricao, out mensagem);
+            ControllerCompras.CriarCompra(textBox_Nome.Text.Trim(), textBox_Descricao.Text.Trim(), out string mensagem);
             MessageBox.Show(mensagem);
             ControllerCompras.MostrarCompras(dataGridView_Compras);
-
+            ControllerCompras.LimparCampos(textBox_Nome, textBox_Descricao, textBox_ID, dataGridView_Compras);
         }
+
+
 
         private void button_AlterarInfo_Click(object sender, EventArgs e) // botão para alterar informações de compra
         {
-            string id = textBox_ID.Text.Trim();
-            string nomeCompra = textBox_Nome.Text.Trim();
-            string descricao = textBox_Descricao.Text.Trim();
-            string mensagem;
-
-            ControllerCompras.EditarInformacoesCompra(id, nomeCompra, descricao, out mensagem);
+            ControllerCompras.EditarInformacoesCompra(textBox_ID.Text.Trim(), textBox_Nome.Text.Trim(), textBox_Descricao.Text.Trim(), out string mensagem);
             MessageBox.Show(mensagem);
             ControllerCompras.MostrarCompras(dataGridView_Compras);
-
+            ControllerCompras.LimparCampos(textBox_Nome, textBox_Descricao, textBox_ID, dataGridView_Compras);
         }
+
 
 
         private void button_Eliminar_Click(object sender, EventArgs e)
         {
-            string id = textBox_ID.Text.Trim();
-            string mensagem;
-
-            ControllerCompras.EliminarCompra(id, out mensagem); 
+            ControllerCompras.EliminarCompra(textBox_ID.Text.Trim(), out string mensagem); 
             MessageBox.Show(mensagem);
             ControllerCompras.MostrarCompras(dataGridView_Compras);
+            ControllerCompras.LimparCampos(textBox_Nome, textBox_Descricao, textBox_ID, dataGridView_Compras);
         }
+
+
 
         private void button_AdicionarItem_Click(object sender, EventArgs e)
         {
-
-            Compra compra = ControllerCompras.DevolverCompra(textBox_ID.Text.Trim());
+            Compra compra = ControllerCompras.DevolverCompra(textBox_ID.Text.Trim(), out string mensagem);
+            if (!string.IsNullOrEmpty(mensagem))
+                MessageBox.Show(mensagem);
             ControllerAdicionarItensPrevistos.AbrirAdicionarItensPrevistosForm(compra);
-
+            ControllerCompras.LimparCampos(textBox_Nome, textBox_Descricao, textBox_ID, dataGridView_Compras);
         }
     }
 }
