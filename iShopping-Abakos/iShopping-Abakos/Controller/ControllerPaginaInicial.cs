@@ -4,6 +4,7 @@ using iShopping_Abakos.View;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -137,6 +138,111 @@ namespace iShopping_Abakos.Controller
                     return null;
                 }
             }
+        }
+
+
+        // Exportar CSV
+
+
+
+        public static void BotaoExportarCSV()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Ficheiros CSV (*.csv)|*.csv";
+            sfd.Title = "Guardar ficheiro CSV";
+            sfd.FileName = "Compra_.csv";  // nome com o Id
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                ExportarCsv(sfd.FileName);
+                MessageBox.Show("Ficheiro CSV exportado com sucesso.");
+            }
+        }
+
+        // <- garante que tens este using no topo
+
+        private static void ExportarCsv(string caminho)
+        {
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                // só compras fechadas, com itens e artigos carregados
+                var compras = db.DBCompras
+                    .Include(c => c.ItensCompra.Select(i => i.Artigo))
+                    .Where(c => c.Fechado)
+                    .OrderBy(c => c.Id)
+                    .ToList();
+
+                // se não houver nenhuma compra fechada, avisa e sai
+                if (compras.Count == 0)
+                {
+                    MessageBox.Show("Não existem compras fechadas para exportar!");
+                    return;
+                }
+
+                using (StreamWriter sw = new StreamWriter(caminho, false, System.Text.Encoding.UTF8))
+                {
+                    sw.WriteLine("NomeCompra;DataCriacao;DataFechada;NomeArtigo;ArtigoPrevisto;ArtigoNaoPrevisto;QuantidadePrevista;QuantidadeAdquirida;PrecoUnitario");
+
+                    foreach (Compra c in compras)
+                    {
+                        // se esta compra não tem itens, salta para a próxima
+                        if (c.ItensCompra == null || c.ItensCompra.Count == 0)
+                        {
+                            continue;
+                        }
+
+                        string dataCriacao = c.DataCriacao.ToString("dd/MM/yyyy HH:mm:ss");
+                        string dataFecho = "";
+                        if (c.DataFecho.HasValue)
+                        {
+                            dataFecho = c.DataFecho.Value.ToString("dd/MM/yyyy HH:mm:ss");
+                        }
+
+                        foreach (ItemCompra item in c.ItensCompra)
+                        {
+                            string artigoPrevisto = "Não";
+                            string artigoNaoPrevisto = "Não";
+                            int quantidadePrevista = 0;
+
+                            if (item is ItemPrevisto ip)
+                            {
+                                artigoPrevisto = "Sim";
+                                quantidadePrevista = ip.QuantPrevista;
+                            }
+                            else if (item is ItemNaoPrevisto)
+                            {
+                                artigoNaoPrevisto = "Sim";
+                            }
+
+                            sw.WriteLine(
+                                EscaparCsv(c.NomeCompra) + ";" +
+                                dataCriacao + ";" +
+                                dataFecho + ";" +
+                                EscaparCsv(item.Artigo.Nome) + ";" +
+                                artigoPrevisto + ";" +
+                                artigoNaoPrevisto + ";" +
+                                quantidadePrevista + ";" +
+                                item.Quantidade + ";" +
+                                item.PrecoUnitario
+                            );
+                        }
+                    }
+                }
+            }
+        }
+        private static string EscaparCsv(string valor)
+        {
+            if (valor == null)
+            {
+                return "";
+            }
+
+            if (valor.Contains(";") || valor.Contains("\""))
+            {
+                return "\"" + valor.Replace("\"", "\"\"") + "\"";
+            }
+
+            return valor;
         }
     }
 }

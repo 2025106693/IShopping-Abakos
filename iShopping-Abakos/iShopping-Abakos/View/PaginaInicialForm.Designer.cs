@@ -110,6 +110,7 @@
             this.button_ExportarCSV.TabIndex = 31;
             this.button_ExportarCSV.Text = "Exportar para CSV";
             this.button_ExportarCSV.UseVisualStyleBackColor = true;
+            this.button_ExportarCSV.Click += new System.EventHandler(this.button_ExportarCSV_Click);
             // 
             // label_Compras
             // 

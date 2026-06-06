@@ -100,5 +100,10 @@ namespace iShopping_Abakos
             ControllerPaginaInicial.MostrarEstadoCompras(comboBoxEstado.SelectedIndex, dataGridViewCompras);
 
         }
+
+        private void button_ExportarCSV_Click(object sender, EventArgs e)
+        {
+            ControllerPaginaInicial.BotaoExportarCSV();
+        }
     }
 }
