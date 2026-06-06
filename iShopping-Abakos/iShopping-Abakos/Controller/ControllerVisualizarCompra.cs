@@ -97,7 +97,7 @@ namespace iShopping_Abakos.Controller
                         CompraFechar.Fechado = true;
                         CompraFechar.TotalGasto = ControllerCompras.ObterTotalGastoCompra(compraDevolvida.Id);
                         CompraFechar.FechadoPor = Sessao.UtilizadorAtual;
-                        CompraFechar.DataFecho = DateTime.Today;
+                        CompraFechar.DataFecho = DateTime.Now;
                     }
 
 
