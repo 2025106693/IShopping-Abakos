@@ -76,7 +76,7 @@ namespace iShopping_Abakos.Controller
                     ArtigoId = artigoId,
                     Quantidade = quantidade,
                     PrecoUnitario = artigo.Preco,
-                    Observacoes = descricao
+                    Descricao = descricao
                 };
 
 
@@ -105,7 +105,7 @@ namespace iShopping_Abakos.Controller
                         o.Quantidade,
                         o.PrecoUnitario,
                         Total = o.PrecoUnitario * o.QuantPrevista,
-                        Observacoes = ""                                     // como fazemos concat, ambas listas tem que ter as mesmas propriedades
+                        Descricao = ""                                     // como fazemos concat, ambas listas tem que ter as mesmas propriedades
                     }).ToList();
 
                 //lista itens não previstos
@@ -120,7 +120,7 @@ namespace iShopping_Abakos.Controller
                         o.Quantidade,
                         o.PrecoUnitario,
                         Total = o.PrecoUnitario * o.Quantidade,
-                        o.Observacoes
+                        o.Descricao
                     }).ToList();
 
                 //concatena as duas listas

@@ -30,8 +30,7 @@ namespace iShopping_Abakos
         {
             
             label_NomeUsername.Text = "Bem vindo, " + Sessao.UtilizadorAtual + "!";
-
-            Orcamento orcamento = ControllerOrcamento.DevolverOrcamentoAtual();
+            Orcamento orcamento = ControllerPaginaInicial.DevolverOrcamentoAtual();
 
             comboBoxEstado.SelectedIndex = 0;
 

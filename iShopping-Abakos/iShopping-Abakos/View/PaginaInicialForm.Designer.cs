@@ -34,6 +34,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.button_Sair = new System.Windows.Forms.Button();
             this.button_VisualizarDetalhes = new System.Windows.Forms.Button();
+            this.button_ExportarCSV = new System.Windows.Forms.Button();
             this.label_Compras = new System.Windows.Forms.Label();
             this.label_Orcamento = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -92,13 +93,23 @@
             // button_VisualizarDetalhes
             // 
             this.button_VisualizarDetalhes.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_VisualizarDetalhes.Location = new System.Drawing.Point(788, 499);
+            this.button_VisualizarDetalhes.Location = new System.Drawing.Point(527, 503);
             this.button_VisualizarDetalhes.Name = "button_VisualizarDetalhes";
             this.button_VisualizarDetalhes.Size = new System.Drawing.Size(183, 39);
             this.button_VisualizarDetalhes.TabIndex = 32;
             this.button_VisualizarDetalhes.Text = "Visualizar Detalhes";
             this.button_VisualizarDetalhes.UseVisualStyleBackColor = true;
             this.button_VisualizarDetalhes.Click += new System.EventHandler(this.button_VisualizarDetalhes_Click);
+            // 
+            // button_ExportarCSV
+            // 
+            this.button_ExportarCSV.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_ExportarCSV.Location = new System.Drawing.Point(338, 503);
+            this.button_ExportarCSV.Name = "button_ExportarCSV";
+            this.button_ExportarCSV.Size = new System.Drawing.Size(183, 39);
+            this.button_ExportarCSV.TabIndex = 31;
+            this.button_ExportarCSV.Text = "Exportar para CSV";
+            this.button_ExportarCSV.UseVisualStyleBackColor = true;
             // 
             // label_Compras
             // 
@@ -127,9 +138,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(334, 107);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(256, 24);
+            this.label3.Size = new System.Drawing.Size(162, 24);
             this.label3.TabIndex = 27;
-            this.label3.Text = "Orçamento Atual Disponível:";
+            this.label3.Text = "Orçamento Atual:";
             // 
             // label_NomeUsername
             // 
@@ -232,9 +243,9 @@
             // 
             // textBox_Id
             // 
-            this.textBox_Id.Location = new System.Drawing.Point(374, 499);
+            this.textBox_Id.Location = new System.Drawing.Point(744, 509);
             this.textBox_Id.Name = "textBox_Id";
-            this.textBox_Id.Size = new System.Drawing.Size(77, 22);
+            this.textBox_Id.Size = new System.Drawing.Size(50, 22);
             this.textBox_Id.TabIndex = 39;
             // 
             // contextMenuStrip1
@@ -246,12 +257,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(336, 499);
+            this.label2.Location = new System.Drawing.Point(717, 512);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(28, 20);
+            this.label2.Size = new System.Drawing.Size(21, 16);
             this.label2.TabIndex = 41;
-            this.label2.Text = "ID:";
+            this.label2.Text = "Id:";
             // 
             // PaginaInicialForm
             // 
@@ -267,6 +277,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button_Sair);
             this.Controls.Add(this.button_VisualizarDetalhes);
+            this.Controls.Add(this.button_ExportarCSV);
             this.Controls.Add(this.label_Compras);
             this.Controls.Add(this.label_Orcamento);
             this.Controls.Add(this.label3);
@@ -292,6 +303,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button_Sair;
         private System.Windows.Forms.Button button_VisualizarDetalhes;
+        private System.Windows.Forms.Button button_ExportarCSV;
         private System.Windows.Forms.Label label_Compras;
         private System.Windows.Forms.Label label_Orcamento;
         private System.Windows.Forms.Label label3;

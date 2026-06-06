@@ -69,9 +69,6 @@
     <Compile Include="Model\AppDbInitializer.cs" />
     <Compile Include="Model\Artigo.cs" />
     <Compile Include="Model\Compra.cs" />
-    <Compile Include="Model\HistoricoOrcamentoDataGridView.cs" />
-    <Compile Include="Model\PercentagemArtigosDataGridView.cs" />
-    <Compile Include="Model\ResumoEstatisticas.cs" />
     <Compile Include="Model\SugestaoOrcamento.cs" />
     <Compile Include="View\AdicionarItensNaoPrevistosForm.cs">
       <SubType>Form</SubType>
