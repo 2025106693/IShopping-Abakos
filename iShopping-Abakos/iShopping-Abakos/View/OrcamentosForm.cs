@@ -25,8 +25,22 @@ namespace iShopping_Abakos
         //Evento do botão sair
         private void buttonSairOrcamentos_Click(object sender, EventArgs e)
         {
+            Orcamento orcamento = ControllerOrcamento.DevolverOrcamentoAtual();
+
             //Fecha o formulário e regressa à página principal
             ControllerOrcamento.VoltarPaginaPrincipal();
+
+            if (orcamento != null)
+            {
+                PaginaInicialForm.label.Text = orcamento.Valor.ToString() + "€";
+            }
+
+            else
+            {
+                PaginaInicialForm.label.Text = "---";
+            }
+            
+            
 
         }
 
