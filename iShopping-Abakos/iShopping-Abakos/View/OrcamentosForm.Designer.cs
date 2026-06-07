@@ -46,6 +46,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.button_eliminarOrcamento = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,7 +84,7 @@
             // 
             // textBoxID
             // 
-            this.textBoxID.Location = new System.Drawing.Point(616, 395);
+            this.textBoxID.Location = new System.Drawing.Point(616, 415);
             this.textBoxID.Multiline = true;
             this.textBoxID.Name = "textBoxID";
             this.textBoxID.Size = new System.Drawing.Size(72, 28);
@@ -158,7 +159,7 @@
             // buttonEditarOrcamento
             // 
             this.buttonEditarOrcamento.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEditarOrcamento.Location = new System.Drawing.Point(734, 395);
+            this.buttonEditarOrcamento.Location = new System.Drawing.Point(734, 381);
             this.buttonEditarOrcamento.Name = "buttonEditarOrcamento";
             this.buttonEditarOrcamento.Size = new System.Drawing.Size(234, 28);
             this.buttonEditarOrcamento.TabIndex = 43;
@@ -219,7 +220,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(579, 399);
+            this.label7.Location = new System.Drawing.Point(579, 418);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(31, 20);
             this.label7.TabIndex = 48;
@@ -235,11 +236,23 @@
             this.label8.TabIndex = 49;
             this.label8.Text = "Os seus orçamentos:";
             // 
+            // button_eliminarOrcamento
+            // 
+            this.button_eliminarOrcamento.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_eliminarOrcamento.Location = new System.Drawing.Point(734, 418);
+            this.button_eliminarOrcamento.Name = "button_eliminarOrcamento";
+            this.button_eliminarOrcamento.Size = new System.Drawing.Size(234, 28);
+            this.button_eliminarOrcamento.TabIndex = 50;
+            this.button_eliminarOrcamento.Text = "Eliminar Orçamento ";
+            this.button_eliminarOrcamento.UseVisualStyleBackColor = true;
+            this.button_eliminarOrcamento.Click += new System.EventHandler(this.button_eliminarOrcamento_Click);
+            // 
             // OrcamentosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1027, 533);
+            this.Controls.Add(this.button_eliminarOrcamento);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dataGridView1);
@@ -287,5 +300,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button_eliminarOrcamento;
     }
 }

@@ -51,16 +51,8 @@ namespace iShopping_Abakos.View
 
         private void buttonFecharCompra_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
 
             ControllerVisualizarCompra.FecharCompra(out string mensagem);
-=======
-            //Variável que irá armazenar a mensagem de resultado
-            string mensagem = "";
-
-            //Tenta fechar a compra selecionada
-            ControllerVisualizarCompra.FecharCompra(out mensagem);
->>>>>>> mariana
 
             //Apresenta ao utilizador o resultado da operação
             MessageBox.Show(mensagem);
