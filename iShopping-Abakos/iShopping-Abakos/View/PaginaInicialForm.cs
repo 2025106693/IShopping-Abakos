@@ -7,12 +7,20 @@ namespace iShopping_Abakos
 {
     public partial class PaginaInicialForm : Form
     {
+        // DataGridView utilizada para apresentar as compras na página principal
         public static DataGridView comprasPaginaPrincipal;
-        public static PaginaInicialForm instanciaPaginaPrincipal; // para poder manipular livremente
+
+        // Instância do formulário para permitir o seu acesso a partir de outras classes
+        public static PaginaInicialForm instanciaPaginaPrincipal;
+
+        // Label responsável por apresentar o orçamento atual
         public static Label label;
         public PaginaInicialForm()
         {
             InitializeComponent();
+            
+            //Guarda referências aos componentes principais do formulário
+
             instanciaPaginaPrincipal = this;
             label = label_Orcamento;
             comprasPaginaPrincipal = dataGridViewCompras;
@@ -21,8 +29,10 @@ namespace iShopping_Abakos
 
         private void PaginaInicialForm_Load(object sender, EventArgs e)
         {
-            
+            //Apresenta uma mensagem de boas-vindas ao utilizador autenticado
             label_NomeUsername.Text = "Bem vindo, " + Sessao.UtilizadorAtual + "!";
+
+            //Obtém o orçamento atualmento
             Orcamento orcamento = ControllerOrcamento.DevolverOrcamentoAtual();
 
             comboBoxEstado.SelectedIndex = 0;
