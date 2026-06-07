@@ -43,9 +43,6 @@ Software necessário:
   -> Carga de trabalho ".NET desktop development" instalada
 - .NET Framework 4.8
 - SQL Server LocalDB (vem com a instalação do Visual Studio)
-
-
-Pacotes NuGet (já incluídos no projeto):
 - EntityFramework 6.5.2
 
 ----------------------------------------------------------------
@@ -78,7 +75,7 @@ Dentro do Visual Studio:
 - Permir no botão Start
 
 Na primeira execução, a base de dados é criada automaticamente
-com dados iniciais (utilizadores e tipos de artigo peça seed).
+com dados iniciais (utilizadores e tipos de artigo pela seed).
 
 ----------------------------------------------------------------
 7. UTILIZADORES PREDEFINIDOS
