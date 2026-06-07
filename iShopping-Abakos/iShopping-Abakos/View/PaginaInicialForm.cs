@@ -32,11 +32,13 @@ namespace iShopping_Abakos
             //Apresenta uma mensagem de boas-vindas ao utilizador autenticado
             label_NomeUsername.Text = "Bem vindo, " + Sessao.UtilizadorAtual + "!";
 
-            //Obtém o orçamento atualmento
+            //Obtém o orçamento atualmente definido
             Orcamento orcamento = ControllerOrcamento.DevolverOrcamentoAtual();
 
+            //Seleciona o primeiro estado da ComboBox por defeito
             comboBoxEstado.SelectedIndex = 0;
 
+            //Atualiza a label com o valor do orçamento caso exista
             if (orcamento != null)
             {
 
@@ -44,51 +46,58 @@ namespace iShopping_Abakos
             }
             else
             {
-
+                //Caso não exista orçamento definido
                 label.Text = " — ";
             }
         }
 
         private void button_Orcamento_Click(object sender, EventArgs e)
         {
-            
-
+            //Abre o formulário de gestão de orçamentos
             ControllerPaginaInicial.AbrirFormOrcamentos();
-            //passo como parâmetro para poder esconder a página principal quando o form orçamento abre
-
             
         }
 
         private void button_TipoArtigos_Click(object sender, EventArgs e)
         {
+            //Abre o formulário de gestão de tipos de artigo
             ControllerPaginaInicial.AbrirFormTipoArtigo();
 
         }
 
         private void button_Artigos_Click(object sender, EventArgs e)
         {
+            //Abre o formulário de gestão de artigos
             ControllerPaginaInicial.AbrirFormArtigos();
         }
 
         private void button_Compras_Click(object sender, EventArgs e)
         {
+            //Abre o formulário de gestão de compras
             ControllerPaginaInicial.AbrirFormCompras();
+
+            //Repõe o filtro de estado para a opção padrão
             comboBoxEstado.SelectedIndex = 0;
         }
 
         private void button_Estatisticas_Click(object sender, EventArgs e)
         {
+            //Abre o formulário de estatísticas
             ControllerPaginaInicial.AbrirFormEstatisticas();
         }
 
         private void button_VisualizarDetalhes_Click(object sender, EventArgs e)
         {
+            //Obtém a compra correspondente ao ID introduzido
             Compra compra = ControllerPaginaInicial.DevolverCompra(textBox_Id.Text.Trim());
+
+            //Abre o formulário de vizualização da compra selecionada
             ControllerVisualizarCompra.AbrirCompra(compra);
         }
 
         private void button_Sair_Click(object sender, EventArgs e)
         {
+            //Fecha a aplicação
             this.Close();
         }
 
@@ -99,13 +108,14 @@ namespace iShopping_Abakos
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            //Atualiza a lista de compras de acordo com o estado selecionado
             ControllerPaginaInicial.MostrarEstadoCompras(comboBoxEstado.SelectedIndex, dataGridViewCompras);
 
         }
 
         private void button_ExportarCSV_Click(object sender, EventArgs e)
         {
+            //Exporta a lista de compras fechadas
             ControllerPaginaInicial.BotaoExportarCSV();
         }
 

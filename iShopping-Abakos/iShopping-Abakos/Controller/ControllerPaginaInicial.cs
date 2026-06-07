@@ -137,14 +137,25 @@ namespace iShopping_Abakos.Controller
 
         public static void BotaoExportarCSV()
         {
+            //Cria a janela de seleção do local onde o ficheiro será guardado
             SaveFileDialog sfd = new SaveFileDialog();
+
+            //Define o filtro para permitir apenas ficheiros CSV
             sfd.Filter = "Ficheiros CSV (*.csv)|*.csv";
+
+            //Define o título da janela
             sfd.Title = "Guardar ficheiro CSV";
+
+            //Define o nome inicial sugerido para o ficheiro
             sfd.FileName = "Compra_.csv";  // nome com o Id
 
+            //Verifica se o utilizador selecionou um local e carregou em Guardar
             if (sfd.ShowDialog() == DialogResult.OK)
             {
+                //Exporta os dados para o ficheiro selecionado
                 ExportarCsv(sfd.FileName);
+                
+                //Informa o utilizador que a exportação foi concluída
                 MessageBox.Show("Ficheiro CSV exportado com sucesso.");
             }
         }
@@ -153,6 +164,7 @@ namespace iShopping_Abakos.Controller
 
         private static void ExportarCsv(string caminho)
         {
+            //Ligação à base de dados
             using (IShoppingContext db = new IShoppingContext())
             {
                 // só compras fechadas, com itens e artigos carregados
@@ -165,14 +177,18 @@ namespace iShopping_Abakos.Controller
                 // se não houver nenhuma compra fechada, avisa e sai
                 if (compras.Count == 0)
                 {
+                    //Informa o utilizador da inexistência de dados
                     MessageBox.Show("Não existem compras fechadas para exportar!");
                     return;
                 }
 
+                //Cria o ficheiro CSV no caminho indicado
                 using (StreamWriter sw = new StreamWriter(caminho, false, System.Text.Encoding.UTF8))
                 {
+                    //Escreve a linha de cabeçalho do ficheiro CSV
                     sw.WriteLine("NomeCompra;DataCriacao;DataFechada;NomeArtigo;ArtigoPrevisto;ArtigoNaoPrevisto;QuantidadePrevista;QuantidadeAdquirida;PrecoUnitario");
 
+                    //Percorre todas as compras
                     foreach (Compra c in compras)
                     {
                         // se esta compra não tem itens, salta para a próxima
@@ -181,29 +197,40 @@ namespace iShopping_Abakos.Controller
                             continue;
                         }
 
+                        //Converte a data de criação para o formato legível
                         string dataCriacao = c.DataCriacao.ToString("dd/MM/yyyy HH:mm:ss");
+
+                        //Inicializa a data de fecho
                         string dataFecho = "";
+
+                        //Caso exista a data de fecho, converte-a para texto
                         if (c.DataFecho.HasValue)
                         {
                             dataFecho = c.DataFecho.Value.ToString("dd/MM/yyyy HH:mm:ss");
                         }
 
+                        //Percorre todos os itens da compra atual
                         foreach (ItemCompra item in c.ItensCompra)
                         {
+                            //Valore por defeito
                             string artigoPrevisto = "Não";
                             string artigoNaoPrevisto = "Não";
                             int quantidadePrevista = 0;
 
+                            //Verifica se o item é do tipo previsto
                             if (item is ItemPrevisto ip)
                             {
                                 artigoPrevisto = "Sim";
                                 quantidadePrevista = ip.QuantPrevista;
                             }
+
+                            //Verifica se o item é do tipo não previsto
                             else if (item is ItemNaoPrevisto)
                             {
                                 artigoNaoPrevisto = "Sim";
                             }
 
+                            //Escreve uma linha no ficheiro CSV com os dados do item
                             sw.WriteLine(
                                 EscaparCsv(c.NomeCompra) + ";" +
                                 dataCriacao + ";" +
@@ -222,16 +249,20 @@ namespace iShopping_Abakos.Controller
         }
         private static string EscaparCsv(string valor)
         {
+            //Caso o valor seja nulo devolve uma string vazia
             if (valor == null)
             {
                 return "";
             }
 
+            //Verifica se o texto contém caracteres especiais do formato CSV
             if (valor.Contains(";") || valor.Contains("\""))
             {
+                //Escapa aspas duplas e envolve o texto entre aspas
                 return "\"" + valor.Replace("\"", "\"\"") + "\"";
             }
 
+            //Devolve o texto original caso não necessite de tratamento
             return valor;
         }
     }
