@@ -104,6 +104,8 @@ namespace iShopping_Abakos.Controller
                     return;
                 }
 
+                
+
                 ItemPrevisto item = new ItemPrevisto
                 {
                     CompraId = compraDevolvida.Id,
@@ -115,15 +117,21 @@ namespace iShopping_Abakos.Controller
 
 
                 db.DBItensCompra.Add(item);
-
                 db.SaveChanges();
-                mensagem = "Item adicionado com sucesso!";
 
-                AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + ControllerCompras.ObterTotalPrevisto(compra.Id).ToString() + "€";
+                if (VerificarOrcamentoNaoUltrapassado())
+                {
+                    mensagem = "Item adicionado com sucesso!";
+                    AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + ControllerCompras.ObterTotalPrevisto(compra.Id).ToString() + "€";
+                }
 
-
+                else
+                {
+                    db.DBItensCompra.Remove(item);
+                    mensagem = "Reveja o planeamento das suas compras!";
+                    db.SaveChanges();
+                }
             }
-
         }
 
         public static void MostrarListaItens(DataGridView datasource)
@@ -271,5 +279,35 @@ namespace iShopping_Abakos.Controller
 
 
         }
+
+        public static bool VerificarOrcamentoNaoUltrapassado()
+        {
+            decimal verificacaoOrcamento;
+
+            var orcamentoAtual = ControllerOrcamento.DevolverOrcamentoAtual();
+
+            if (orcamentoAtual == null)
+            {
+                MessageBox.Show("Sem nenhum orçamento atual. Não irá haver controlo de valores!");
+                return true;
+            }
+
+            else if (orcamentoAtual != null)
+            {
+                decimal totalPrevisto = ControllerCompras.ObterTotalPrevisto(compraDevolvida.Id);
+                verificacaoOrcamento = orcamentoAtual.Valor - totalPrevisto;
+
+                if (verificacaoOrcamento <= 0)
+                {
+                    MessageBox.Show("Orçamento Ultrapassado não pode adicionar o Item!");
+                    return false;
+                }
+                                 
+            }
+
+            return true;
+
+        }
+
     }
 }

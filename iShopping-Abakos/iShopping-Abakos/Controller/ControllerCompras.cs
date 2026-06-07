@@ -372,5 +372,7 @@ namespace iShopping_Abakos.Controller
             id.Text = "";
             dataSource.ClearSelection(); 
         }
+
+
     }
 }
