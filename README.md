@@ -14,7 +14,7 @@ Ano letivo 2025/2026
 
 - André Pedrosa Azenha - 2017127572
 - Filipe Santos Cordeiro - 2025111969
-- Mariana Montez - 2025106693
+- Mariana Gaspar Fragoso Lourenço Montez - 2025106693
 
 
 ----------------------------------------------------------------
