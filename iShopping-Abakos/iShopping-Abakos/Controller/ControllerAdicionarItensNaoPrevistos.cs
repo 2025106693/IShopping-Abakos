@@ -140,15 +140,32 @@ namespace iShopping_Abakos.Controller
                     Observacoes = descricao 
                 };
 
-
                 db.DBItensCompra.Add(item);     // adiciona o item à base de dados
                 db.SaveChanges();               //Salva alterações
 
-                //Confirma ao utilizador o sucesso da ação
-                mensagem = "Item adicionado com sucesso!";
+                //Para podermos verificar com o total de todos os itens
+                
+                if (VerificarOrcamentoNaoUltrapassado())
+                {
+                    //Atualiza a label do total gasto com o valor do artigo adicionado
+                    AdicionarItensNaoPrevistosForm.labelValorTotal.Text = "Total da compra: " + (ControllerCompras.ObterTotalGastoCompra(compraDevolvida.Id)).ToString() + "€";
+                    
+                    //Confirma ao utilizador o sucesso da ação
+                    mensagem = "Item adicionado com sucesso!";
 
-                //Atualiza a label do total gasto com o valor do artigo adicionado
-                AdicionarItensNaoPrevistosForm.labelValorTotal.Text = "Total da compra: " + (ControllerCompras.ObterTotalGastoCompra(compraDevolvida.Id)).ToString() + "€";
+                }
+
+                //Se ultrapassar
+                else
+                {
+                    db.DBItensCompra.Remove(item); //Remove-se o item
+                    db.SaveChanges();             //Atualiza-se a base de dados
+                    mensagem = "Reveja o seu planeamento de compras!";
+
+                    //Dá um aviso ao utilizador que deve de rever o planeamento
+                }
+               
+                
             }
         }
 
@@ -193,7 +210,7 @@ namespace iShopping_Abakos.Controller
                 //concatena as duas listas numa só para mostrar na grelha
                 var todos = previstos.Concat(naoPrevistos).ToList();
 
-                datasource.DataSource = todos; 
+                datasource.DataSource = todos; // Apresenta na DataGridView
             }
         }
 
@@ -366,6 +383,42 @@ namespace iShopping_Abakos.Controller
 
             //Atualiza o Total Gasto 
             AdicionarItensNaoPrevistosForm.labelValorTotal.Text = "Total da compra: " + (ControllerCompras.ObterTotalGastoCompra(compraDevolvida.Id)).ToString() + "€";
+
+        }
+
+        //Verifica se o orçamento não vai ser ultrapassado com a adição de um novo item
+        public static bool VerificarOrcamentoNaoUltrapassado()
+        {
+            //Obtém o orçamento atual
+            var orcamentoAtual = ControllerOrcamento.DevolverOrcamentoAtual();
+
+            //Caso não haja orçamento avisa-se ao utilizador que não irá haver o controlo de orçamento
+            if (orcamentoAtual == null)
+            {
+                MessageBox.Show("Sem nenhum orçamento atual. Não irá haver controlo de valores!Adicione um orçamento!");
+                return false;
+            }
+
+            //Caso haja um:
+            else if (orcamentoAtual != null)
+            {
+                //obtém-se o valor de todos os itens previstos + itens não previstos
+                decimal totalPrevisto = ControllerCompras.ObterTotalGastoCompra(compraDevolvida.Id);
+                
+                //Obtém o resultado 
+                decimal verificacaoOrcamento = orcamentoAtual.Valor - totalPrevisto;
+
+                //Caso ultrapasse o valor do orçamento retorna falso
+                if (verificacaoOrcamento <= 0)
+                {
+                    MessageBox.Show("Orçamento Ultrapassado não pode adicionar o Item!");
+                    return false;
+                }
+
+            }
+
+            //Se não ultrapassar devolve true
+            return true;
 
         }
     }

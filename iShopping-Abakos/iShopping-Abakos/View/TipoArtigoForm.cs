@@ -1,12 +1,5 @@
 ﻿using iShopping_Abakos.Controller;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace iShopping_Abakos
@@ -64,7 +57,7 @@ namespace iShopping_Abakos
             ControllerTiposArtigo.EliminarTipoArtigo(textBoxIDtipoArtigo.Text.Trim(), dataGridViewTipoArtigos);
             // chamamos a funcao eliminar do controller passando apenas o ID (que é o unico paramentro preciso para eliminar) e a datagridview para posteriormente atualizar a tabela após alteracoes
 
-            ControllerTiposArtigo.LimparCampos(textBoxNomeTipoArtigo, textBoxDescricaoTipoArtigo, textBoxIDtipoArtigo, dataGridViewTipoArtigos);
+            ControllerTiposArtigo.LimparCampos(textBoxNomeTipoArtigo, textBoxDescricaoTipoArtigo, textBoxIDtipoArtigo, dataGridViewTipoArtigos); //Limpa os campos
         }
     }
 }
