@@ -42,10 +42,8 @@ namespace iShopping_Abakos.View
 
         private void buttonFecharCompra_Click(object sender, EventArgs e)
         {
-            string mensagem = "";
 
-
-            ControllerVisualizarCompra.FecharCompra(out mensagem);
+            ControllerVisualizarCompra.FecharCompra(out string mensagem);
 
             MessageBox.Show(mensagem);
 
