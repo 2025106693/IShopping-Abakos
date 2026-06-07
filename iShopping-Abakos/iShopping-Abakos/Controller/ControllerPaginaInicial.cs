@@ -1,13 +1,8 @@
-﻿using iShopping_Abakos;
-using iShopping_Abakos.Model;
+﻿using iShopping_Abakos.Model;
 using iShopping_Abakos.View;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace iShopping_Abakos.Controller
