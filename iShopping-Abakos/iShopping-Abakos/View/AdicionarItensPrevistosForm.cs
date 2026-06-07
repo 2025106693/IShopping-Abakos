@@ -6,19 +6,29 @@ namespace iShopping_Abakos.View
 {
     public partial class AdicionarItensPrevistosForm : Form
     {
+        // Label utilizada para apresentar o nome da compra selecionada
         public static Label labelNome;
+
+        // Label utilizada para apresentar o valor total previsto da compra
         public static Label labelPrevisto;
         public AdicionarItensPrevistosForm()
         {
             InitializeComponent();
+
+            //Associa os labels do formulário às variáveis estáticas
             labelNome = label_NomeCompra;
             labelPrevisto = label_TotalPrevisto;
         }
 
         private void button_Voltar_Click(object sender, EventArgs e)
         {
+            //Atualiza a listagem de compras
             ControllerCompras.MostrarCompras(ComprasForm.dataGridView);
+
+            //Volta a apresentar o formulário de compras
             ComprasForm.instance.Show();
+
+            //Fecha o formulário atual
             this.Close();
             
         }

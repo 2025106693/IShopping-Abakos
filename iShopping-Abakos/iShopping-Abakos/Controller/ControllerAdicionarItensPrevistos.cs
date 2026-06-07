@@ -10,7 +10,7 @@ namespace iShopping_Abakos.Controller
     {
         //Guarda a compra que está a ser editada e é partilhada entre todos os métodos
         public static Compra compraDevolvida;
-        
+
         //Recebemos a compra do Form anterior respetiva ao ID que o utilizador inseriu
         public static void AbrirAdicionarItensPrevistosForm(Compra compra)
         {
@@ -36,7 +36,7 @@ namespace iShopping_Abakos.Controller
                 //Atualiza a label do nome e do total previsto (total dos itens previstos) da compra selecionada
                 AdicionarItensPrevistosForm.labelNome.Text = compra.NomeCompra;
                 AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + ControllerCompras.ObterTotalPrevisto(compra.Id).ToString() + "€";
-                
+
                 //Abre o form já com todas as informações necessárias
                 form.ShowDialog();
             }
@@ -71,60 +71,71 @@ namespace iShopping_Abakos.Controller
                 return;
             }
 
+            //Ligação à base de dados
             using (IShoppingContext db = new IShoppingContext())
             {
+                //Procura o artigo correspondente ao ID indicado
                 Artigo artigo = db.DBArtigos.FirstOrDefault(a => a.Id == artigoId);
 
+                //Verifica se o artigo existe 
                 if (artigo == null)
                 {
                     mensagem = "Artigo não encontrado!";
                     return;
                 }
 
+                //Procura a compra selecionada
                 Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == compraDevolvida.Id);
 
+                //Verifica se a compra existe
                 if (compra == null)
                 {
                     mensagem = "Compra não encontrada!";
                     return;
                 }
 
+                //Verifica se a compra está fechada
                 if (compra.Fechado)
                 {
                     mensagem = "A compra está fechada!";
                     return;
                 }
 
+                //Verifica se o artigo já foi adicionado à compra
                 ItemPrevisto itemExistente = db.DBItensCompra.OfType<ItemPrevisto>()
                         .FirstOrDefault(i => i.ArtigoId == artigoId && i.CompraId == compraDevolvida.Id);
 
+                //verifica se já existe um artigo existente
                 if (itemExistente != null)
                 {
                     mensagem = "Artigo já adicionado, basta editá-lo!";
                     return;
                 }
 
-                
+                //Cria um novo item previsto
+                    ItemPrevisto item = new ItemPrevisto
+                    {
+                        CompraId = compraDevolvida.Id,
+                        ArtigoId = artigoId,
+                        QuantPrevista = qtdPrevista,
+                        Quantidade = 0,              // ainda não adquiriu
+                        PrecoUnitario = artigo.Preco
+                    };
 
-                ItemPrevisto item = new ItemPrevisto
-                {
-                    CompraId = compraDevolvida.Id,
-                    ArtigoId = artigoId,
-                    QuantPrevista = qtdPrevista,
-                    Quantidade = 0,              // ainda não adquiriu
-                    PrecoUnitario = artigo.Preco
-                };
-
-
+                //Adiciona à tabela Itens Compra
                 db.DBItensCompra.Add(item);
+
+                //Salva as alterações na bd
                 db.SaveChanges();
 
+                //Verifica se o orçamento é ultrapassado com a adição do artigo
                 if (VerificarOrcamentoNaoUltrapassado())
                 {
                     mensagem = "Item adicionado com sucesso!";
                     AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + ControllerCompras.ObterTotalPrevisto(compra.Id).ToString() + "€";
                 }
 
+                //Se for ultrapassado notifica o utilizador e remove o item da tabela e salva as alterações
                 else
                 {
                     db.DBItensCompra.Remove(item);
@@ -169,20 +180,26 @@ namespace iShopping_Abakos.Controller
             }
         }
 
+        //Carrega os artigos pertencentes ao tipo selecionado
         public static void CarregarArtigos(ComboBox comboBox, int tipoArtigoSelecionado)
         {
-
+            //Ligação à base de dados
             using (IShoppingContext db = new IShoppingContext())
             {
-
+                //Obtém os artigos do tipo selecionado
                 var artigo = db.DBArtigos
                               .Where(t => t.TipoArtigoId == tipoArtigoSelecionado)
                               .OrderBy(t => t.Nome).
                               ToList();
 
+                //Associa a lista à ComboBox
                 comboBox.DataSource = artigo;
-                comboBox.DisplayMember = "Nome";  // o que o utilizador vê
-                comboBox.ValueMember = "Id";// valor associado fica escondigo
+
+                //Nome apresentado ao utilizador
+                comboBox.DisplayMember = "Nome";  
+
+                //ID associado ao artigo
+                comboBox.ValueMember = "Id";
             }
         }
 
@@ -224,7 +241,7 @@ namespace iShopping_Abakos.Controller
                 {
                     item.QuantPrevista = quantidade;
                 }
-                    
+
 
                 mensagem = "Quantidade alterado com sucesso";
                 db.SaveChanges();
@@ -260,7 +277,7 @@ namespace iShopping_Abakos.Controller
                 if (item != null)
                 {
                     db.DBItensCompra.Remove(item);
-                    
+
                 }
 
                 else
@@ -280,29 +297,40 @@ namespace iShopping_Abakos.Controller
 
         }
 
+        //Verifica se o valor total previsto não ultrapassa o orçamento atual
         public static bool VerificarOrcamentoNaoUltrapassado()
         {
+            //Obtém o orçamento atualmente ativo
             decimal verificacaoOrcamento;
 
+            //Caso não exista orçamento definido
             var orcamentoAtual = ControllerOrcamento.DevolverOrcamentoAtual();
 
             if (orcamentoAtual == null)
             {
+                //Avisa o utilizador que não tem nenhum orçamento
                 MessageBox.Show("Sem nenhum orçamento atual. Não irá haver controlo de valores!");
+                
                 return true;
             }
 
+            //Calcula o valor restante disponível
             else if (orcamentoAtual != null)
             {
                 decimal totalPrevisto = ControllerCompras.ObterTotalPrevisto(compraDevolvida.Id);
+                
+                //Calcula o valor restante disponível
                 verificacaoOrcamento = orcamentoAtual.Valor - totalPrevisto;
 
+                //Verifica se o orçamento foi ultrapassado
                 if (verificacaoOrcamento <= 0)
                 {
+                    //Avisa ao utilizador que o orçamento foi ultrapassado
                     MessageBox.Show("Orçamento Ultrapassado não pode adicionar o Item!");
+                    
                     return false;
                 }
-                                 
+
             }
 
             return true;
