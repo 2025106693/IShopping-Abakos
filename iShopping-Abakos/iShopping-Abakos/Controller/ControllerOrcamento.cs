@@ -308,6 +308,37 @@ namespace iShopping_Abakos.Controller
             }
         }
 
+        public static void EliminarOrcamento(string id, DataGridView  dataSource, out string mensagem)
+        {
+            int idOrcamento;
 
+            if(id == "")
+            {
+                mensagem = "Por favor indique o id da compra a alterar";
+                return;
+
+            }else if(!int.TryParse(id, out idOrcamento))
+            {
+                mensagem = "O valor tem de ser numérico";
+                return;
+            }
+
+            using(IShoppingContext db = new IShoppingContext())
+            {
+                var orcamentoEliminar = db.DBOrcamentos.FirstOrDefault(o => o.Id == idOrcamento);
+
+                if(orcamentoEliminar != null)
+                {
+                    db.DBOrcamentos.Remove(orcamentoEliminar);
+                    db.SaveChanges();
+                    mensagem = "Orcamento eliminado com sucesso";
+                    MostrarTabelaOrçamentos(dataSource); //Atualiza a vista da DataGridView
+                }
+                else
+                {
+                    mensagem = "Orcamento não encontrado, por favor indique um orcamento existente";
+                }
+            }    
+        }
     }
 }

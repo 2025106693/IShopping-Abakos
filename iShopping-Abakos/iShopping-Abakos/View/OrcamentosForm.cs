@@ -84,5 +84,15 @@ namespace iShopping_Abakos
             ControllerOrcamento.LimparCampos(textBoxValorOrcamento, comboBoxMesesOrcamento, textBoxAnoOrcamento, dataGridView1);
 
         }
+
+        private void button_eliminarOrcamento_Click(object sender, EventArgs e)
+        {
+            ControllerOrcamento.EliminarOrcamento(textBoxID.Text.Trim(), dataGridView1, out string mensagem);
+
+            MessageBox.Show(mensagem);
+
+            //Atualiza os labels informativos
+            ControllerOrcamento.AtualizarLabels(labelMes, labelValorOrcamento);
+        }
     }
 }
