@@ -135,7 +135,8 @@ namespace iShopping_Abakos.Controller
                     AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + ControllerCompras.ObterTotalPrevisto(compra.Id).ToString() + "€";
                 }
 
-                //Se for ultrapassado notifica o utilizador e remove o item da tabela e salva as alterações
+                //Se for ultrapassado notifica o utilizador
+                //remove o item da tabela e salva as alterações
                 else
                 {
                     db.DBItensCompra.Remove(item);
@@ -145,38 +146,52 @@ namespace iShopping_Abakos.Controller
             }
         }
 
+        //Apresenta na DataGridView os itens previstos da compra selecionada
         public static void MostrarListaItens(DataGridView datasource)
         {
+            //Ligação à base de dados
             using (IShoppingContext db = new IShoppingContext())
             {
-                //restringir a vista apenas com os campos sem aparecer o artigo e compra vazios
+                //Obtém os itens previstos da compra selecionada
                 var itensCompra = db.DBItensCompra.OfType<ItemPrevisto>()
                     .Where(o => o.CompraId == compraDevolvida.Id)
                     .OrderBy(o => o.ArtigoId)
+
+                    //Seleciona apenas os campos a apresentar na DataGridView
                     .Select(o => new
                     {
                         o.ArtigoId,
                         Artigo = o.Artigo.Nome,
                         o.QuantPrevista,
                         o.PrecoUnitario,
+
+                        //Calcula o custo total previsto para cada artigo
                         TotalPrevisto = o.QuantPrevista * o.PrecoUnitario
                     }).ToList();
 
+                //Atualiza a DataGridView com os itens obtidos
                 datasource.DataSource = itensCompra;
             }
         }
 
+        //Carrega todos os tipos de artigo disponíveis na ComboBox
         public static void CarregarTiposArtigo(ComboBox comboBox)
         {
+            //Ligação à base de dados
             using (IShoppingContext db = new IShoppingContext())
             {
-
+                //Obtém o tipo de artigo ordenados por ID
                 var tiposArtigo = db.DBTipoArtigos
                               .OrderBy(t => t.Id).ToList();
 
+                //Associa a lista de tipos à ComboBox
                 comboBox.DataSource = tiposArtigo;
-                comboBox.DisplayMember = "Nome";  // o que o utilizador vê
-                comboBox.ValueMember = "Id";// valor associado fica escondigo
+
+                //Nome apresentado ao utilizador
+                comboBox.DisplayMember = "Nome";
+
+                //ID associado a cada opção
+                comboBox.ValueMember = "Id";
             }
         }
 
@@ -203,79 +218,99 @@ namespace iShopping_Abakos.Controller
             }
         }
 
+        //Altera a quantidade prevista de um item de compra
         public static void AlterarQuantidade(string itemPrevistoId, int quantidade, out string mensagem)
         {
             int idItem;
 
+            //Inicializa a mensagem de retorno
             mensagem = "";
 
+            //Verifica se foi introduzido por um ID
             if (itemPrevistoId == "")
             {
                 mensagem = "Insira um ID!";
                 return;
             }
 
+            // Verifica se o ID introduzido é numérico
             if (!int.TryParse(itemPrevistoId, out idItem))
             {
                 mensagem = "Insira um Id numérico!";
                 return;
             }
 
-            if (quantidade == 0 && quantidade < 0)
+            // Valida se a quantidade é superior a zero
+            if (quantidade <= 0)
             {
                 mensagem = "A quantidade tem de ser um número maior que 0";
                 return;
             }
 
+            //Ligação à base de dados
             using (IShoppingContext db = new IShoppingContext())
             {
+                //Procura o item previsto correspondente ao ID indicado
                 ItemPrevisto item = db.DBItensCompra.OfType<ItemPrevisto>().FirstOrDefault(
                                          i => i.ArtigoId == idItem && i.CompraId == compraDevolvida.Id);
 
+                //Verifica se o item existe
                 if (item == null)
                 {
                     mensagem = "Insira um item existente!";
                     return;
                 }
+                
+                //Atualiza a quantidade prevista do item
                 else
                 {
                     item.QuantPrevista = quantidade;
                 }
 
 
+                //Apresenta a mensagem de sucesso e guarda as alterações na base de dados
                 mensagem = "Quantidade alterado com sucesso";
                 db.SaveChanges();
             }
 
+            //Atualiza o total previsto apresentado no formulário
             AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + (ControllerCompras.ObterTotalPrevisto(compraDevolvida.Id)).ToString() + "€";
 
         }
 
+        //remove um item previsto da compra selecionada
         public static void EliminarItem(string itemPrevistoId, out string mensagem)
         {
+            //Inicializa a mensagem de retorno
             mensagem = "";
+
             int idItem;
 
+            //Verifica se foi introduzido um ID
             if (itemPrevistoId == "")
             {
                 mensagem = "Insira um ID!";
                 return;
             }
 
+            //Verifica se o ID introduzido é numérico
             if (!int.TryParse(itemPrevistoId, out idItem))
             {
                 mensagem = "Insira um Id numérico!";
                 return;
             }
 
+            //Ligação à base de dados
             using (IShoppingContext db = new IShoppingContext())
             {
-
+                //Procura o item previsto correspondente ao ID indicado
                 ItemPrevisto item = db.DBItensCompra.OfType<ItemPrevisto>().FirstOrDefault(
                                     i => i.ArtigoId == idItem && i.CompraId == compraDevolvida.Id);
 
+                //Verifica se o item existe
                 if (item != null)
                 {
+                    //Remove o item da base de dados
                     db.DBItensCompra.Remove(item);
 
                 }
@@ -286,12 +321,13 @@ namespace iShopping_Abakos.Controller
                     return;
                 }
 
-
+                // Guarda as alterações efetuadas
                 db.SaveChanges();
                 mensagem = "Item removido com sucesso!";
 
             }
 
+            //Atualiza o total previsto apresentado no formulário
             AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + (ControllerCompras.ObterTotalPrevisto(compraDevolvida.Id)).ToString() + "€";
 
 
