@@ -48,7 +48,7 @@ namespace iShopping_Abakos
             ControllerOrcamento.AtualizarLabels(labelMes, labelValorOrcamento);
 
             //Limpa os campos do formulário
-            ControllerOrcamento.LimparCampos(textBoxValorOrcamento, comboBoxMesesOrcamento, textBoxAnoOrcamento, dataGridView1);
+            ControllerOrcamento.LimparCampos(textBoxID, textBoxValorOrcamento, comboBoxMesesOrcamento, textBoxAnoOrcamento, dataGridView1);
 
 
         }
@@ -81,7 +81,7 @@ namespace iShopping_Abakos
             ControllerOrcamento.AtualizarLabels(labelMes, labelValorOrcamento);
 
             //Limpa os campos inseridos 
-            ControllerOrcamento.LimparCampos(textBoxValorOrcamento, comboBoxMesesOrcamento, textBoxAnoOrcamento, dataGridView1);
+            ControllerOrcamento.LimparCampos(textBoxID, textBoxValorOrcamento, comboBoxMesesOrcamento, textBoxAnoOrcamento, dataGridView1);
 
         }
 
@@ -93,6 +93,8 @@ namespace iShopping_Abakos
 
             //Atualiza os labels informativos
             ControllerOrcamento.AtualizarLabels(labelMes, labelValorOrcamento);
+
+            ControllerOrcamento.LimparCampos(textBoxID, textBoxValorOrcamento, comboBoxMesesOrcamento, textBoxAnoOrcamento, dataGridView1);
         }
     }
 }

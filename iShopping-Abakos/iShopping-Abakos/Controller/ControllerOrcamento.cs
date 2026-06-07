@@ -279,8 +279,9 @@ namespace iShopping_Abakos.Controller
 
         // função usada para apagar os campos preenchidos no fim de qualquer Adicionar, Alterar ou Remover
         // foi passado apenas o nome das textbox portanto aqui atribuimos aos parâmetros do tipo TextBox
-        public static void LimparCampos(TextBox valor, ComboBox mes, TextBox ano, DataGridView dataSource)
+        public static void LimparCampos(TextBox id, TextBox valor, ComboBox mes, TextBox ano, DataGridView dataSource)
         {
+            id.Text = "";
             valor.Text = "";             // coloca os campos a vazio
             mes.SelectedIndex = -1;
             ano.Text = "";
