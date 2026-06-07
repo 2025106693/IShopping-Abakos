@@ -5,40 +5,44 @@ using System.Windows.Forms;
 
 namespace iShopping_Abakos.Controller
 {
+    // Controller que trata da gestão dos Artigos (CRUD)
     internal class ControllerArtigo
     {
+        // Fecha o form dos artigos e volta a mostrar a página principa
         public static void VoltarPaginaPrincipal()
         {
             PaginaInicialForm.instanciaPaginaPrincipal.Show();
             ArtigosForm.instance.Close();
         }
 
+        // Cria um novo artigo se ainda não existir com o mesmo nome
         public static void botaoAdicionar(string nome, string preco, string descricao, ComboBox tipoArtigo, out string mensagem)
         {
 
             decimal precoArtigo;
             int tipoArtigoId;
 
-
+            // valida que escreveu nome
             if (nome == "")
             {
                 mensagem = "Por favor insira um nome";
                 return;
             }
 
-
-            if(preco == "")
+            // valida que escreveu preço
+            if (preco == "")
             {
                 mensagem = "Por favor insira um preço";
                 return;
             }
+            // o preço vem como string, tem de ser convertido para decimal
             else if (!decimal.TryParse(preco, out precoArtigo))
             {
                 mensagem = "O preco tem de ser numerico";
                 return;
             }
 
-
+            // tem de ter um tipo selecionado na combobox
             if (tipoArtigo.SelectedItem == null)
             {
                 mensagem = "Por favor selecione um tipo de artigo.";
@@ -50,11 +54,13 @@ namespace iShopping_Abakos.Controller
 
             using (IShoppingContext db = new IShoppingContext())
             {
+                // verifica se já existe algum artigo com aquele nome
                 Artigo artigo = db.DBArtigos.FirstOrDefault(
                     o => o.Nome == nome);
 
                 if (artigo == null)
                 {
+                    // se não existir, cria um novo
                     artigo = new Artigo()
                     {
                         Nome = nome,
@@ -67,6 +73,7 @@ namespace iShopping_Abakos.Controller
                 }
                 else
                 {
+                    // se já existir, não deixa criar outro com o mesmo nome
                     mensagem = "Já existe este artigo!\nSe quiser alterar, clique no botão Editar Artigo";
                     return;
                 }
@@ -81,23 +88,27 @@ namespace iShopping_Abakos.Controller
         {
             using (IShoppingContext db = new IShoppingContext())
             {
-
+                // vai buscar os tipos de artigo ordenados por id
                 var tiposArtigo = db.DBTipoArtigos
                               .OrderBy(t => t.Id).ToList();
 
                 comboBox.DataSource = tiposArtigo;
-                comboBox.DisplayMember = "Nome";  // o que o utilizador 
-                comboBox.ValueMember = "Id";// valor associado fica escondigo
-                comboBox.SelectedIndex = -1;
+                comboBox.DisplayMember = "Nome"; // o que o utilizador vê
+                comboBox.ValueMember = "Id"; // valor associado fica escondigo
+                comboBox.SelectedIndex = -1; // começa sem nada selecionado
             }
         }
 
+        // Atualiza a DataGridView com a lista de artigos
         public static void MostrarTabelaArtigos(DataGridView dataSource)
         {
+            
+            // Se mostrássemos o objeto inteiro apareciam coisas a mais (compras, etc)
             using (IShoppingContext db = new IShoppingContext())
             {
                 var artigos = db.DBArtigos
             .OrderBy(o => o.Id)
+            // Select para escolher só as colunas que queremos mostrar.
             .Select(o => new
             {
                 o.Id,
@@ -115,16 +126,19 @@ namespace iShopping_Abakos.Controller
             }
         }
 
+        // Apaga um artigo pelo Id
         public static void EliminarArtigos(string id, DataGridView dataSource, out string mensagem)
         {
 
             int idArtigo;
 
-            if(id == "")
+            // valida que escreveu Id
+            if (id == "")
             {
                 mensagem = "Por favor adicione um Id";
                 return;
             }
+            // valida que o Id é mesmo um número
             if (!int.TryParse(id, out idArtigo))
             {
                 mensagem = "O id tem de ser numérico";
@@ -133,6 +147,7 @@ namespace iShopping_Abakos.Controller
 
             using (IShoppingContext db = new IShoppingContext())
             {
+                // vai buscar o artigo com aquele Id
                 Artigo artigo = db.DBArtigos.FirstOrDefault(
                     a => a.Id == idArtigo);
 
@@ -140,7 +155,7 @@ namespace iShopping_Abakos.Controller
                 {
                     db.DBArtigos.Remove(artigo);
                     db.SaveChanges();
-                    MostrarTabelaArtigos(dataSource);
+                    MostrarTabelaArtigos(dataSource); // atualiza a tabela
 
                     mensagem = "Artigo eliminado com sucesso";
                 }
@@ -152,10 +167,12 @@ namespace iShopping_Abakos.Controller
         }
 
 
+        // Altera os campos de um artigo, só altera os campos que vierem preenchidos
         public static void AlterarArtigo(DataGridView dataSource, string id, string nome, string preco, ComboBox tipoArtigoId, string descricao, out string mensagem)
         {
             int idArtigo;
 
+            // valida que escreveu Id
             if (id == "") 
             {
                 mensagem = "Por favor, adicione um Id";
@@ -167,6 +184,7 @@ namespace iShopping_Abakos.Controller
                 return;
             }
 
+            // tem que haver pelo menos um campo para alterar, senão não faz sentido
             if ((nome == "") && (preco == "") && (tipoArtigoId.SelectedItem == null) && (descricao == ""))
             {
                 mensagem = "Indique pelo menos um campo para alterar";
@@ -181,6 +199,7 @@ namespace iShopping_Abakos.Controller
 
                 Artigo artigo = db.DBArtigos.FirstOrDefault(a => a.Id == idArtigo);
 
+                // só altera o que veio preenchido
                 if (artigo != null)
                 {
                     if (nome != "")
@@ -214,10 +233,11 @@ namespace iShopping_Abakos.Controller
                 }
                 db.SaveChanges();
                 mensagem = "Artigo alterado com sucesso";
-                MostrarTabelaArtigos(dataSource);
+                MostrarTabelaArtigos(dataSource); // atualiza a tabela
             }
         }
 
+        // Limpa os campos do form depois de qualquer operação
         public static void LimparCampos(TextBox nome, TextBox preco, ComboBox tipoArtigo, TextBox descricao, TextBox id, DataGridView dataSource)
         {
             nome.Text = "";             // coloca os campos a vazio
