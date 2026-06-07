@@ -421,5 +421,15 @@ namespace iShopping_Abakos.Controller
             return true;
 
         }
+
+
+        public static void LimparCampos(ComboBox tipoArtigo, ComboBox artigo, NumericUpDown quantidade, TextBox observacao,  TextBox id)
+        {
+            tipoArtigo.SelectedIndex = -1;             // coloca os campos a vazio
+            artigo.SelectedIndex = -1;
+            quantidade.Value = 0;
+            observacao.Text = "";
+            id.Text = "";
+        }
     }
 }

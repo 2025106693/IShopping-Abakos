@@ -30,6 +30,7 @@ namespace iShopping_Abakos.View
         {
             // Pede ao controller para preencher a combobox com os tipos de artigo
             ControllerAdicionarItensNaoPrevistos.CarregarTiposArtigo(comboBox_TipoArtigo);
+            comboBox_TipoArtigo.SelectedIndex = -1;
 
             // Pede ao controller para mostrar a lista de itens da compra na grelha
             ControllerAdicionarItensNaoPrevistos.MostrarListaItens(dataGridView_ItensCompra);
@@ -52,6 +53,8 @@ namespace iShopping_Abakos.View
 
             // Atualiza a grelha para refletir o item recém-adicionado
             ControllerAdicionarItensNaoPrevistos.MostrarListaItens(dataGridView_ItensCompra);
+
+            ControllerAdicionarItensNaoPrevistos.LimparCampos(comboBox_TipoArtigo, comboBoxArtigo, numericUpDownQuantidade, textBox_Observacoes, textBox_ID_NP);
         }
 
 
@@ -62,6 +65,8 @@ namespace iShopping_Abakos.View
             ControllerAdicionarItensNaoPrevistos.EliminarItem(textBox_ID_NP.Text.Trim(), out string mensagem);
             MessageBox.Show(mensagem);
             ControllerAdicionarItensNaoPrevistos.MostrarListaItens(dataGridView_ItensCompra);  // Atualiza a grelha após a eliminação
+
+            ControllerAdicionarItensNaoPrevistos.LimparCampos(comboBox_TipoArtigo, comboBoxArtigo, numericUpDownQuantidade, textBox_Observacoes, textBox_ID_NP);
         }
 
 
@@ -72,6 +77,7 @@ namespace iShopping_Abakos.View
             ControllerAdicionarItensNaoPrevistos.AlterarQuantidade(textBox_ID_NP.Text.Trim(), (int)numericUpDownQuantidade.Value, out string mensagem);
             MessageBox.Show(mensagem);
             ControllerAdicionarItensNaoPrevistos.MostrarListaItens(dataGridView_ItensCompra);  // Atualiza a grelha após a alteração
+            ControllerAdicionarItensNaoPrevistos.LimparCampos(comboBox_TipoArtigo, comboBoxArtigo, numericUpDownQuantidade, textBox_Observacoes, textBox_ID_NP);
         }
 
 
@@ -80,6 +86,7 @@ namespace iShopping_Abakos.View
         {
             VisualizarCompraForm.instance.Show();  // Reabre o formulário anterior(Visualizar Compra) através da instância
             this.Close();   // Fecha este form
+
         }
 
 
