@@ -8,18 +8,18 @@ de Informação
 Escola Superior de Tecnologia e Gestão - IPL Leiria
 Ano letivo 2025/2026
 
+----------------------------------------------------------------
 
 1. ELEMENTOS DO GRUPO
-----------------------------------------------------------------
 
 - André Pedrosa Azenha - 2017127572
 - Filipe Santos Cordeiro - 2025111969
 - Mariana Montez - 2025106693
 
 
-
-2. DESCRIÇÃO
 ----------------------------------------------------------------
+2. DESCRIÇÃO
+
 
 Aplicação WinForms em C# para gestão de compras domésticas.
 Permite a vários utilizadores do agregado familiar:
@@ -33,9 +33,9 @@ A aplicação segue o padrão de arquitetura MVC e usa o
 Entity Framework para persistência em SQL Server.
 
 
-
-3. REQUISITOS
 ----------------------------------------------------------------
+3. REQUISITOS
+
 
 Software necessário:
 - Windows 10 ou superior
@@ -48,9 +48,9 @@ Software necessário:
 Pacotes NuGet (já incluídos no projeto):
 - EntityFramework 6.5.2
 
-
-4. INSTALAÇÃO
 ----------------------------------------------------------------
+4. INSTALAÇÃO
+
 
 1. Descompactar o ficheiro ZIP entregue.
 
@@ -59,10 +59,9 @@ Pacotes NuGet (já incluídos no projeto):
 3. Abrir o Projeto:
   Abrir a pasta "iShopping-Abakos" -> selecionar o ficheiro
    "iShopping-Abakos.sln"
-
-
-5. CONFIGURAÇÃO
 ----------------------------------------------------------------
+5. CONFIGURAÇÃO
+
 
 A aplicação está pré-configurada para usar o SQL Server LocalDB
 que vem com o Visual Studio. NÃO É NECESSÁRIA QUALQUER
@@ -71,9 +70,9 @@ CONFIGURAÇÃO ADICIONAL na primeira execução.
 A base de dados é criada automaticamente quando a aplicação é
 executada pela primeira vez, através do AppDbInitializer.
 
-
-6. EXECUÇÃO
 ----------------------------------------------------------------
+6. EXECUÇÃO
+
 
 Dentro do Visual Studio:
 - Permir no botão Start
@@ -81,9 +80,9 @@ Dentro do Visual Studio:
 Na primeira execução, a base de dados é criada automaticamente
 com dados iniciais (utilizadores e tipos de artigo peça seed).
 
-
-7. UTILIZADORES PREDEFINIDOS
 ----------------------------------------------------------------
+7. UTILIZADORES PREDEFINIDOS
+
 
 A aplicação tem três utilizadores criados automaticamente para
 permitir o login imediato e testar:
@@ -95,9 +94,9 @@ permitir o login imediato e testar:
    mariana     1234
 
 
+----------------------------------------------------------------
 
 8. FUNCIONALIDADES PRINCIPAIS
-----------------------------------------------------------------
 
 - Login de utilizadores
 - Gestão (CRUD) de Tipos de Artigo
@@ -112,9 +111,9 @@ permitir o login imediato e testar:
   * Percentagem de artigos previstos / não previstos
   * Sugestão de orçamento para o próximo mês
 
-
-9. ESTRUTURA DO PROJETO
 ----------------------------------------------------------------
+9. ESTRUTURA DO PROJETO
+
 
 O projeto está organizado em três pastas, seguindo o padrão MVC:
 
@@ -128,9 +127,10 @@ O projeto está organizado em três pastas, seguindo o padrão MVC:
                  Forms (View) e a BD (Model)
 
 
+----------------------------------------------------------------
 
 10. NOTAS FINAIS
-----------------------------------------------------------------
+
 
 - A BD é recriada automaticamente sempre que os modelos
   sofrem alterações (DropCreateDatabaseIfModelChanges).
