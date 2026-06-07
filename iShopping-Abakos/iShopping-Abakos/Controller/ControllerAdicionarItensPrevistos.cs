@@ -1,39 +1,70 @@
 ﻿using iShopping_Abakos.Model;
 using iShopping_Abakos.View;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace iShopping_Abakos.Controller
 {
+    //Controller responsável pela gestão dos itens Previstos de uma compra
     internal class ControllerAdicionarItensPrevistos
     {
+        //Guarda a compra que está a ser editada e é partilhada entre todos os métodos
         public static Compra compraDevolvida;
+        
+        //Recebemos a compra do Form anterior respetiva ao ID que o utilizador inseriu
         public static void AbrirAdicionarItensPrevistosForm(Compra compra)
         {
+            //a compra é preenchida com o parâmetro passado do form anterior 
+            compraDevolvida = compra;
+
+            //Caso a compra não seja válida não deixa avançar nem adicionar itens
             if (compra == null)
             {
                 return;
             }
+
+            //Se correr tudo bem . . .
             else
             {
-                compraDevolvida = compra;
+
+                //O formulário das compras é escondido
                 ComprasForm.instance.Hide();
+
+                //Abre o Formulário que permite gerir os itens previstos na compra selecionada
                 AdicionarItensPrevistosForm form = new AdicionarItensPrevistosForm();
+
+                //Atualiza a label do nome e do total previsto (total dos itens previstos) da compra selecionada
                 AdicionarItensPrevistosForm.labelNome.Text = compra.NomeCompra;
-                AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + (ControllerCompras.ObterTotalPrevisto(compraDevolvida.Id)).ToString() + "€";
+                AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + ControllerCompras.ObterTotalPrevisto(compra.Id).ToString() + "€";
+                
+                //Abre o form já com todas as informações necessárias
                 form.ShowDialog();
             }
         }
 
+        //Método responsável por adicionar itens previstos
         public static void AdicionarItemPrevisto(int artigoId, int qtdPrevista, out string mensagem)
         {
             mensagem = "";
 
+            //Garante que existe uma compra selecionada
+            //Caso o método seja chamado antes de o formulário ser aberto
+            //Evita que a compraDevolvida.Id rebente com NullReferenceException
+            if (compraDevolvida == null)
+            {
+                mensagem = "A seleção da compra foi perdida volte à pagina anterior e volte a selecionar!";
+                return;
+            }
+
+            //a ComboBox de artigos tem de ter algo selecionado.
+            if (artigoId <= 0)
+            {
+                mensagem = "Selecione um artigo!";
+                return;
+            }
+
+
+            //Validação a quantidade tem de ser positiva
             if (qtdPrevista <= 0)
             {
                 mensagem = "A quantidade tem de ser maior que 0!";
@@ -84,10 +115,11 @@ namespace iShopping_Abakos.Controller
 
 
                 db.DBItensCompra.Add(item);
+
                 db.SaveChanges();
                 mensagem = "Item adicionado com sucesso!";
 
-                AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + (ControllerCompras.ObterTotalPrevisto(compraDevolvida.Id)).ToString() + "€";
+                AdicionarItensPrevistosForm.labelPrevisto.Text = "Total Previsto: " + ControllerCompras.ObterTotalPrevisto(compra.Id).ToString() + "€";
 
 
             }

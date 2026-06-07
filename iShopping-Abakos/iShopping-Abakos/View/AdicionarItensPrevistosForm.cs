@@ -1,12 +1,5 @@
 ﻿using iShopping_Abakos.Controller;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace iShopping_Abakos.View
@@ -43,8 +36,7 @@ namespace iShopping_Abakos.View
             string mensagem;
 
 
-            ControllerAdicionarItensPrevistos.AdicionarItemPrevisto(
-                 artigoId, qtdPrevista, out mensagem);
+            ControllerAdicionarItensPrevistos.AdicionarItemPrevisto(artigoId, qtdPrevista, out mensagem);
             MessageBox.Show(mensagem);
 
             ControllerAdicionarItensPrevistos.MostrarListaItens(dataGridView_ItensPrevistos);
@@ -73,9 +65,6 @@ namespace iShopping_Abakos.View
             ControllerAdicionarItensPrevistos.CarregarArtigos(comboBox2_Artigos, tipoArtigoId);
 
         }
-
-
-
         private void button_ApagarItem_Click(object sender, EventArgs e)
         {
             ControllerAdicionarItensPrevistos.EliminarItem(textBox_ID.Text.Trim(), out string mensagem);

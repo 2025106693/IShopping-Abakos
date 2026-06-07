@@ -8,12 +8,14 @@ using System.Data.Entity;
 namespace iShopping_Abakos.Model
 {
 
-    // Apaga os residuos e cria uma nova DB
+    //Apaga a base de dados existente e cria uma nova sempre que são detetadas alterações no modelo
+
+    //internal class AppDbInitializer : DropCreateDatabaseAlways<IShoppingContext>
     internal class AppDbInitializer : DropCreateDatabaseIfModelChanges<IShoppingContext>
     {
         protected override void Seed(IShoppingContext context)
         {
-            // utilizadores
+            //Utilizadores iniciais da aplicação
 
             context.DBUtilizadores.Add(new Utilizador
             {
@@ -34,7 +36,7 @@ namespace iShopping_Abakos.Model
             });
 
 
-            // Tipos de artigo
+            // Tipos de artigo inicais da aplicação
 
             context.DBTipoArtigos.Add(new TipoArtigo
             {

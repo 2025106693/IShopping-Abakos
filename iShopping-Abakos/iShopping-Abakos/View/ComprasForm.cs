@@ -76,8 +76,10 @@ namespace iShopping_Abakos.View
         private void button_AdicionarItem_Click(object sender, EventArgs e)
         {
             Compra compra = ControllerCompras.DevolverCompra(textBox_ID.Text.Trim(), out string mensagem);
+
             if (!string.IsNullOrEmpty(mensagem))
-                MessageBox.Show(mensagem);
+            MessageBox.Show(mensagem);
+            
             ControllerAdicionarItensPrevistos.AbrirAdicionarItensPrevistosForm(compra);
             ControllerCompras.LimparCampos(textBox_Nome, textBox_Descricao, textBox_ID, dataGridView_Compras);
         }

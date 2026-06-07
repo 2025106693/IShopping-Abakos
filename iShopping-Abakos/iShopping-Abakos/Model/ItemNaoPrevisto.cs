@@ -7,10 +7,17 @@ using System.Threading.Tasks;
 
 namespace iShopping_Abakos.Model
 {
+    //Representa um artigo que foi adicionado a uma compra
+    //sem ter sido previamente planeado/previsto
+    //(adicionado a partir do "Modo Compra" = Visualizar Detalhes --> Gerir Item Não Previsto
     [Table("DBItensNaoPrevistos")]
+
+    //Herda da classe ItemCompra, reutilizando os seus atributos
+    //e adicionando a quantidade prevista para o artigo
     internal class ItemNaoPrevisto : ItemCompra
     {
-        public string Descricao { get; set; }
+        //Observacoes do artigo que não foi previamente planeado
+        public string Observacoes { get; set; }
 
     }
 

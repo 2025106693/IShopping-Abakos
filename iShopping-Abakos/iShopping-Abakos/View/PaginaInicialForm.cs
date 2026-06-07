@@ -1,13 +1,6 @@
 ﻿using iShopping_Abakos.Controller;
 using iShopping_Abakos.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace iShopping_Abakos
@@ -30,7 +23,7 @@ namespace iShopping_Abakos
         {
             
             label_NomeUsername.Text = "Bem vindo, " + Sessao.UtilizadorAtual + "!";
-            Orcamento orcamento = ControllerPaginaInicial.DevolverOrcamentoAtual();
+            Orcamento orcamento = ControllerOrcamento.DevolverOrcamentoAtual();
 
             comboBoxEstado.SelectedIndex = 0;
 
@@ -104,6 +97,11 @@ namespace iShopping_Abakos
         private void button_ExportarCSV_Click(object sender, EventArgs e)
         {
             ControllerPaginaInicial.BotaoExportarCSV();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

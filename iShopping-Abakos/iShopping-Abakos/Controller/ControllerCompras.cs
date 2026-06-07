@@ -1,12 +1,12 @@
 ﻿using iShopping_Abakos.Model;
 using iShopping_Abakos.View;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace iShopping_Abakos.Controller
 {
+    //Controller responsável pela compra : criar, editar, adicionar itens previstos e eliminar compra
     internal class ControllerCompras 
     {
         
@@ -19,30 +19,39 @@ namespace iShopping_Abakos.Controller
 
         //Carrega as compras na DataGridView, ordenadas por Data de criação
         //Função usada também para atualizar/carregar a DataGridView cada vez que a tabela compras muda
+        //ou quando são adicionados itens
         public static void MostrarCompras(DataGridView dataSource)
-        {
+        {    
+            //Verifica se a grelha foi passada corretamente
+            if (dataSource == null)
+            {
+                return;
+            }
+
             //Por cada operação usa-se sempre o novo IShoppingContext
             //ToList() materializa os dados e evita lazy loading/inconsistências
+            //Ligação à base de dados
             using (IShoppingContext db = new IShoppingContext())
             {
+                //Procura todas as compras abertas na tabela das compras
                 var compras = db.DBCompras.Where(c => c.Fechado == false).OrderBy(c => c.Id).ToList();
 
-                if (compras != null)
+                if (compras.Any())
                 {
                     foreach (var compra in compras)
                     {
-                        compra.TotalPrevisto = ControllerCompras.ObterTotalPrevisto(compra.Id);
-
+                        compra.TotalPrevisto = ObterTotalPrevisto(compra.Id);
                     }
 
                     db.SaveChanges();
+                    //Apresenta as compras
                     dataSource.DataSource = compras;
+                }
 
-                }
-                else
-                {
-                    MessageBox.Show("Erro a carregar compras!");
-                }
+
+                //Se encontrar compras abertas obtém o total previsto e atualiza o total previsto
+                //Função 2 em 1 (carrega as compras e caso o utilizador adicione algum item atualiza os dados)
+
             }
         }
 
@@ -90,7 +99,7 @@ namespace iShopping_Abakos.Controller
 
 
                     db.DBCompras.Add(compra);
-                    mensagem = "Compra adicionada com sucesso!"; // mensagem para o utilizador saber se correu bem
+                    mensagem = "Compra adicionada com sucesso!"; // mensagem para o utilizador saber se foi realizada a ação com sucesso
                 }
                 else
                 {
@@ -109,11 +118,19 @@ namespace iShopping_Abakos.Controller
             mensagem = ""; //mensagem varia consoante o resultado 
             int idCompra; // variável para validação do id
 
-
+            //Validação se o utilizador introduziu um id (É obrigatório)
             if (id == "")
             {
                 mensagem = "Introduza o ID";
                 return;
+            }
+
+            //Validação: o Id tem de ser númerico
+            if (!int.TryParse(id, out idCompra)) 
+            {
+                mensagem = "O ID tem de ser numérico!";
+                return;
+
             }
 
 
@@ -122,15 +139,6 @@ namespace iShopping_Abakos.Controller
                 mensagem = "Introduza informações (nome/descrição) para realizar a alteração!";
                 return;
             }
-
-
-            if (!int.TryParse(id, out idCompra)) //Se o id não for númerico, obriga a reintroduzir
-            {
-                mensagem = "O ID tem de ser numérico!";
-                return;
-
-            }
-            
 
             using (IShoppingContext db = new IShoppingContext()) //nova instância especifica para a operação
             {
@@ -154,112 +162,150 @@ namespace iShopping_Abakos.Controller
                         compra.NomeCompra = nomeCompra;
                     }
 
+                    //Regista quem alterou e quando
                     compra.AlteradoPor = Sessao.UtilizadorAtual;
                     compra.DataAlteracao = DateTime.Today;
 
                     db.SaveChanges(); //guarda alterações
-                    mensagem = "Compra alterada com sucesso!";
+                    mensagem = "Compra alterada com sucesso!"; //Apresenta uma mensagem de sucesso
                 }
                 ;
             }
         }
 
-
+        //Calcula e guarda o total gasto de uma compra (total previsto + itens não previstos)
         public static decimal ObterTotalGastoCompra(int compraId)
         {
+
+            //Ligação à base de dados
             using (IShoppingContext db = new IShoppingContext())
             {
+                //Procura a compra pelo Id
                 Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == compraId);
 
+                //Caso a compra correspondente ao ID não exista
+                if (compra == null)
+                {
+                    return 0;
+                }
+
+                //Obtém os itens não previstos da compra selecionada/indicada
                 var itensNaoPrevistos = db.DBItensCompra.OfType<ItemNaoPrevisto>()
                                         .Where(i => i.CompraId == compraId).ToList();
 
-
-                if (itensNaoPrevistos != null)
+                //Se existir itens não previstos calcula o total gasto também com o somatório dos itens previstos (Total Previsto)
+                if (itensNaoPrevistos.Any())
                 {
                     compra.TotalGasto = compra.TotalPrevisto + itensNaoPrevistos.
                         Sum(i => i.Quantidade * i.PrecoUnitario);
                 }
 
+                //Senão o total gasto é igual ao previsto (pois não houve a adição de nenhum item não previsto)
                 else
                 {
                     compra.TotalGasto = compra.TotalPrevisto;
                 }
+
+                //Guarda as alterações na bd
                 db.SaveChanges();
 
-                return compra.TotalGasto;
+                return compra.TotalGasto; //Devolve o total gasto (de forma a ser utilizado em várias funcionalidades)
             }
         }
         
-
-        public static decimal ObterTotalPrevisto(int idCompra)
+        //Obtém o Total Previsto
+        public static decimal ObterTotalPrevisto(int compraId)
         {
-            // a validação do idCompra é já realizada nas outras funções não sendo necessário realizar novamente
-            //esta função serve apenas para calcular
-
             using (IShoppingContext db = new IShoppingContext())
             {
+                //Procura a compra pelo Id
+                Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == compraId);
+
+                //Caso a compra correspondente ao ID não exista
+                if (compra == null)
                 {
-                    var ItensCompra = db.DBItensCompra.OfType<ItemPrevisto>()
-                              .Where(i => i.CompraId == idCompra).ToList();
-
-                    if (ItensCompra != null)
-                    {
-                       return ItensCompra.Sum(i => i.PrecoUnitario * i.QuantPrevista);
-                    }
-
-                    else
-                    {
-                        return 0;
-                    }
-         
+                    return 0;
                 }
+
+                //Obtém os itens previstos da compra selecionada/indicada
+                var itensPrevistos = db.DBItensCompra.OfType<ItemPrevisto>()
+                                        .Where(i => i.CompraId == compraId).ToList();
+
+                //Se existir itens previstos calcula o total previsto
+                if (itensPrevistos.Any())
+                {
+
+                    compra.TotalPrevisto = itensPrevistos.Sum(i => i.PrecoUnitario * i.QuantPrevista);
+  
+                }
+
+                //Senão houver itens então o valor é 0
+                else
+                {
+                    compra.TotalPrevisto = 0;
+                }
+
+                //Guarda as alterações na bd
+                db.SaveChanges();
+                return compra.TotalPrevisto; //Devolve o total previsto (de forma a ser utilizado em várias funcionalidades)
             }
+
+               
         }
 
 
-
+        //Elimina uma compra (e os seus itens) a partir do ID indicado pelo utilizador
         public static void EliminarCompra(string id, out string mensagem)
         {
             mensagem = "";
             int idCompra;
 
-
+            //Verifica se um ID foi inserido
             if (id == "")
             {
                 mensagem = "Tem de introduzir um id";
                 return;
             }
 
-
+            //Verifica se o ID é numérico
             if (!int.TryParse(id, out idCompra))
             {
                 mensagem = "O id tem de ser numérico";
                 return;
             }
 
-            
+            //Ligação à base de dados
             using (IShoppingContext db = new IShoppingContext())
             {
-
+                //Procura o ID da compra e verifica que está aberta (só elimina compras ainda abertas)
                 Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == idCompra && c.Fechado == false);
 
-
+                //Se encontrar uma compra
                 if (compra != null)
                 {
+                    //Vai buscar os itens associados
                     var ItensCompra = db.DBItensCompra.Where(i => i.CompraId == idCompra).ToList();
 
-                    foreach (var item in ItensCompra)
+                    //Caso haja itens 
+                    if (ItensCompra.Any())
                     {
-                        db.DBItensCompra.Remove(item);
+                        //Remove os itens associados
+                        foreach (var item in ItensCompra)
+                        {
+                            db.DBItensCompra.Remove(item);
+                        }
                     }
-
+                    
+                    //Remove a compra
                     db.DBCompras.Remove(compra);
 
+                    //Salva as alterações na base de dados
                     db.SaveChanges();
                     mensagem = "Compra removida com sucesso!";
                     
                 }
+
+                //Caso a compra não exista (o ID introduzido não corresponda a nenhuma)
                 else
                 {
                     mensagem = "Introduza uma compra existente";
@@ -269,52 +315,62 @@ namespace iShopping_Abakos.Controller
         }
 
 
-
+        //Devolve uma compra a partir do ID (usada para abrir o forms/métodos que necessitam de uma compra associada)
         public static Compra DevolverCompra(string id, out string mensagem)
         {
             int idCompra;
 
-
+            //Verifica que um ID foi introduzido
             if (id == "")
             {
                 mensagem = "Por favor insira um Id";
                 return null;
             }
 
-
+            //Verifica que o ID é numérico
             if (!int.TryParse(id, out idCompra))
             {
                 mensagem = "O Id tem de ser numérico";
                 return null;
             }
 
-
+            //Ligação à base de dados
             using (IShoppingContext db = new IShoppingContext())
             {
+                //Procura a compra através do id
                 Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == idCompra);
 
+                //Garante que é uma compra existente e que está aberta
                 if (compra != null && compra.Fechado == false)
                 {
                     mensagem = "";
                     return compra;
                 }
                 
-                else
+                //caso não exista
+                else if (compra == null)
                 {
                     mensagem = "Selecione uma compra existente!";
+                    return null;
+                }
+
+                //caso esteja fechada
+                else
+                {
+                    mensagem = "A compra já se encontra fechada";
                     return null;
                 }
             }
         }
 
 
-
+        //Limpa os campos do Formulário e tira a seleção da grelha
         public static void LimparCampos(TextBox nome, TextBox descricao, TextBox id, DataGridView dataSource)
         {
-            nome.Text = "";             // coloca os campos a vazio
+            nome.Text = "";             
             descricao.Text = "";
             id.Text = "";
-            dataSource.ClearSelection(); // para retirar a selecao do cursor da tabela(datagridview)
+            dataSource.ClearSelection(); 
         }
     }
 }
