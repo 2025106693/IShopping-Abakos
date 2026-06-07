@@ -86,12 +86,24 @@ namespace iShopping_Abakos.Controller
                 //Procura o artigo correspondente ao ID na base de dados
                 Artigo artigo = db.DBArtigos.FirstOrDefault(a => a.Id == artigoId);
 
+
+                ItemPrevisto itemExistentePrevisto = db.DBItensCompra.OfType<ItemPrevisto>()
+                        .FirstOrDefault(i => i.ArtigoId == artigoId && i.CompraId == compraDevolvida.Id);
+
+                if (itemExistentePrevisto != null)
+                {
+                    mensagem = "Artigo já adicionado!";
+                    return;
+                }
+
+
                 //Caso não encontre
                 if (artigo == null)
                 {
                     mensagem = "Artigo não encontrado!";
                     return;
                 }
+
 
                 //Confirma que a compra ainda existe na BD (evitar qualquer situação que dê erros)
                 Compra compra = db.DBCompras.FirstOrDefault(c => c.Id == compraDevolvida.Id);
@@ -103,10 +115,12 @@ namespace iShopping_Abakos.Controller
                     return;
                 }
 
-                //Impede duplicados: o mesmo artigo não pode ser adicionado duas vezes à mesma compra
 
+                //Impede duplicados: o mesmo artigo não pode ser adicionado duas vezes à mesma compra
                 ItemNaoPrevisto itemExistente = db.DBItensCompra.OfType<ItemNaoPrevisto>()
                 .FirstOrDefault(i => i.ArtigoId == artigoId && i.CompraId == compraDevolvida.Id);
+
+
 
                 //Se for existente não adiciona
                 if (itemExistente != null)
@@ -137,6 +151,8 @@ namespace iShopping_Abakos.Controller
                 AdicionarItensNaoPrevistosForm.labelValorTotal.Text = "Total da compra: " + (ControllerCompras.ObterTotalGastoCompra(compraDevolvida.Id)).ToString() + "€";
             }
         }
+
+
 
         //Carrega na DataGridView todos os itens da compra (previstos + não previstos)
         public static void MostrarListaItens(DataGridView datasource)
@@ -181,6 +197,8 @@ namespace iShopping_Abakos.Controller
             }
         }
 
+
+
         //Preenche a ComboBox com os tipos de artigo disponíveis
         public static void CarregarTiposArtigo(ComboBox comboBox)
         {
@@ -196,6 +214,8 @@ namespace iShopping_Abakos.Controller
                 comboBox.ValueMember = "Id";     // Valor associado
             }
         }
+
+
 
         //Preenche a ComboBox com os artigos do tipo selecionado
         public static void CarregarArtigos(ComboBox comboBox, int tipoArtigoSelecionado)
@@ -220,6 +240,8 @@ namespace iShopping_Abakos.Controller
                 comboBox.ValueMember = "Id";     // Valor associado
             }
         }
+
+
 
         //Altera a quantidade de um item não previsto (Identificado pelo ArtigoID) na compra atual
         public static void AlterarQuantidade(string itemId, int quantidade, out string mensagem)
@@ -285,6 +307,8 @@ namespace iShopping_Abakos.Controller
 
         }
 
+
+
         //Elimina um item não previsto (identificado pelo ID do Item) da compra atual
         public static void EliminarItem(string itemId, out string mensagem)
         {
@@ -338,6 +362,7 @@ namespace iShopping_Abakos.Controller
                 mensagem = "Item removido com sucesso!"; //Confirma ao utilizador do sucesso da ação
 
             }
+
 
             //Atualiza o Total Gasto 
             AdicionarItensNaoPrevistosForm.labelValorTotal.Text = "Total da compra: " + (ControllerCompras.ObterTotalGastoCompra(compraDevolvida.Id)).ToString() + "€";

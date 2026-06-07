@@ -23,14 +23,13 @@ namespace iShopping_Abakos.View
             labelValorTotal = label_TotalCompra;
         }
 
+
+
         private void AdicionarItensNaoPrevistosForm_Load(object sender, EventArgs e)
         {
-
             ControllerAdicionarItensNaoPrevistos.CarregarTiposArtigo(comboBox_TipoArtigo);
             ControllerAdicionarItensNaoPrevistos.MostrarListaItens(dataGridView_ItensCompra);
-
         }
-
 
         
 
@@ -42,17 +41,8 @@ namespace iShopping_Abakos.View
                 return;
             }
 
-            int artigoId = (int)comboBoxArtigo.SelectedValue;
-            int quantidade = (int)numericUpDownQuantidade.Value;
-            string observacoes = textBox_Observacoes.Text;
-            string mensagem;
-
-
-            ControllerAdicionarItensNaoPrevistos.AdicionarItemNaoPrevisto(
-                 artigoId, quantidade, observacoes, out mensagem);
-
+            ControllerAdicionarItensNaoPrevistos.AdicionarItemNaoPrevisto((int)comboBoxArtigo.SelectedValue, (int)numericUpDownQuantidade.Value, textBox_Observacoes.Text.Trim(), out string mensagem);
             MessageBox.Show(mensagem);
-
             ControllerAdicionarItensNaoPrevistos.MostrarListaItens(dataGridView_ItensCompra);
         }
 
@@ -60,12 +50,8 @@ namespace iShopping_Abakos.View
 
         private void buttonApagarItemNP_Click_1(object sender, EventArgs e)
         {
-            string mensagem = "";
-
-            ControllerAdicionarItensNaoPrevistos.EliminarItem(textBox_ID_NP.Text.Trim(), out mensagem);
-
+            ControllerAdicionarItensNaoPrevistos.EliminarItem(textBox_ID_NP.Text.Trim(), out string mensagem);
             MessageBox.Show(mensagem);
-
             ControllerAdicionarItensNaoPrevistos.MostrarListaItens(dataGridView_ItensCompra);
         }
 
@@ -73,12 +59,8 @@ namespace iShopping_Abakos.View
 
         private void buttonAlterarQuantNP_Click_1(object sender, EventArgs e)
         {
-            string mensagem = "";
-
-            ControllerAdicionarItensNaoPrevistos.AlterarQuantidade(textBox_ID_NP.Text.Trim(), (int)numericUpDownQuantidade.Value, out mensagem);
-
+            ControllerAdicionarItensNaoPrevistos.AlterarQuantidade(textBox_ID_NP.Text.Trim(), (int)numericUpDownQuantidade.Value, out string mensagem);
             MessageBox.Show(mensagem);
-
             ControllerAdicionarItensNaoPrevistos.MostrarListaItens(dataGridView_ItensCompra);
         }
 
@@ -89,6 +71,8 @@ namespace iShopping_Abakos.View
             VisualizarCompraForm.instance.Show();
             this.Close();
         }
+
+
 
         private void comboBox_TipoArtigo_SelectedIndexChanged_1(object sender, EventArgs e)
         {
@@ -107,6 +91,7 @@ namespace iShopping_Abakos.View
                 MessageBox.Show("Selecione um tipo de artigo");
                 return;
             }
+
 
             ControllerAdicionarItensNaoPrevistos.CarregarArtigos(comboBoxArtigo, tipoArtidoId);
         }
