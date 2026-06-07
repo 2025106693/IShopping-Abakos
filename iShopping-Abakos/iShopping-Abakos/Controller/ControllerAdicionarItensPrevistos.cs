@@ -347,7 +347,7 @@ namespace iShopping_Abakos.Controller
                 //Avisa o utilizador que não tem nenhum orçamento
                 MessageBox.Show("Sem nenhum orçamento atual. Não irá haver controlo de valores!");
                 
-                return true;
+                return false;
             }
 
             //Calcula o valor restante disponível
@@ -373,5 +373,15 @@ namespace iShopping_Abakos.Controller
 
         }
 
+
+        // método para limpar os campos após alterações
+        public static void LimparCampos(ComboBox comboTipoArtigo, ComboBox comboArtigos, NumericUpDown campoNumerico, TextBox id, DataGridView dataSource)
+        {
+            comboTipoArtigo.SelectedIndex = -1;             // coloca os campos a vazio
+            comboArtigos.SelectedIndex = -1;
+            campoNumerico.Value = 0;
+            id.Text = "";
+            dataSource.ClearSelection(); // para retirar a selecao do cursor da tabela(datagridview)
+        }
     }
 }
