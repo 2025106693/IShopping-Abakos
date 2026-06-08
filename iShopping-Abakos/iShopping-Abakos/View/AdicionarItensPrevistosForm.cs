@@ -54,6 +54,9 @@ namespace iShopping_Abakos.View
             // atualiza a tabela para aparecer o item novo
             ControllerAdicionarItensPrevistos.MostrarListaItens(dataGridView_ItensPrevistos);
 
+            // limpar campos após alterações
+            ControllerAdicionarItensPrevistos.LimparCampos(comboBox_TiposArtigos, comboBox2_Artigos, numericUpDown1, textBox_ID, dataGridView_ItensPrevistos);
+
         }
 
         // Quando o formulário é carregado pela primeira vez
@@ -66,6 +69,8 @@ namespace iShopping_Abakos.View
             // começa sem nada selecionado na combobox dos tipos
             comboBox_TiposArtigos.SelectedIndex = -1;
 
+            // limpar campos após alterações
+            ControllerAdicionarItensPrevistos.LimparCampos(comboBox_TiposArtigos, comboBox2_Artigos, numericUpDown1, textBox_ID, dataGridView_ItensPrevistos);
         }
 
         // Quando o utilizador escolhe um tipo de artigo na combobox, filtra os artigos
@@ -98,6 +103,9 @@ namespace iShopping_Abakos.View
             MessageBox.Show(mensagem);
             // atualiza a tabela para o item desaparecer
             ControllerAdicionarItensPrevistos.MostrarListaItens(dataGridView_ItensPrevistos);
+
+            // limpar campos após alterações
+            ControllerAdicionarItensPrevistos.LimparCampos(comboBox_TiposArtigos, comboBox2_Artigos, numericUpDown1, textBox_ID, dataGridView_ItensPrevistos);
         }
 
 
@@ -110,6 +118,9 @@ namespace iShopping_Abakos.View
             MessageBox.Show(mensagem);
             // atualiza a tabela com a nova quantidade
             ControllerAdicionarItensPrevistos.MostrarListaItens(dataGridView_ItensPrevistos);
+
+            // limpar campos após alterações
+            ControllerAdicionarItensPrevistos.LimparCampos(comboBox_TiposArtigos, comboBox2_Artigos, numericUpDown1, textBox_ID, dataGridView_ItensPrevistos);
         }
     }
 }
