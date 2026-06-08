@@ -49,13 +49,11 @@ Software necessário:
 4. INSTALAÇÃO
 
 
-1. Descompactar o ficheiro ZIP entregue.
-
-2. Abrir o Visual Studio.
-
-3. Abrir o Projeto:
-  Abrir a pasta "iShopping-Abakos" -> selecionar o ficheiro
-   "iShopping-Abakos.sln"
+- Descompactar o ficheiro ZIP entregue.
+- Abrir o Projeto:
+    Abrir a pasta "iShopping-Abakos" -> selecionar o ficheiro
+     "iShopping-Abakos.sln"
+  
 ----------------------------------------------------------------
 5. CONFIGURAÇÃO
 
@@ -72,7 +70,7 @@ executada pela primeira vez, através do AppDbInitializer.
 
 
 Dentro do Visual Studio:
-- Permir no botão Start
+- Clicar no botão Start
 
 Na primeira execução, a base de dados é criada automaticamente
 com dados iniciais (utilizadores e tipos de artigo pela seed).
@@ -89,7 +87,6 @@ permitir o login imediato e testar:
    andre       1234
    filipe      1234
    mariana     1234
-
 
 ----------------------------------------------------------------
 
@@ -114,15 +111,14 @@ permitir o login imediato e testar:
 
 O projeto está organizado em três pastas, seguindo o padrão MVC:
 
-   Model/      - Classes que representam as tabelas da BD,
+   Model/      - Lógica de negócio, classes que representam as tabelas da BD,
                  contexto do EF (IShoppingContext) e
                  inicializador da BD (AppDbInitializer)
 
-   View/       - Formulários WinForms (.cs e .Designer.cs)
+   View/       - Apresentação dos formulários WinForms (.cs e .Designer.cs) ao utilizador
 
-   Controller/ - Lógica de negócio que faz a ponte entre os
+   Controller/ - Lógica da aplicação que faz a ponte entre os
                  Forms (View) e a BD (Model)
-
 
 ----------------------------------------------------------------
 
@@ -133,7 +129,7 @@ O projeto está organizado em três pastas, seguindo o padrão MVC:
   sofrem alterações (DropCreateDatabaseIfModelChanges).
   Isto significa que dados de teste podem ser perdidos caso o Model seja alterado.
 
-- Os utilizadores do Seed são sempre criados de novo após
+- Os utilizadores e os tipos de artigo do Seed são sempre criados de novo após
   qualquer alteração ao modelo.
 
 - O ficheiro CSV gerado pela exportação é guardado no local
